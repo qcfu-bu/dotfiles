@@ -20,10 +20,11 @@
 
 ;; system
 (server-start)
-(setq make-backup-files nil)
-(setq dired-use-ls-dired nil)
-(setq delete-by-moving-to-trash t)
-(setq trash-directory "~/.Trash")
+(setq make-backup-files nil
+      dired-use-ls-dired nil
+      frame-resize-pixelwise t
+      delete-by-moving-to-trash t
+      trash-directory "~/.Trash")
 
 (use-package exec-path-from-shell
   :straight t
