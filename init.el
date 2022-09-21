@@ -301,6 +301,8 @@
   "pf" 'counsel-projectile-find-file
   "pd" 'counsel-projectile-find-dir
   "pg" 'counsel-projectile-grep
+  ;; themes
+  "tt" 'counsel-load-theme
   ;; terminal
   "'" 'vterm-toggle
   "\"" 'vterm
