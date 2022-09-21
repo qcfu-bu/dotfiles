@@ -134,7 +134,8 @@
   :straight t
   :defer t
   :config
-  (setq lsp-headerline-breadcrumb-enable nil))
+  (setq lsp-headerline-breadcrumb-enable nil
+	lsp-lens-place-position 'above-line))
 
 (use-package yasnippet
   :straight t
