@@ -139,7 +139,8 @@
   :config
   (setq lsp-headerline-breadcrumb-enable nil
 	lsp-lens-enable nil
-	lsp-modeline-code-actions-enable nil))
+	lsp-modeline-code-actions-enable nil
+	lsp-signature-auto-activate nil))
 
 (use-package yasnippet
   :straight t
