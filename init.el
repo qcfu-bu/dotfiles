@@ -284,7 +284,7 @@
   "fp" 'find-user-init-file
   "fs" 'save-buffer
   ;; buffers
-  "bb" 'counsel-buffer-or-recentf
+  "bb" 'counsel-switch-buffer
   "bp" 'previous-buffer
   "bn" 'next-buffer
   "bd" 'kill-this-buffer
