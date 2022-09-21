@@ -65,8 +65,10 @@
   :straight t
   :after evil
   :config
-  (setq-default evil-escape-key-sequence "fd")
-  (setq-default evil-escape-delay 0.2)
+  (setq evil-escape-excluded-states '(normal visual multiedit emacs motion)
+	evil-escape-excluded-major-modes '(vterm)
+	evil-escape-key-sequence "jk"
+	evil-escape-delay 0.2)
   (evil-escape-mode))
 
 (use-package evil-commentary
