@@ -138,7 +138,8 @@
   :defer t
   :config
   (setq lsp-headerline-breadcrumb-enable nil
-	lsp-lens-enable nil))
+	lsp-lens-enable nil
+	lsp-modeline-code-actions-enable nil))
 
 (use-package yasnippet
   :straight t
