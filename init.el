@@ -22,6 +22,8 @@
 (server-start)
 (setq make-backup-files nil)
 (setq dired-use-ls-dired nil)
+(setq delete-by-moving-to-trash t)
+(setq trash-directory "~/.Trash")
 
 (use-package exec-path-from-shell
   :straight t
@@ -135,7 +137,7 @@
   :defer t
   :config
   (setq lsp-headerline-breadcrumb-enable nil
-	lsp-lens-place-position 'above-line))
+	lsp-lens-enable nil))
 
 (use-package yasnippet
   :straight t
@@ -185,7 +187,7 @@
 (use-package spacemacs-theme
   :straight t
   :defer t
-  :init (load-theme 'spacemacs-dark t))
+  :init (load-theme 'modus-operandi t))
 
 (use-package smartparens
   :straight t
@@ -254,6 +256,7 @@
 (use-package utop
   :straight t
   :defer t
+  :hook (tuareg-mode . utop-minor-mode)
   :config
   (setq utop-command "opam config exec -- utop -emacs"))
 
