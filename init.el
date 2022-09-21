@@ -82,6 +82,12 @@
   :config
   (global-anzu-mode 1))
 
+(use-package evil-easymotion
+  :straight t
+  :after evil
+  :config
+  (evilem-default-keybindings "gs"))
+
 (use-package general
   :straight t
   :after evil
