@@ -211,7 +211,8 @@
 (use-package auctex
   :straight t
   :hook ((LaTeX-mode . lsp)
-	 (LaTeX-mode . visual-line-mode))
+	 (LaTeX-mode . visual-line-mode)
+	 (LaTeX-mode . flyspell-mode))
   :init
   (setq TeX-command-extra-options "-shell-escape"
 	TeX-auto-local ".auctex-auto"
@@ -228,7 +229,9 @@
 (use-package org
   :straight t
   :defer t
-  :hook (org-mode . org-superstar-mode)
+  :hook ((org-mode . org-superstar-mode)
+	 (org-mode . visual-line-mode)
+	 (org-mode . flyspell-mode))
   :config
   (setq org-startup-indented t))
 
@@ -305,6 +308,11 @@
 (spc-local-leader-def
   :keymaps 'emacs-lisp-mode-map
   "e" 'eval-buffer)
+
+(spc-local-leader-def
+  :keymaps 'LaTeX-mode-map
+  "c" 'TeX-command-master
+  "v" 'TeX-view)
 
 (spc-local-leader-def
   :keymaps 'coq-mode-map
