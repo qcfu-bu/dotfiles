@@ -185,7 +185,7 @@
   :defer t)
 
 ;; appearance
-(use-package spacemacs-theme
+(use-package modus-themes
   :straight t
   :defer t
   :init (load-theme 'modus-operandi t))
