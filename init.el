@@ -21,6 +21,7 @@
 ;; system
 (server-start)
 (setq make-backup-files nil)
+(setq dired-use-ls-dired nil)
 
 (use-package exec-path-from-shell
   :straight t
@@ -151,12 +152,29 @@
   (global-git-gutter-mode 1))
 
 (use-package gitignore-templates
-  :straight t)
+  :straight t
+  :defer t)
+
+(use-package projectile
+  :straight t
+  :defer t
+  :config
+  (setq projectile-ignored-projects '("~/")
+	projectile-project-root-files '()
+	projectile-project-root-files-bottom-up '(".projectile" ".git")
+	projectile-project-root-files-top-down-recurring '("Makefile")))
+
+(use-package counsel-projectile
+  :straight t
+  :config
+  (counsel-projectile-mode))
 
 ;; tools
 (use-package vterm
   :straight t
-  :defer t)
+  :defer t
+  :config
+  (setq vterm-kill-buffer-on-exit t))
 
 (use-package vterm-toggle
   :straight t
@@ -214,9 +232,14 @@
   (setq org-startup-indented t))
 
 ;; code
+(use-package company-coq
+  :straight t
+  :defer t)
+
 (use-package proof-general
   :straight t
-  :config
+  :hook (coq-mode . company-coq-mode)
+  :init
   (setq proof-splash-enable nil))
 
 (use-package tuareg
@@ -226,6 +249,7 @@
 
 (use-package utop
   :straight t
+  :defer t
   :config
   (setq utop-command "opam config exec -- utop -emacs"))
 
@@ -245,6 +269,7 @@
   ;; general
   ""    nil
   "SPC" 'counsel-M-x
+  "\\" 'toggle-input-method
   ;; files
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
@@ -263,6 +288,11 @@
   "wk" 'evil-window-up
   "wl" 'evil-window-right
   "wd" 'evil-window-delete
+  ;; projects
+  "pp" 'counsel-projectile-switch-project
+  "pf" 'counsel-projectile-find-file
+  "pd" 'counsel-projectile-find-dir
+  "pg" 'counsel-projectile-grep
   ;; terminal
   "'" 'vterm-toggle
   "\"" 'vterm
