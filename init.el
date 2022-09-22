@@ -133,6 +133,11 @@
   (company-prescient-mode)
   (prescient-persist-mode))
 
+(use-package flycheck
+  :straight t
+  :config
+  (setq flycheck-check-syntax-automatically '(save)))
+
 (use-package lsp-mode
   :straight t
   :defer t
@@ -156,6 +161,11 @@
   :straight t
   :config
   (global-git-gutter-mode 1))
+
+(use-package git-gutter-fringe
+  :straight t
+  :config
+  (setq git-gutter-fr:side 'right-fringe))
 
 (use-package gitignore-templates
   :straight t
