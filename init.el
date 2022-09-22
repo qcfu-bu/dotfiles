@@ -240,6 +240,13 @@
   :config
   (setq org-startup-indented t))
 
+(use-package org-roam
+  :straight t
+  :defer t
+  :config
+  (setq org-roam-directory (file-truename "~/git/RoamNotes"))
+  (org-roam-db-autosync-mode))
+
 ;; code
 (use-package company-coq
   :straight t
@@ -303,6 +310,11 @@
   "pf" 'counsel-projectile-find-file
   "pd" 'counsel-projectile-find-dir
   "pg" 'counsel-projectile-grep
+  ;; org-roam
+  "nf" 'org-roam-node-find
+  "ng" 'org-roam-graph
+  "ni" 'org-roam-node-insert
+  "nc" 'org-roam-capture
   ;; themes
   "tt" 'counsel-load-theme
   ;; terminal

@@ -44,3 +44,4 @@ straight/*
 transient/*
 var/*
 project*
+org-roam.db
