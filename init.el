@@ -129,28 +129,21 @@
 (use-package company
   :straight t
   :init
+  (setq company-minimum-prefix-length 2)
+  :config
   (global-company-mode)
   (company-prescient-mode)
   (prescient-persist-mode))
-
-(use-package flycheck
-  :straight t
-  :config
-  (setq flycheck-check-syntax-automatically '(save)))
-
-(use-package lsp-mode
-  :straight t
-  :defer t
-  :config
-  (setq lsp-headerline-breadcrumb-enable nil
-	lsp-lens-enable nil
-	lsp-modeline-code-actions-enable nil
-	lsp-signature-auto-activate nil))
 
 (use-package yasnippet
   :straight t
   :config
   (yas-global-mode 1))
+
+(use-package eglot
+  :straight t
+  :defer t
+  :after yasnippet)
 
 ;; git
 (use-package magit
@@ -225,7 +218,7 @@
 
 (use-package auctex
   :straight t
-  :hook ((LaTeX-mode . lsp)
+  :hook ((LaTeX-mode . eglot-ensure)
 	 (LaTeX-mode . visual-line-mode)
 	 (LaTeX-mode . flyspell-mode))
   :init
@@ -270,8 +263,8 @@
 
 (use-package tuareg
   :straight t
-  :hook ((tuareg-mode . lsp)
-	 (tuareg-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer nil t)))))
+  :hook ((tuareg-mode . eglot-ensure)
+	 (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t)))))
 
 (use-package utop
   :straight t
