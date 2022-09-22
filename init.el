@@ -187,10 +187,10 @@
   :defer t)
 
 ;; appearance
-(use-package modus-themes
+(use-package doom-themes
   :straight t
   :defer t
-  :init (load-theme 'modus-operandi t))
+  :init (load-theme 'doom-one t))
 
 (use-package smartparens
   :straight t
