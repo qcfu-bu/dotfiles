@@ -45,3 +45,4 @@ transient/*
 var/*
 project*
 org-roam.db
+url/*
