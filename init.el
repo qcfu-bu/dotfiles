@@ -49,6 +49,16 @@
   :config
   (add-to-list 'recentf-exclude "/private/var/folders/*"))
 
+(use-package dashboard
+  :straight t
+  :after recentf
+  :init
+  (setq dashboard-items '((recents . 5)
+			  (projects . 5))
+	dashboard-set-footer nil)
+  :config
+  (dashboard-setup-startup-hook))
+
 ;; evil
 (use-package evil
   :straight t
@@ -187,13 +197,25 @@
 
 (use-package vterm-toggle
   :straight t
-  :defer t)
+  :defer t
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+	       '((lambda (buffer-or-name _)
+		   (let ((buffer (get-buffer buffer-or-name)))
+		     (with-current-buffer buffer
+		       (or (equal major-mode 'vterm-mode)
+			   (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+		 (display-buffer-reuse-window display-buffer-at-bottom)
+		 (reusable-frames . visible)
+		 (window-height . 0.3))))
 
 ;; appearance
-(use-package doom-themes
+(use-package atom-one-dark-theme
   :straight t
   :defer t
-  :init (load-theme 'doom-one t))
+  :init (load-theme 'atom-one-dark t))
 
 (use-package smartparens
   :straight t
@@ -307,6 +329,8 @@
   "wj" 'evil-window-down
   "wk" 'evil-window-up
   "wl" 'evil-window-right
+  "wp" 'evil-window-prev
+  "wn" 'evil-window-next
   "wd" 'evil-window-delete
   ;; projects
   "pp" 'counsel-projectile-switch-project
