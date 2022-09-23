@@ -55,7 +55,8 @@
   :init
   (setq dashboard-items '((recents . 5)
 			  (projects . 5))
-	dashboard-set-footer nil)
+	dashboard-set-footer nil
+	dashboard-startup-banner 3)
   :config
   (dashboard-setup-startup-hook))
 
