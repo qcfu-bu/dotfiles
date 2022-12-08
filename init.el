@@ -19,10 +19,11 @@
 (setq make-backup-files nil)
 (setq dired-use-ls-dired nil)
 (setq frame-resize-pixelwise t)
-(setq mac-redisplay-dont-reset-vscroll t
-      mac-mouse-wheel-smooth-scroll nil)
-(setq delete-by-moving-to-trash t)
-(setq trash-directory "~/.Trash")
+(when (memq window-system '(mac ns x))
+  (setq mac-redisplay-dont-reset-vscroll t
+	mac-mouse-wheel-smooth-scroll nil)
+  (setq delete-by-moving-to-trash t
+	trash-directory "~/.Trash"))
 (with-current-buffer "*scratch*"
   (emacs-lock-mode 'kill))
 
@@ -40,6 +41,10 @@
   :hook ((prog-mode text-mode) . display-line-numbers-mode)
   :config (setq-default display-line-numbers-width 3))
 
+(use-package undo-tree
+  :straight t
+  :config (global-undo-tree-mode))
+
 (use-package savehist
   :init (savehist-mode))
 
@@ -56,7 +61,7 @@
   :init
   (setq evil-want-integration t
 	evil-want-keybinding nil
-	evil-undo-system 'undo-redo)
+	evil-undo-system 'undo-tree)
   :config (evil-mode 1))
 
 (use-package evil-collection
