@@ -38,6 +38,7 @@ Temporary Items
 .cache/*
 .lsp-session-v1
 auto-save-list/*
+undo/*
 history
 recentf
 straight/*

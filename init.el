@@ -43,7 +43,9 @@
 
 (use-package undo-tree
   :straight t
-  :config (global-undo-tree-mode))
+  :config
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+  (global-undo-tree-mode))
 
 (use-package savehist
   :init (savehist-mode))
