@@ -274,6 +274,15 @@
 	TeX-source-correlate-start-server t
 	TeX-electric-sub-and-superscript t))
 
+(use-package auctex-latexmk
+  :straight t
+  :after latex
+  :hook ((LaTeX-mode . (lambda () (setq TeX-command-default "LatexMk"))))
+  :init
+  (setq auctex-latexmk-inherit-TeX-PDF-mode t)
+  :config
+  (auctex-latexmk-setup))
+
 (use-package org-superstar
   :straight t
   :defer t)
