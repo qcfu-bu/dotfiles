@@ -1,3 +1,6 @@
+(setq gc-cons-threshold 100000000)
+(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+
 ;; straight bootstrap
 (setq straight-check-for-modifications '(check-on-save)
       straight-cache-autoloads t)
@@ -122,11 +125,16 @@
   :after counsel
   :config (ivy-rich-mode t))
 
+(use-package orderless
+  :straight t)
+
 (use-package counsel
   :straight t
   :init
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
+  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
+  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight))
   :config
   (ivy-prescient-mode)
   (prescient-persist-mode)
