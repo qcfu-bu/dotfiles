@@ -205,7 +205,6 @@
   :defer t
   :config
   (setq vterm-toggle-fullscreen-p nil)
-  (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
 	       '((lambda (buffer-or-name _)
 		   (let ((buffer (get-buffer buffer-or-name)))
@@ -226,6 +225,13 @@
 
 (use-package solaire-mode
   :straight t
+  :init
+  (defun solaire-mode-real-buffer-custom-p ()
+    "Return t if the current buffer is the or scratch, or is a real (file-visiting) buffer."
+    (cond ((string= (buffer-name (buffer-base-buffer)) "*scratch*") t)
+          ((buffer-file-name (buffer-base-buffer)) t)
+          (t nil)))
+  (setq solaire-mode-real-buffer-fn #'solaire-mode-real-buffer-custom-p)
   :config (solaire-global-mode))
 
 (use-package smartparens
