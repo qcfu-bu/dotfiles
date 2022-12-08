@@ -34,20 +34,21 @@
 
 (use-package esup
   :straight t
-  :config
-  (setq esup-depth 0))
+  :config (setq esup-depth 0))
+
+(use-package display-line-numbers
+  :init (setq display-line-numbers-width-start 3)
+  :hook ((prog-mode text-mode) . display-line-numbers-mode))
 
 (use-package savehist
-  :init
-  (savehist-mode))
+  :init (savehist-mode))
 
 (use-package recentf
   :init
   (setq recentf-max-menu-items 25
 	recentf-max-saved-items 25)
   (recentf-mode 1)
-  :config
-  (add-to-list 'recentf-exclude "/private/var/folders/*"))
+  :config (add-to-list 'recentf-exclude "/private/var/folders/*"))
 
 (use-package dashboard
   :straight t
@@ -57,8 +58,7 @@
 			  (projects . 5))
 	dashboard-set-footer nil
 	dashboard-startup-banner 3)
-  :config
-  (dashboard-setup-startup-hook))
+  :config (dashboard-setup-startup-hook))
 
 ;; evil
 (use-package evil
@@ -67,14 +67,12 @@
   (setq evil-want-integration t
 	evil-want-keybinding nil
 	evil-undo-system 'undo-redo)
-  :config
-  (evil-mode 1))
+  :config (evil-mode 1))
 
 (use-package evil-collection
   :straight t
   :after evil
-  :config
-  (evil-collection-init))
+  :config (evil-collection-init))
 
 (use-package evil-escape
   :straight t
@@ -88,20 +86,17 @@
 
 (use-package evil-commentary
   :straight t
-  :config
-  (evil-commentary-mode))
+  :config (evil-commentary-mode))
 
 (use-package evil-anzu
   :straight t
   :after evil
-  :config
-  (global-anzu-mode 1))
+  :config (global-anzu-mode 1))
 
 (use-package evil-easymotion
   :straight t
   :after evil
-  :config
-  (evilem-default-keybindings "gs"))
+  :config (evilem-default-keybindings "gs"))
 
 (use-package general
   :straight t
@@ -119,8 +114,7 @@
 
 (use-package which-key
   :straight t
-  :config
-  (which-key-mode))
+  :config (which-key-mode))
 
 ;; completion
 (use-package ivy-prescient
@@ -139,8 +133,7 @@
 
 (use-package company
   :straight t
-  :init
-  (setq company-minimum-prefix-length 2)
+  :init (setq company-minimum-prefix-length 2)
   :config
   (global-company-mode)
   (company-prescient-mode)
@@ -154,7 +147,9 @@
 (use-package eglot
   :straight t
   :defer t
-  :after yasnippet)
+  :after yasnippet
+  :config
+  (add-to-list 'eglot-server-programs '(latex-mode . ("texlab"))))
 
 ;; git
 (use-package magit
@@ -163,13 +158,11 @@
 
 (use-package git-gutter
   :straight t
-  :config
-  (global-git-gutter-mode 1))
+  :config (global-git-gutter-mode 1))
 
 (use-package git-gutter-fringe
   :straight t
-  :config
-  (setq git-gutter-fr:side 'right-fringe))
+  :config (setq git-gutter-fr:side 'right-fringe))
 
 (use-package gitignore-templates
   :straight t
@@ -186,15 +179,13 @@
 
 (use-package counsel-projectile
   :straight t
-  :config
-  (counsel-projectile-mode))
+  :config (counsel-projectile-mode))
 
 ;; tools
 (use-package vterm
   :straight t
   :defer t
-  :config
-  (setq vterm-kill-buffer-on-exit t))
+  :config (setq vterm-kill-buffer-on-exit t))
 
 (use-package vterm-toggle
   :straight t
@@ -226,10 +217,11 @@
   :straight t
   :hook ((prog-mode text-mode) . rainbow-delimiters-mode))
 
-(use-package minions
+(use-package doom-modeline
   :straight t
-  :config
-  (minions-mode 1))
+  :init
+  (setq doom-modeline-icon nil)
+  (doom-modeline-mode 1))
 
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
@@ -253,6 +245,9 @@
 	TeX-source-correlate-start-server nil
 	TeX-electric-sub-and-superscript t))
 
+(use-package pdf-tools
+  :straight t)
+
 (use-package org-superstar
   :straight t
   :defer t)
@@ -263,8 +258,7 @@
   :hook ((org-mode . org-superstar-mode)
 	 (org-mode . visual-line-mode)
 	 (org-mode . flyspell-mode))
-  :config
-  (setq org-startup-indented t))
+  :config (setq org-startup-indented t))
 
 (use-package org-roam
   :straight t
@@ -281,8 +275,7 @@
 (use-package proof-general
   :straight t
   :hook (coq-mode . company-coq-mode)
-  :init
-  (setq proof-splash-enable nil))
+  :init (setq proof-splash-enable nil))
 
 (use-package tuareg
   :straight t
@@ -293,8 +286,7 @@
   :straight t
   :defer t
   :hook (tuareg-mode . utop-minor-mode)
-  :config
-  (setq utop-command "opam config exec -- utop -emacs"))
+  :config (setq utop-command "opam config exec -- utop -emacs"))
 
 (use-package dune
   :straight t)
@@ -313,9 +305,15 @@
   ""    nil
   "SPC" 'counsel-M-x
   "\\" 'toggle-input-method
+  ;; help
+  "hv" 'counsel-describe-variable
+  "hf" 'counsel-describe-function
+  "hs" 'counsel-describe-symbol
+  "hb" 'counsel-descbinds
   ;; files
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
+  "fl" 'counsel-find-library
   "fp" 'find-user-init-file
   "fs" 'save-buffer
   ;; buffers
@@ -345,9 +343,9 @@
   "nc" 'org-roam-capture
   ;; themes
   "tt" 'counsel-load-theme
+  "tl" 'display-line-numbers-mode
   ;; terminal
   "'" 'vterm-toggle
-  "\"" 'vterm
   ;; git
   "gg" 'magit
   ;; quit
