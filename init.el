@@ -343,6 +343,10 @@
   :straight t
   :hook (dune-mode . dune-format-on-save-mode))
 
+(use-package ats2-mode
+  :straight (ats2-mode :type git :host github :repo "qcfu-bu/ATS2-emacs")
+  :defer t)
+
 ;; keybinding
 (defun find-user-init-file ()
   (interactive)
@@ -425,8 +429,5 @@
   "u" 'utop)
 
 ;; miscellaneous
-(add-to-list 'load-path "~/Git/ATS2-emacs")
-(require 'ats2-mode)
-
 (add-to-list 'load-path "~/Git/TLL")
 (require 'tll-mode)
