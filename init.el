@@ -223,7 +223,7 @@
 		 (window-height . 0.3))))
 
 ;; appearance
-(load-theme 'modus-operandi)
+(load-theme 'modus-vivendi)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
 
