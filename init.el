@@ -249,6 +249,7 @@
 	 (LaTeX-mode . visual-line-mode)
 	 (LaTeX-mode . flyspell-mode))
   :init
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   (setq TeX-command-extra-options "-shell-escape"
 	TeX-auto-local ".auctex-auto"
 	TeX-style-local ".auctex-style"
