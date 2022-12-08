@@ -19,12 +19,13 @@
 (straight-use-package 'use-package)
 
 ;; system
-(server-start)
 (setq make-backup-files nil)
 (setq dired-use-ls-dired nil)
 (setq frame-resize-pixelwise t)
 (setq delete-by-moving-to-trash t)
 (setq trash-directory "~/.Trash")
+(with-current-buffer "*scratch*"
+  (emacs-lock-mode 'kill))
 
 (use-package exec-path-from-shell
   :straight t
@@ -49,16 +50,6 @@
 	recentf-max-saved-items 25)
   (recentf-mode 1)
   :config (add-to-list 'recentf-exclude "/private/var/folders/*"))
-
-(use-package dashboard
-  :straight t
-  :after recentf
-  :init
-  (setq dashboard-items '((recents . 5)
-			  (projects . 5))
-	dashboard-set-footer nil
-	dashboard-startup-banner 3)
-  :config (dashboard-setup-startup-hook))
 
 ;; evil
 (use-package evil
@@ -120,8 +111,16 @@
 (use-package ivy-prescient
   :straight t)
 
+(use-package ivy-rich
+  :straight t
+  :after counsel
+  :config (ivy-rich-mode t))
+
 (use-package counsel
   :straight t
+  :init
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
   :config
   (ivy-prescient-mode)
   (prescient-persist-mode)
@@ -204,14 +203,18 @@
 		 (window-height . 0.3))))
 
 ;; appearance
-(use-package atom-one-dark-theme
+(load-theme 'modus-vivendi)
+(set-face-attribute 'default nil :font "Fira Code-14")
+(set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
+
+(use-package solaire-mode
   :straight t
-  :defer t
-  :init (load-theme 'atom-one-dark t))
+  :init (solaire-global-mode))
 
 (use-package smartparens
   :straight t
-  :hook ((prog-mode text-mode) . smartparens-global-mode))
+  :hook ((prog-mode text-mode) . smartparens-global-mode)
+  :config (sp-pair "'" nil :actions :rem))
 
 (use-package rainbow-delimiters
   :straight t
@@ -223,13 +226,22 @@
   (setq doom-modeline-icon nil)
   (doom-modeline-mode 1))
 
-(set-face-attribute 'default nil :font "Fira Code-14")
-(set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
-
 ;; prose
 (use-package adaptive-wrap
   :straight t
   :hook (visual-line-mode . adaptive-wrap-prefix-mode))
+
+(use-package pdf-tools
+  :straight t
+  :hook
+  ((pdf-view-mode
+    . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
+  :init (pdf-loader-install)
+  :config
+  (setq pdf-view-use-scaling t
+	pdf-view-use-imagemagick nil)
+  (evil-define-key 'normal pdf-view-mode-map
+    (kbd "zm") 'pdf-view-themed-minor-mode))
 
 (use-package auctex
   :straight t
@@ -240,13 +252,12 @@
   (setq TeX-command-extra-options "-shell-escape"
 	TeX-auto-local ".auctex-auto"
 	TeX-style-local ".auctex-style"
+	TeX-view-program-selection '((output-pdf "PDF Tools"))
+	TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
 	TeX-source-correlate-mode t
 	TeX-source-correlate-method 'synctex
-	TeX-source-correlate-start-server nil
+	TeX-source-correlate-start-server t
 	TeX-electric-sub-and-superscript t))
-
-(use-package pdf-tools
-  :straight t)
 
 (use-package org-superstar
   :straight t
