@@ -329,6 +329,7 @@
   "fs" 'save-buffer
   ;; buffers
   "bb" 'counsel-switch-buffer
+  "bi" 'counsel-imenu
   "bp" 'previous-buffer
   "bn" 'next-buffer
   "bd" 'kill-this-buffer
