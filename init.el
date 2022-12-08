@@ -421,5 +421,8 @@
   "u" 'utop)
 
 ;; miscellaneous
+(add-to-list 'load-path "~/Git/ATS2-emacs")
+(require 'ats2-mode)
+
 (add-to-list 'load-path "~/Git/TLL")
 (require 'tll-mode)
