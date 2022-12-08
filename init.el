@@ -38,8 +38,8 @@
   :config (setq esup-depth 0))
 
 (use-package display-line-numbers
-  :init (setq display-line-numbers-width-start 3)
-  :hook ((prog-mode text-mode) . display-line-numbers-mode))
+  :hook ((prog-mode text-mode) . display-line-numbers-mode)
+  :config (setq-default display-line-numbers-width 3))
 
 (use-package savehist
   :init (savehist-mode))
@@ -385,3 +385,7 @@
   :keymaps 'tuareg-mode-map
   "e" 'utop-eval-buffer
   "u" 'utop)
+
+;; miscellaneous
+(add-to-list 'load-path "~/Git/TLL")
+(require 'tll-mode)
