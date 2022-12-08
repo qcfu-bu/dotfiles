@@ -398,7 +398,7 @@
   "tt" 'counsel-load-theme
   "tl" 'display-line-numbers-mode
   ;; terminal
-  "'" 'vterm-toggle
+  "ot" 'vterm-toggle
   ;; git
   "gg" 'magit
   ;; quit
