@@ -217,13 +217,16 @@
 		 (window-height . 0.3))))
 
 ;; appearance
-(load-theme 'modus-operandi)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
 
+(use-package atom-one-dark-theme
+  :straight t
+  :config (load-theme 'atom-one-dark t))
+
 (use-package solaire-mode
   :straight t
-  :init (solaire-global-mode))
+  :config (solaire-global-mode))
 
 (use-package smartparens
   :straight t
