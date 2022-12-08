@@ -195,10 +195,17 @@
   :config (counsel-projectile-mode))
 
 ;; tools
+(use-package hide-mode-line
+  :straight t)
+
 (use-package vterm
   :straight t
   :defer t
-  :config (setq vterm-kill-buffer-on-exit t))
+  :hook ((vterm-mode . (lambda () (setq confirm-kill-processes nil)))
+	 (vterm-mode . hide-mode-line-mode))
+  :config
+  (setq vterm-kill-buffer-on-exit t
+	vterm-max-scrollback 5000))
 
 (use-package vterm-toggle
   :straight t
@@ -216,12 +223,9 @@
 		 (window-height . 0.3))))
 
 ;; appearance
+(load-theme 'modus-vivendi)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
-
-(use-package atom-one-dark-theme
-  :straight t
-  :config (load-theme 'atom-one-dark t))
 
 (use-package solaire-mode
   :straight t
