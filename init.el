@@ -1,6 +1,3 @@
-(setq gc-cons-threshold 100000000)
-(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
-
 ;; straight bootstrap
 (setq straight-check-for-modifications '(check-on-save)
       straight-cache-autoloads t)
@@ -22,6 +19,8 @@
 (setq make-backup-files nil)
 (setq dired-use-ls-dired nil)
 (setq frame-resize-pixelwise t)
+(setq mac-redisplay-dont-reset-vscroll t
+      mac-mouse-wheel-smooth-scroll nil)
 (setq delete-by-moving-to-trash t)
 (setq trash-directory "~/.Trash")
 (with-current-buffer "*scratch*"
@@ -371,6 +370,7 @@
 (spc-local-leader-def
   :keymaps 'LaTeX-mode-map
   "c" 'TeX-command-master
+  "a" 'TeX-command-run-all
   "v" 'TeX-view)
 
 (spc-local-leader-def
