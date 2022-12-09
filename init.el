@@ -223,15 +223,20 @@
 		 (window-height . 0.3))))
 
 ;; appearance
-(load-theme 'modus-operandi)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
+
+(use-package doom-themes
+  :straight t
+  :config
+  (setq doom-themes-enable-bold t
+	doom-themes-enable-italic t)
+  (load-theme 'doom-one t))
 
 (use-package solaire-mode
   :straight t
   :init
   (defun solaire-mode-real-buffer-custom-p ()
-    "Return t if the current buffer is the or scratch, or is a real (file-visiting) buffer."
     (cond ((string= (buffer-name (buffer-base-buffer)) "*scratch*") t)
           ((buffer-file-name (buffer-base-buffer)) t)
           (t nil)))
