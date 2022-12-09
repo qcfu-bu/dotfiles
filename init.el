@@ -382,6 +382,7 @@
   "hf" 'counsel-describe-function
   "hs" 'counsel-describe-symbol
   "hb" 'counsel-descbinds
+  "ht" 'counsel-load-theme
   ;; files
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
@@ -414,8 +415,8 @@
   "ng" 'org-roam-graph
   "ni" 'org-roam-node-insert
   "nc" 'org-roam-capture
-  ;; themes
-  "tt" 'counsel-load-theme
+  ;; toggles
+  "tt" 'tab-bar-mode
   "tl" 'display-line-numbers-mode
   ;; terminal
   "ot" 'vterm-toggle
