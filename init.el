@@ -265,7 +265,8 @@
 (use-package doom-modeline
   :straight t
   :init
-  (setq doom-modeline-icon nil)
+  (setq doom-modeline-icon nil
+	doom-modeline-modal nil)
   (doom-modeline-mode 1))
 
 ;; prose
