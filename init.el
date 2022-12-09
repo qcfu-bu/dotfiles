@@ -387,7 +387,7 @@
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
   "fl" 'counsel-find-library
-  "fp" 'find-user-init-file
+  "fed" 'find-user-init-file
   "fs" 'save-buffer
   ;; buffers
   "bb" 'counsel-switch-buffer
