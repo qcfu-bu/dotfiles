@@ -346,13 +346,15 @@
 (use-package tuareg
   :straight t
   :hook ((tuareg-mode . eglot-ensure)
-	 (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t)))))
+	 (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t))))
+  :config
+  (setq tuareg-opam-insinuate t)
+  (tuareg-opam-update-env (tuareg-opam-current-compiler)))
 
 (use-package utop
   :straight t
   :defer t
-  :hook (tuareg-mode . utop-minor-mode)
-  :config (setq utop-command "opam config exec -- utop -emacs"))
+  :hook (tuareg-mode . utop-minor-mode))
 
 (use-package dune
   :straight t)
