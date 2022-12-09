@@ -60,11 +60,13 @@
   :hook ((prog-mode text-mode) . display-line-numbers-mode)
   :config (setq-default display-line-numbers-width 3))
 
-(use-package undo-tree
+(use-package undo-fu
+  :straight t)
+
+(use-package undo-fu-session
   :straight t
-  :config
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
-  (global-undo-tree-mode))
+  :after undo-fu
+  :config (global-undo-fu-session-mode))
 
 (use-package savehist
   :init (savehist-mode))
@@ -82,7 +84,7 @@
   :init
   (setq evil-want-integration t
 	evil-want-keybinding nil
-	evil-undo-system 'undo-tree)
+	evil-undo-system 'undo-fu)
   :config (evil-mode 1))
 
 (use-package evil-collection

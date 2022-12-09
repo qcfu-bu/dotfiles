@@ -39,6 +39,7 @@ Temporary Items
 .lsp-session-v1
 auto-save-list/*
 undo/*
+undo-fu-session/*
 history
 recentf
 straight/*
