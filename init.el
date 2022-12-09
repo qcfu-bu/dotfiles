@@ -364,6 +364,10 @@
   :straight t
   :hook (dune-mode . dune-format-on-save-mode))
 
+(use-package haskell-mode
+  :straight t
+  :hook ((haskell-mode . eglot-ensure)))
+
 (use-package ats2-mode
   :straight (ats2-mode :type git :host github :repo "qcfu-bu/ATS2-emacs")
   :defer t)
