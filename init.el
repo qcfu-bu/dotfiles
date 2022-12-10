@@ -285,9 +285,7 @@
   :init (pdf-loader-install)
   :config
   (setq pdf-view-use-scaling t
-	pdf-view-use-imagemagick nil)
-  (evil-define-key 'normal pdf-view-mode-map
-    (kbd "zm") 'pdf-view-themed-minor-mode))
+	pdf-view-use-imagemagick nil))
 
 (use-package auctex
   :straight t
