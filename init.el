@@ -241,8 +241,7 @@
 		 (window-height . 0.3))))
 
 ;; appearance
-(setq modus-themes-subtle-line-numbers t
-      modus-themes-vivendi-color-overrides '((bg-main . "#1d2021")))
+(setq modus-themes-subtle-line-numbers t)
 (load-theme 'modus-vivendi t)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
