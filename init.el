@@ -213,6 +213,10 @@
   :config (counsel-projectile-mode))
 
 ;; tools
+(use-package popwin
+  :straight t
+  :config (popwin-mode 1))
+
 (use-package hide-mode-line
   :straight t)
 
@@ -239,6 +243,7 @@
 		 (display-buffer-reuse-window display-buffer-at-bottom)
 		 (reusable-frames . visible)
 		 (window-height . 0.3))))
+
 
 ;; appearance
 (setq modus-themes-subtle-line-numbers t)
@@ -353,7 +358,8 @@
 (use-package utop
   :straight t
   :defer t
-  :hook (tuareg-mode . utop-minor-mode))
+  :hook (tuareg-mode . utop-minor-mode)
+  :config (push '("*utop*" :stick t) popwin:special-display-config))
 
 (use-package dune
   :straight t)
@@ -364,7 +370,8 @@
 
 (use-package haskell-mode
   :straight t
-  :hook ((haskell-mode . eglot-ensure)))
+  :hook ((haskell-mode . eglot-ensure))
+  :config (push '("*haskell*" :stick t) popwin:special-display-config))
 
 (use-package ats2-mode
   :straight (ats2-mode :type git :host github :repo "qcfu-bu/ATS2-emacs")
