@@ -241,12 +241,9 @@
 		 (window-height . 0.3))))
 
 ;; appearance
+(load-theme 'modus-vivendi t)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
-
-(use-package doom-themes
-  :straight t
-  :config (load-theme 'doom-one t))
 
 (use-package solaire-mode
   :straight t
