@@ -385,10 +385,6 @@
   :defer t)
 
 ;; keybinding
-(defun find-user-init-file ()
-  (interactive)
-  (find-file user-init-file))
-
 (spc-leader-def
   ;; general
   ""    nil
@@ -404,7 +400,6 @@
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
   "fl" 'counsel-find-library
-  "fed" 'find-user-init-file
   "fs" 'save-buffer
   ;; buffers
   "bb" 'counsel-switch-buffer
