@@ -289,12 +289,15 @@
 (use-package pdf-tools
   :straight t
   :hook
-  ((pdf-view-mode
+  ((pdf-view-mode . pdf-view-themed-minor-mode)
+   (pdf-view-mode
     . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
   :init (pdf-loader-install)
   :config
   (setq pdf-view-use-scaling t
-	pdf-view-use-imagemagick nil))
+	pdf-view-use-imagemagick nil)
+  (evil-define-key 'normal pdf-view-mode-map
+    (kbd "zm") 'pdf-view-themed-minor-mode))
 
 (use-package auctex
   :straight t
