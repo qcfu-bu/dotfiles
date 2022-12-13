@@ -249,6 +249,7 @@
 (setq modus-themes-subtle-line-numbers t
       modus-themes-vivendi-color-overrides
       '((bg-main . "#1d2021")
+	(bg-dim . "#1d2021")
 	(bg-tab-active . "#1d2021")
 	(bg-tab-inactive . "#323232")))
 (load-theme 'modus-vivendi t)
