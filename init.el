@@ -22,7 +22,6 @@
 (setq make-backup-files nil)
 (setq dired-use-ls-dired nil)
 (setq frame-resize-pixelwise t)
-(setq tab-bar-new-tab-choice "*scratch*")
 (setq hscroll-margin 2
       hscroll-step 1
       ;; Emacs spends too much effort recentering the screen if you scroll the
@@ -214,6 +213,9 @@
   :config (counsel-projectile-mode))
 
 ;; tools
+(use-package tab-bar
+  :config (setq tab-bar-new-tab-choice "*scratch*"))
+
 (use-package popwin
   :straight t
   :config (popwin-mode 1))
