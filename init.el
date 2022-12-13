@@ -296,6 +296,7 @@
     . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
   :init (pdf-loader-install)
   :config
+  (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-view-use-scaling t
 	pdf-view-use-imagemagick nil)
   (evil-define-key 'normal pdf-view-mode-map
