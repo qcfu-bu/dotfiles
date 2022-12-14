@@ -361,11 +361,18 @@
 
 (use-package tuareg
   :straight t
-  :hook ((tuareg-mode . eglot-ensure)
-	 (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t))))
+  :after ocp-indent
+  :hook ((tuareg-mode . eglot-ensure))
   :config
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
+
+(use-package ocp-indent
+  :straight t
+  :config
+  (defun ocp-indent-buffer ()
+    (interactive nil)
+    (ocp-indent-region 1 (buffer-size))))
 
 (use-package utop
   :straight t
