@@ -54,11 +54,14 @@
 
 (use-package esup
   :straight t
-  :config (setq esup-depth 0))
+  :config
+  (setq esup-depth 0))
 
 (use-package display-line-numbers
-  :hook ((prog-mode text-mode) . display-line-numbers-mode)
-  :config (setq-default display-line-numbers-width 3))
+  :hook
+  ((prog-mode text-mode) . display-line-numbers-mode)
+  :config
+  (setq-default display-line-numbers-width 3))
 
 (use-package undo-fu
   :straight t)
@@ -66,17 +69,20 @@
 (use-package undo-fu-session
   :straight t
   :after undo-fu
-  :config (global-undo-fu-session-mode))
+  :config
+  (global-undo-fu-session-mode))
 
 (use-package savehist
-  :init (savehist-mode))
+  :init
+  (savehist-mode))
 
 (use-package recentf
   :init
   (setq recentf-max-menu-items 25
 	recentf-max-saved-items 25)
   (recentf-mode 1)
-  :config (add-to-list 'recentf-exclude "/private/var/folders/*"))
+  :config
+  (add-to-list 'recentf-exclude "/private/var/folders/*"))
 
 ;; evil
 (use-package evil
@@ -90,7 +96,8 @@
 (use-package evil-collection
   :straight t
   :after evil
-  :config (evil-collection-init))
+  :config
+  (evil-collection-init))
 
 (use-package evil-escape
   :straight t
@@ -104,17 +111,20 @@
 
 (use-package evil-commentary
   :straight t
-  :config (evil-commentary-mode))
+  :config
+  (evil-commentary-mode))
 
 (use-package evil-anzu
   :straight t
   :after evil
-  :config (global-anzu-mode 1))
+  :config
+  (global-anzu-mode 1))
 
 (use-package evil-easymotion
   :straight t
   :after evil
-  :config (evilem-default-keybindings "gs"))
+  :config
+  (evilem-default-keybindings "gs"))
 
 (use-package general
   :straight t
@@ -132,7 +142,8 @@
 
 (use-package which-key
   :straight t
-  :config (which-key-mode))
+  :config
+  (which-key-mode))
 
 ;; completion
 (use-package ivy-prescient
@@ -141,7 +152,8 @@
 (use-package ivy-rich
   :straight t
   :after counsel
-  :config (ivy-rich-mode t))
+  :config
+  (ivy-rich-mode t))
 
 (use-package orderless
   :straight t)
@@ -164,7 +176,8 @@
 
 (use-package company
   :straight t
-  :init (setq company-minimum-prefix-length 2)
+  :init
+  (setq company-minimum-prefix-length 2)
   :config
   (global-company-mode)
   (company-prescient-mode)
@@ -189,11 +202,13 @@
 
 (use-package git-gutter
   :straight t
-  :config (global-git-gutter-mode 1))
+  :config
+  (global-git-gutter-mode 1))
 
 (use-package git-gutter-fringe
   :straight t
-  :config (setq git-gutter-fr:side 'right-fringe))
+  :config
+  (setq git-gutter-fr:side 'right-fringe))
 
 (use-package gitignore-templates
   :straight t
@@ -210,15 +225,18 @@
 
 (use-package counsel-projectile
   :straight t
-  :config (counsel-projectile-mode))
+  :config
+  (counsel-projectile-mode))
 
 ;; tools
 (use-package tab-bar
-  :config (setq tab-bar-new-tab-choice "*scratch*"))
+  :config
+  (setq tab-bar-new-tab-choice "*scratch*"))
 
 (use-package popwin
   :straight t
-  :config (popwin-mode 1))
+  :config
+  (popwin-mode 1))
 
 (use-package hide-mode-line
   :straight t)
@@ -226,8 +244,9 @@
 (use-package vterm
   :straight t
   :defer t
-  :hook ((vterm-mode . (lambda () (setq confirm-kill-processes nil)))
-	 (vterm-mode . hide-mode-line-mode))
+  :hook
+  ((vterm-mode . (lambda () (setq confirm-kill-processes nil)))
+   (vterm-mode . hide-mode-line-mode))
   :config
   (setq vterm-kill-buffer-on-exit t
 	vterm-max-scrollback 5000))
@@ -267,16 +286,20 @@
           ((buffer-file-name (buffer-base-buffer)) t)
           (t nil)))
   (setq solaire-mode-real-buffer-fn #'solaire-mode-real-buffer-custom-p)
-  :config (solaire-global-mode))
+  :config
+  (solaire-global-mode))
 
 (use-package smartparens
   :straight t
-  :hook ((prog-mode text-mode) . smartparens-global-mode)
-  :config (sp-pair "'" nil :actions :rem))
+  :hook
+  ((prog-mode text-mode) . smartparens-global-mode)
+  :config
+  (sp-pair "'" nil :actions :rem))
 
 (use-package rainbow-delimiters
   :straight t
-  :hook ((prog-mode text-mode) . rainbow-delimiters-mode))
+  :hook
+  ((prog-mode text-mode) . rainbow-delimiters-mode))
 
 (use-package doom-modeline
   :straight t
@@ -288,7 +311,8 @@
 ;; prose
 (use-package adaptive-wrap
   :straight t
-  :hook (visual-line-mode . adaptive-wrap-prefix-mode))
+  :hook
+  (visual-line-mode . adaptive-wrap-prefix-mode))
 
 (use-package pdf-tools
   :straight t
@@ -296,7 +320,8 @@
   ((pdf-view-mode . pdf-view-themed-minor-mode)
    (pdf-view-mode
     . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
-  :init (pdf-loader-install)
+  :init
+  (pdf-loader-install)
   :config
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-view-use-scaling t
@@ -306,12 +331,16 @@
 
 (use-package auctex
   :straight t
-  :hook ((LaTeX-mode . eglot-ensure)
-	 (LaTeX-mode . visual-line-mode)
-	 (LaTeX-mode . flyspell-mode))
+  :hook
+  ((LaTeX-mode . eglot-ensure)
+   (LaTeX-mode . visual-line-mode)
+   (LaTeX-mode . flyspell-mode))
   :init
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
-  (setq TeX-command-extra-options "-shell-escape"
+  (setq-default TeX-PDF-mode t)
+  (setq TeX-parse-self t
+	TeX-auto-save t
+	TeX-command-extra-options "-shell-escape"
 	TeX-auto-local ".auctex-auto"
 	TeX-style-local ".auctex-style"
 	TeX-view-program-selection '((output-pdf "PDF Tools"))
@@ -324,7 +353,8 @@
 (use-package auctex-latexmk
   :straight t
   :after latex
-  :hook ((LaTeX-mode . (lambda () (setq TeX-command-default "LatexMk"))))
+  :hook
+  ((LaTeX-mode . (lambda () (setq TeX-command-default "LatexMk"))))
   :init
   (setq auctex-latexmk-inherit-TeX-PDF-mode t)
   :config
@@ -337,10 +367,12 @@
 (use-package org
   :straight t
   :defer t
-  :hook ((org-mode . org-superstar-mode)
-	 (org-mode . visual-line-mode)
-	 (org-mode . flyspell-mode))
-  :config (setq org-startup-indented t))
+  :hook
+  ((org-mode . org-superstar-mode)
+   (org-mode . visual-line-mode)
+   (org-mode . flyspell-mode))
+  :config
+  (setq org-startup-indented t))
 
 (use-package org-roam
   :straight t
@@ -356,13 +388,16 @@
 
 (use-package proof-general
   :straight t
-  :hook (coq-mode . company-coq-mode)
-  :init (setq proof-splash-enable nil))
+  :hook
+  (coq-mode . company-coq-mode)
+  :init
+  (setq proof-splash-enable nil))
 
 (use-package tuareg
   :straight t
   :after ocp-indent
-  :hook ((tuareg-mode . eglot-ensure))
+  :hook
+  (tuareg-mode . eglot-ensure)
   :config
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
@@ -377,20 +412,25 @@
 (use-package utop
   :straight t
   :defer t
-  :hook (tuareg-mode . utop-minor-mode)
-  :config (push '("*utop*" :stick t) popwin:special-display-config))
+  :hook
+  (tuareg-mode . utop-minor-mode)
+  :config
+  (push '("*utop*" :stick t) popwin:special-display-config))
 
 (use-package dune
   :straight t)
 
 (use-package dune-format
   :straight t
-  :hook (dune-mode . dune-format-on-save-mode))
+  :hook
+  (dune-mode . dune-format-on-save-mode))
 
 (use-package haskell-mode
   :straight t
-  :hook ((haskell-mode . eglot-ensure))
-  :config (push '("*haskell*" :stick t) popwin:special-display-config))
+  :hook
+  (haskell-mode . eglot-ensure)
+  :config
+  (push '("*haskell*" :stick t) popwin:special-display-config))
 
 (use-package ats2-mode
   :straight (ats2-mode :type git :host github :repo "qcfu-bu/ATS2-emacs")
