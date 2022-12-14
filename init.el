@@ -471,7 +471,8 @@
 (spc-local-leader-def
   :keymaps 'tuareg-mode-map
   "e" 'utop-eval-buffer
-  "u" 'utop)
+  "u" 'utop
+  "=" 'ocp-indent-buffer)
 
 ;; miscellaneous
 (add-to-list 'load-path "~/Git/TLL")
