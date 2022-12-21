@@ -301,7 +301,8 @@
   :straight t
   :init
   (setq doom-modeline-icon nil
-	doom-modeline-modal nil)
+	doom-modeline-modal nil
+	doom-modeline-height 0)
   (doom-modeline-mode 1))
 
 ;; prose
