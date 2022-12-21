@@ -268,15 +268,13 @@
 
 
 ;; appearance
-(setq modus-themes-subtle-line-numbers t
-      modus-themes-vivendi-color-overrides
-      '((bg-main . "#1d2021")
-	(bg-dim . "#1d2021")
-	(bg-tab-active . "#1d2021")
-	(bg-tab-inactive . "#323232")))
-(load-theme 'modus-vivendi t)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
+
+(use-package doom-themes
+  :straight t
+  :config
+  (load-theme 'doom-snazzy t))
 
 (use-package solaire-mode
   :straight t
