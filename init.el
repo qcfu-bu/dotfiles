@@ -268,13 +268,10 @@
 
 
 ;; appearance
+(setq modus-themes-subtle-line-numbers t)
+(load-theme 'modus-operandi t)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
-
-(use-package doom-themes
-  :straight t
-  :config
-  (load-theme 'doom-snazzy t))
 
 (use-package solaire-mode
   :straight t
@@ -315,8 +312,7 @@
 (use-package pdf-tools
   :straight t
   :hook
-  ((pdf-view-mode . pdf-view-themed-minor-mode)
-   (pdf-view-mode
+  ((pdf-view-mode
     . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
   :init
   (pdf-loader-install)
