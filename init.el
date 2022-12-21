@@ -268,7 +268,8 @@
 
 
 ;; appearance
-(setq modus-themes-subtle-line-numbers t)
+(setq modus-themes-subtle-line-numbers t
+      modus-themes-syntax 'alt-syntax)
 (load-theme 'modus-operandi t)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
