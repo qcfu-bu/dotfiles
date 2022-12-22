@@ -279,6 +279,7 @@
   :init
   (defun solaire-mode-real-buffer-custom-p ()
     (cond ((string= (buffer-name (buffer-base-buffer)) "*scratch*") t)
+	  ((string= (buffer-name (buffer-base-buffer)) "*Messages*") t)
           ((buffer-file-name (buffer-base-buffer)) t)
           (t nil)))
   (setq solaire-mode-real-buffer-fn #'solaire-mode-real-buffer-custom-p)
