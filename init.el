@@ -269,7 +269,7 @@
 
 ;; appearance
 (set-face-attribute 'default nil :font "Fira Code-14")
-(set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
+(set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
 (use-package standard-themes
   :straight t
