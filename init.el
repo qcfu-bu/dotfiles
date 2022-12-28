@@ -268,28 +268,18 @@
 
 
 ;; appearance
-(setq modus-themes-subtle-line-numbers t
-      modus-themes-syntax 'alt-syntax)
-(load-theme 'modus-operandi t)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-16")
 
-(use-package solaire-mode
+(use-package standard-themes
   :straight t
-  :init
-  (defun solaire-mode-real-buffer-custom-p ()
-    (cond ((string= (buffer-name (buffer-base-buffer)) "*scratch*") t)
-	  ((string= (buffer-name (buffer-base-buffer)) "*Messages*") t)
-          ((buffer-file-name (buffer-base-buffer)) t)
-          (t nil)))
-  (setq solaire-mode-real-buffer-fn #'solaire-mode-real-buffer-custom-p)
   :config
-  (solaire-global-mode))
+  (load-theme 'standard-light t))
 
 (use-package smartparens
   :straight t
   :hook
-  (prog-mode . smartparens-global-mode)
+  (prog-mode . smartparens-mode)
   :config
   (sp-pair "'" nil :actions :rem))
 
