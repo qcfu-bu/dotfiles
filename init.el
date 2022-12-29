@@ -231,6 +231,7 @@
 ;; tools
 (use-package tab-bar
   :config
+  '(tab-bar ((t (:inherit mode-line))))
   (setq tab-bar-new-tab-choice "*scratch*"))
 
 (use-package popwin
@@ -274,6 +275,7 @@
 (use-package standard-themes
   :straight t
   :config
+  (setq standard-themes-fringes nil)
   (load-theme 'standard-light t))
 
 (use-package smartparens
