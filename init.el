@@ -286,13 +286,10 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package doom-modeline
+(use-package minions
   :straight t
-  :init
-  (setq doom-modeline-icon nil
-	doom-modeline-modal nil
-	doom-modeline-height 0)
-  (doom-modeline-mode 1))
+  :config
+  (minions-mode t))
 
 ;; prose
 (use-package adaptive-wrap
