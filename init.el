@@ -478,7 +478,7 @@
 (spc-local-leader-def
   :keymaps 'LaTeX-mode-map
   "c" 'TeX-command-master
-  "a" 'TeX-command-run-all
+  "e" 'TeX-command-run-all
   "v" 'TeX-view)
 
 (spc-local-leader-def
