@@ -288,11 +288,6 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package minions
-  :straight t
-  :config
-  (minions-mode t))
-
 ;; prose
 (use-package adaptive-wrap
   :straight t
