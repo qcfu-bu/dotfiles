@@ -231,7 +231,6 @@
 ;; tools
 (use-package tab-bar
   :config
-  '(tab-bar ((t (:inherit mode-line))))
   (setq tab-bar-new-tab-choice "*scratch*"))
 
 (use-package popwin
