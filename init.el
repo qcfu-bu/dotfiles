@@ -277,14 +277,14 @@
 (use-package smartparens
   :straight t
   :hook
-  (prog-mode . smartparens-mode)
+  ((prog-mode text-mode) . smartparens-mode)
   :config
   (sp-pair "'" nil :actions :rem))
 
 (use-package rainbow-delimiters
   :straight t
   :hook
-  (prog-mode . rainbow-delimiters-mode))
+  ((prog-mode text-mode) . rainbow-delimiters-mode))
 
 (use-package doom-modeline
   :straight t
