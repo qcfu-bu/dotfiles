@@ -279,7 +279,8 @@
   :hook
   ((prog-mode text-mode) . smartparens-mode)
   :init
-  (require 'smartparens-config))
+  (require 'smartparens-config)
+  (sp-pair "'" nil :actions nil))
 
 (use-package rainbow-delimiters
   :straight t
