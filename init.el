@@ -43,8 +43,6 @@
 	mac-mouse-wheel-smooth-scroll nil)
   (setq delete-by-moving-to-trash t
 	trash-directory "~/.Trash"))
-(with-current-buffer "*scratch*"
-  (emacs-lock-mode 'kill))
 
 (use-package exec-path-from-shell
   :straight t
