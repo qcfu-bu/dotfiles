@@ -288,10 +288,11 @@
 
 (use-package doom-modeline
   :straight t
-  :init
+  :config
   (setq doom-modeline-icon nil
 	doom-modeline-modal nil
 	doom-modeline-height 0)
+  (set-face-background 'doom-modeline-bar (face-background 'mode-line))
   (doom-modeline-mode 1))
 
 ;; prose
