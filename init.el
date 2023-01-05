@@ -472,6 +472,7 @@
   "tt" 'persp-switch
   "tp" 'persp-prev
   "tn" 'persp-next
+  "tb" 'persp-switch-to-buffer
   "tr" 'persp-rename
   "tk" 'persp-kill
   ;; terminal
