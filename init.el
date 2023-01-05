@@ -165,7 +165,8 @@
   :config
   (ivy-prescient-mode)
   (prescient-persist-mode)
-  (ivy-mode))
+  (ivy-mode)
+  (counsel-mode))
 
 (use-package company-prescient
   :straight t
