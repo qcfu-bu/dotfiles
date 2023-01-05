@@ -168,7 +168,7 @@
   :config
   (ivy-prescient-mode)
   (prescient-persist-mode)
-  (counsel-mode))
+  (ivy-mode))
 
 (use-package company-prescient
   :straight t
@@ -225,10 +225,18 @@
 
 (use-package counsel-projectile
   :straight t
+  :custom
+  (persp-mode-prefix-key nil)
   :config
   (counsel-projectile-mode))
 
 ;; tools
+(use-package perspective
+  :straight t
+  :config
+  (setq persp-suppress-no-prefix-key-warning t)
+  (persp-mode))
+
 (use-package tab-bar
   :config
   (setq tab-bar-new-tab-choice "*scratch*"))
@@ -441,7 +449,7 @@
   "fl" 'counsel-find-library
   "fs" 'save-buffer
   ;; buffers
-  "bb" 'counsel-switch-buffer
+  "bb" 'persp-counsel-switch-buffer
   "bi" 'counsel-imenu
   "bp" 'previous-buffer
   "bn" 'next-buffer
@@ -466,9 +474,11 @@
   "ng" 'org-roam-graph
   "ni" 'org-roam-node-insert
   "nc" 'org-roam-capture
-  ;; toggles
-  "tt" 'tab-bar-mode
-  "tl" 'display-line-numbers-mode
+  ;; perspectives
+  "tt" 'persp-switch
+  "tp" 'persp-prev
+  "tn" 'persp-next
+  "tr" 'persp-rename
   ;; terminal
   "ot" 'vterm-toggle
   ;; git
