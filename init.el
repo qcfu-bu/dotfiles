@@ -449,7 +449,7 @@
   "fl" 'counsel-find-library
   "fs" 'save-buffer
   ;; buffers
-  "bb" 'persp-counsel-switch-buffer
+  "bb" 'persp-ivy-switch-buffer
   "bi" 'counsel-imenu
   "bp" 'previous-buffer
   "bn" 'next-buffer
@@ -479,6 +479,7 @@
   "tp" 'persp-prev
   "tn" 'persp-next
   "tr" 'persp-rename
+  "tk" 'persp-kill
   ;; terminal
   "ot" 'vterm-toggle
   ;; git
