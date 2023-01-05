@@ -235,10 +235,6 @@
   (setq persp-suppress-no-prefix-key-warning t)
   (persp-mode))
 
-(use-package tab-bar
-  :config
-  (setq tab-bar-new-tab-choice "*scratch*"))
-
 (use-package popwin
   :straight t
   :config
