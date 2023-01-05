@@ -328,6 +328,7 @@
   (setq-default TeX-PDF-mode t)
   (setq TeX-parse-self t
 	TeX-auto-save t
+	TeX-save-query nil
 	TeX-command-extra-options "-shell-escape"
 	TeX-auto-local ".auctex-auto"
 	TeX-style-local ".auctex-style"
