@@ -272,10 +272,11 @@
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package doom-themes
+(use-package standard-themes
   :straight t
   :config
-  (load-theme 'doom-solarized-light t))
+  (setq standard-themes-fringes nil)
+  (load-theme 'standard-light t))
 
 (use-package smartparens
   :straight t
@@ -307,8 +308,7 @@
 (use-package pdf-tools
   :straight t
   :hook
-  ((pdf-view-mode . pdf-view-themed-minor-mode)
-   (pdf-view-mode
+  ((pdf-view-mode
     . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
   :init
   (pdf-loader-install)
