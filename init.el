@@ -223,17 +223,16 @@
 
 (use-package counsel-projectile
   :straight t
-  :custom
-  (persp-mode-prefix-key nil)
   :config
   (counsel-projectile-mode))
 
 ;; tools
-(use-package perspective
-  :straight t
-  :config
-  (setq persp-suppress-no-prefix-key-warning t)
-  (persp-mode))
+(use-package tab-bar
+  :init
+  (setq tab-bar-show nil
+	tab-bar-close-button-show nil
+	tab-bar-new-button-show nil
+	tab-bar-new-tab-choice "*scratch*"))
 
 (use-package popwin
   :straight t
@@ -443,10 +442,10 @@
   "fl" 'counsel-find-library
   "fs" 'save-buffer
   ;; buffers
-  "bb" 'persp-ivy-switch-buffer
+  "bb" 'ivy-switch-buffer
   "bi" 'counsel-imenu
-  "bp" 'previous-buffer
-  "bn" 'next-buffer
+  "bp" 'switch-to-prev-buffer
+  "bn" 'switch-to-next-buffer
   "bd" 'kill-this-buffer
   ;; windows
   "ws" 'evil-window-split
@@ -468,13 +467,11 @@
   "ng" 'org-roam-graph
   "ni" 'org-roam-node-insert
   "nc" 'org-roam-capture
-  ;; perspectives
-  "tt" 'persp-switch
-  "tp" 'persp-prev
-  "tn" 'persp-next
-  "tb" 'persp-switch-to-buffer
-  "tr" 'persp-rename
-  "tk" 'persp-kill
+  ;; tab-bar
+  "tt" 'tab-bar-new-tab
+  "tp" 'tab-bar-switch-to-prev-tab
+  "tn" 'tab-bar-switch-to-next-tab
+  "tk" 'tab-bar-close-tab
   ;; terminal
   "ot" 'vterm-toggle
   ;; git
