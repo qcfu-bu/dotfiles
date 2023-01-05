@@ -467,11 +467,12 @@
   "ng" 'org-roam-graph
   "ni" 'org-roam-node-insert
   "nc" 'org-roam-capture
-  ;; tab-bar
+  ;; workspaces
   "tt" 'tab-bar-new-tab
   "tp" 'tab-bar-switch-to-prev-tab
   "tn" 'tab-bar-switch-to-next-tab
   "tk" 'tab-bar-close-tab
+  "ts" 'tab-bar-switch-to-tab
   ;; terminal
   "ot" 'vterm-toggle
   ;; git
