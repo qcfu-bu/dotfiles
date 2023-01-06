@@ -44,17 +44,6 @@
   (setq delete-by-moving-to-trash t
 	trash-directory "~/.Trash"))
 
-(use-package delight
-  :straight t)
-
-(use-package autorevert
-  :delight auto-revert-mode)
-
-(use-package emacs
-  :delight
-  (eldoc-mode)
-  (visual-line-mode))
-
 (use-package exec-path-from-shell
   :straight t
   :config
@@ -104,14 +93,12 @@
 
 (use-package evil-collection
   :straight t
-  :delight evil-collection-unimpaired-mode
   :after evil
   :config
   (evil-collection-init))
 
 (use-package evil-escape
   :straight t
-  :delight
   :after evil
   :config
   (setq evil-escape-excluded-states '(normal visual multiedit emacs motion)
@@ -122,13 +109,11 @@
 
 (use-package evil-commentary
   :straight t
-  :delight
   :config
   (evil-commentary-mode))
 
 (use-package evil-anzu
   :straight t
-  :delight anzu-mode
   :after evil
   :config
   (global-anzu-mode 1))
@@ -155,7 +140,6 @@
 
 (use-package which-key
   :straight t
-  :delight
   :config
   (which-key-mode))
 
@@ -174,9 +158,6 @@
 
 (use-package counsel
   :straight t
-  :delight
-  (ivy-mode)
-  (counsel-mode)
   :init
   (setq enable-recursive-minibuffers t)
   (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
@@ -193,7 +174,6 @@
 
 (use-package company
   :straight t
-  :delight
   :init
   (setq company-minimum-prefix-length 2)
   :config
@@ -203,7 +183,6 @@
 
 (use-package yasnippet
   :straight t
-  :delight yas-minor-mode
   :config
   (yas-global-mode 1))
 
@@ -221,7 +200,6 @@
 
 (use-package git-gutter
   :straight t
-  :delight
   :config
   (global-git-gutter-mode 1))
 
@@ -236,7 +214,6 @@
 
 (use-package projectile
   :straight t
-  :delight
   :defer t
   :config
   (setq projectile-ignored-projects '("~/")
@@ -292,17 +269,14 @@
 
 
 ;; appearance
+(setq modus-themes-subtle-line-numbers t
+      modus-themes-syntax 'alt-syntax)
+(load-theme 'modus-operandi t)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package doom-themes
-  :straight t
-  :config
-  (load-theme 'doom-one t))
-
 (use-package smartparens
   :straight t
-  :delight
   :hook
   ((prog-mode text-mode) . smartparens-mode)
   :init
@@ -314,12 +288,15 @@
   :hook
   ((prog-mode text-mode) . rainbow-delimiters-mode))
 
-;; prose
-(use-package flyspell
-  :delight
+(use-package doom-modeline
+  :straight t
   :config
-  (setq ispell-dictionary "english"))
+  (setq doom-modeline-icon nil
+	doom-modeline-modal nil
+	doom-modeline-height 0)
+  (doom-modeline-mode 1))
 
+;; prose
 (use-package adaptive-wrap
   :straight t
   :hook
@@ -422,7 +399,6 @@
 
 (use-package utop
   :straight t
-  :delight utop-minor-mode
   :defer t
   :hook
   (tuareg-mode . utop-minor-mode)
