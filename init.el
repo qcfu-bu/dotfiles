@@ -269,11 +269,13 @@
 
 
 ;; appearance
-(setq modus-themes-subtle-line-numbers t
-      modus-themes-syntax 'alt-syntax)
-(load-theme 'modus-operandi t)
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
+
+(use-package atom-one-dark-theme
+  :straight t
+  :config
+  (load-theme 'atom-one-dark t))
 
 (use-package smartparens
   :straight t
@@ -292,7 +294,6 @@
   :straight t
   :config
   (setq doom-modeline-icon nil
-	doom-modeline-modal nil
 	doom-modeline-height 0)
   (doom-modeline-mode 1))
 
