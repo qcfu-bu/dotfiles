@@ -47,6 +47,14 @@
 (use-package delight
   :straight t)
 
+(use-package autorevert
+  :delight auto-revert-mode)
+
+(use-package emacs
+  :delight
+  (eldoc-mode)
+  (visual-line-mode))
+
 (use-package exec-path-from-shell
   :straight t
   :config
@@ -307,7 +315,8 @@
   ((prog-mode text-mode) . rainbow-delimiters-mode))
 
 ;; prose
-(use-package ispell
+(use-package flyspell
+  :delight
   :config
   (setq ispell-dictionary "english"))
 
