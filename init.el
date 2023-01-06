@@ -45,12 +45,7 @@
 	trash-directory "~/.Trash"))
 
 (use-package delight
-  :straight t
-  :delight
-  (auto-revert-mode)
-  (eldoc-mode)
-  (flyspell-mode)
-  (visual-line-mode))
+  :straight t)
 
 (use-package exec-path-from-shell
   :straight t
@@ -312,6 +307,10 @@
   ((prog-mode text-mode) . rainbow-delimiters-mode))
 
 ;; prose
+(use-package ispell
+  :config
+  (setq ispell-dictionary "english"))
+
 (use-package adaptive-wrap
   :straight t
   :hook
