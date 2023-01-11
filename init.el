@@ -230,9 +230,11 @@
 (use-package tab-bar
   :init
   (setq tab-bar-show nil
-	tab-bar-close-button-show nil
-	tab-bar-new-button-show nil
 	tab-bar-new-tab-choice "*scratch*"))
+
+(use-package dired
+  :config
+  (setq dired-dwim-target t))
 
 (use-package popwin
   :straight t
@@ -272,10 +274,11 @@
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package atom-one-dark-theme
+(use-package standard-themes
   :straight t
   :config
-  (load-theme 'atom-one-dark t))
+  (setq standard-themes-fringes 'nil)
+  (load-theme 'standard-light :no-confirm))
 
 (use-package smartparens
   :straight t
