@@ -306,6 +306,20 @@
   :hook
   (visual-line-mode . adaptive-wrap-prefix-mode))
 
+(use-package pdf-tools
+  :straight t
+  :hook
+  ((pdf-view-mode
+    . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
+  :init
+  (pdf-loader-install)
+  :config
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-view-use-scaling t
+	pdf-view-use-imagemagick nil)
+  (evil-define-key 'normal pdf-view-mode-map
+    (kbd "zm") 'pdf-view-themed-minor-mode))
+
 (use-package auctex
   :straight t
   :hook
@@ -321,6 +335,8 @@
 	TeX-command-extra-options "-shell-escape"
 	TeX-auto-local ".auctex-auto"
 	TeX-style-local ".auctex-style"
+	TeX-view-program-selection '((output-pdf "PDF Tools"))
+	TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
 	TeX-source-correlate-mode t
 	TeX-source-correlate-method 'synctex
 	TeX-source-correlate-start-server t
