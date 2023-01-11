@@ -370,6 +370,23 @@
   (setq org-roam-directory (file-truename "~/git/RoamNotes"))
   (org-roam-db-autosync-mode))
 
+(use-package markdown-mode
+  :straight t
+  :mode
+  ("/README\\(?:\\.md\\)?\\'" . gfm-mode)
+  :hook
+  ((markdown-mode . visual-line-mode)
+   (markdown-mode . flyspell-mode))
+  :init
+  (setq markdown-enable-math t
+	markdown-enable-wiki-links t
+	markdown-italic-underscore t
+	markdown-asymmetric-header t
+	markdown-gfm-additional-languages '("sh")
+	markdown-make-gfm-checkboxes-buttons t
+	markdown-fontify-whole-heading-line t
+	markdown-command "multimarkdown"))
+
 ;; code
 (use-package company-coq
   :straight t
@@ -472,7 +489,7 @@
   "tt" 'tab-bar-new-tab
   "tp" 'tab-bar-switch-to-prev-tab
   "tn" 'tab-bar-switch-to-next-tab
-  "tk" 'tab-bar-close-tab
+  "td" 'tab-bar-close-tab
   "ts" 'tab-bar-switch-to-tab
   ;; terminal
   "ot" 'vterm-toggle
