@@ -535,7 +535,7 @@
   "=" 'ocp-indent-buffer)
 
 (spc-local-leader-def
-  :keymap 'python-mode-map
+  :keymaps 'python-mode-map
   "e" 'run-python
   "b" 'python-shell-send-buffer)
 
