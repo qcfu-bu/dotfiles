@@ -445,6 +445,12 @@
   :straight (ats2-mode :type git :host github :repo "qcfu-bu/ATS2-emacs")
   :defer t)
 
+(use-package python
+  :hook
+  (python-mode . eglot-ensure)
+  :config
+  (push '("*Python*" :stick t) popwin:special-display-config))
+
 ;; keybinding
 (spc-leader-def
   ;; general
@@ -524,9 +530,14 @@
 
 (spc-local-leader-def
   :keymaps 'tuareg-mode-map
-  "e" 'utop-eval-buffer
-  "u" 'utop
+  "e" 'utop
+  "b" 'utop-eval-buffer
   "=" 'ocp-indent-buffer)
+
+(spc-local-leader-def
+  :keymap 'python-mode-map
+  "e" 'run-python
+  "b" 'python-shell-send-buffer)
 
 ;; miscellaneous
 (add-to-list 'load-path "~/Git/TLL")
