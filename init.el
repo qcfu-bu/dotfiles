@@ -495,8 +495,9 @@
   "tn" 'tab-bar-switch-to-next-tab
   "td" 'tab-bar-close-tab
   "ts" 'tab-bar-switch-to-tab
-  ;; terminal
+  ;; open
   "ot" 'vterm-toggle
+  "of" 'make-frame
   ;; git
   "gg" 'magit
   ;; quit
