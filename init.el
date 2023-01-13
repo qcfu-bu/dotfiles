@@ -274,11 +274,10 @@
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package standard-themes
-  :straight t
+(use-package spacemacs-common
+  :straight spacemacs-theme
   :config
-  (setq standard-themes-fringes 'nil)
-  (load-theme 'standard-light :no-confirm))
+  (load-theme 'spacemacs-dark t))
 
 (use-package smartparens
   :straight t
