@@ -267,6 +267,8 @@
 		 (reusable-frames . visible)
 		 (window-height . 0.3))))
 
+(use-package olivetti
+  :straight t)
 
 ;; appearance
 (set-face-attribute 'default nil :font "Fira Code-14")
@@ -481,6 +483,7 @@
   "wp" 'evil-window-prev
   "wn" 'evil-window-next
   "wd" 'evil-window-delete
+  "wr" 'olivetti-mode
   ;; projects
   "pp" 'counsel-projectile-switch-project
   "pf" 'counsel-projectile-find-file
