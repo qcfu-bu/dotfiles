@@ -43,6 +43,7 @@
 	mac-mouse-wheel-smooth-scroll nil)
   (setq delete-by-moving-to-trash t
 	trash-directory "~/.Trash"))
+(save-place-mode 1)
 
 (use-package exec-path-from-shell
   :straight t
@@ -191,7 +192,7 @@
   :config
   (add-to-list 'eglot-server-programs '(latex-mode . ("texlab"))))
 
-;; git
+;; project
 (use-package magit
   :straight t
   :defer t)
