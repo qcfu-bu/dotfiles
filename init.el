@@ -308,6 +308,7 @@
 
 (use-package pdf-tools
   :straight t
+  :defer t
   :hook
   ((pdf-view-mode
     . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
