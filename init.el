@@ -506,6 +506,7 @@
   "of" 'make-frame
   ;; git
   "gg" 'magit
+  "gt" 'goto-line
   ;; quit
   "qq" 'save-buffers-kill-emacs)
 
