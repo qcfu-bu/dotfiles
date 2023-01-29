@@ -273,6 +273,7 @@
 
 ;; appearance
 (set-face-attribute 'default nil :font "Fira Code-14")
+(set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
 (use-package spacemacs-common
@@ -441,6 +442,9 @@
   (haskell-mode . eglot-ensure)
   :config
   (push '("*haskell*" :stick t) popwin:special-display-config))
+
+(use-package sml-mode
+  :straight t)
 
 (use-package ats2-mode
   :straight (ats2-mode :type git :host github :repo "qcfu-bu/ATS2-emacs")
