@@ -275,6 +275,13 @@
   :config
   (setq-default fill-column 80))
 
+(use-package presentation
+  :straight
+  (presentation
+   :type git
+   :host github
+   :repo  "zonuexe/emacs-presentation-mode"))
+
 ;; appearance
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
@@ -449,7 +456,11 @@
   (setq sml-program-name "poly"))
 
 (use-package ats2-mode
-  :straight (ats2-mode :type git :host github :repo "qcfu-bu/ATS2-emacs")
+  :straight
+  (ats2-mode
+   :type git
+   :host github
+   :repo "qcfu-bu/ATS2-emacs")
   :defer t)
 
 (use-package python
@@ -468,6 +479,8 @@
   "hs" 'counsel-describe-symbol
   "hb" 'counsel-descbinds
   "ht" 'counsel-load-theme
+  "hk" 'describe-key
+  "hm" 'describe-mode
   ;; files
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
