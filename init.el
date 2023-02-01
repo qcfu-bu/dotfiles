@@ -507,7 +507,6 @@
   "wp" 'evil-window-prev
   "wn" 'evil-window-next
   "wd" 'evil-window-delete
-  "wr" 'olivetti-mode
   ;; projects
   "pp" 'counsel-projectile-switch-project
   "pf" 'counsel-projectile-find-file
@@ -529,6 +528,7 @@
   "tt" 'vterm-toggle
   "tl" 'display-line-numbers-mode
   "tp" 'popper-toggle-latest
+  "tc" 'olivetti-mode
   ;; git
   "gg" 'magit
   "gt" 'goto-line
