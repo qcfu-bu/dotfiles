@@ -302,8 +302,8 @@
   (sp-pair "[" nil :unless '(sp-point-before-word-p))
   (sp-pair "{" nil :unless '(sp-point-before-word-p))
   (sp-pair "\"" nil :unless '(sp-point-before-word-p))
-  (sp-pair "'" nil :unless '(sp-point-before-word-p))
-  (sp-local-pair 'latex-mode "$" nil :unless '(sp-point-before-word-p)))
+  (sp-local-pair 'latex-mode "$" nil :unless '(sp-point-before-word-p))
+  (sp-pair "'" nil :actions nil))
 
 (use-package rainbow-delimiters
   :straight t
