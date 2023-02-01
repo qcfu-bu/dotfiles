@@ -22,6 +22,7 @@
 (setq make-backup-files nil)
 (setq dired-use-ls-dired nil)
 (setq frame-resize-pixelwise t)
+(setq use-short-answers t)
 (setq hscroll-margin 2
       hscroll-step 1
       ;; Emacs spends too much effort recentering the screen if you scroll the
@@ -140,6 +141,7 @@
 (use-package which-key
   :straight t
   :config
+  (which-key-setup-minibuffer)
   (which-key-mode))
 
 ;; completion
@@ -235,10 +237,22 @@
   :config
   (setq dired-dwim-target t))
 
-(use-package popwin
+(use-package popper
   :straight t
   :config
-  (popwin-mode 1))
+  (setq popper-window-height 0.33
+	popper-mode-line nil)
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+          compilation-mode
+          "^\\*vterm\\*$" vterm-mode
+	  "^\\*utop\\*$"
+	  "^\\*haskell\\*$"
+	  "^\\*poly\\*$"
+	  "^\\*Python\\*$"))
+  (popper-mode 1))
 
 (use-package hide-mode-line
   :straight t)
@@ -247,29 +261,19 @@
   :straight t
   :defer t
   :hook
-  ((vterm-mode . (lambda () (setq confirm-kill-processes nil)))
-   (vterm-mode . hide-mode-line-mode))
+  (vterm-mode . (lambda () (setq confirm-kill-processes nil)))
   :config
   (setq vterm-kill-buffer-on-exit t
 	vterm-max-scrollback 5000))
 
 (use-package vterm-toggle
   :straight t
-  :defer t
-  :config
-  (setq vterm-toggle-fullscreen-p nil)
-  (add-to-list 'display-buffer-alist
-	       '((lambda (buffer-or-name _)
-		   (let ((buffer (get-buffer buffer-or-name)))
-		     (with-current-buffer buffer
-		       (or (equal major-mode 'vterm-mode)
-			   (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-		 (display-buffer-reuse-window display-buffer-at-bottom)
-		 (reusable-frames . visible)
-		 (window-height . 0.3))))
+  :defer t)
 
 (use-package olivetti
-  :straight t)
+  :straight t
+  :config
+  (setq-default fill-column 80))
 
 ;; appearance
 (set-face-attribute 'default nil :font "Fira Code-14")
@@ -424,9 +428,7 @@
   :straight t
   :defer t
   :hook
-  (tuareg-mode . utop-minor-mode)
-  :config
-  (push '("*utop*" :stick t) popwin:special-display-config))
+  (tuareg-mode . utop-minor-mode))
 
 (use-package dune
   :straight t)
@@ -439,12 +441,12 @@
 (use-package haskell-mode
   :straight t
   :hook
-  (haskell-mode . eglot-ensure)
-  :config
-  (push '("*haskell*" :stick t) popwin:special-display-config))
+  (haskell-mode . eglot-ensure))
 
 (use-package sml-mode
-  :straight t)
+  :straight t
+  :config
+  (setq sml-program-name "poly"))
 
 (use-package ats2-mode
   :straight (ats2-mode :type git :host github :repo "qcfu-bu/ATS2-emacs")
@@ -452,9 +454,7 @@
 
 (use-package python
   :hook
-  (python-mode . eglot-ensure)
-  :config
-  (push '("*Python*" :stick t) popwin:special-display-config))
+  (python-mode . eglot-ensure))
 
 ;; keybinding
 (spc-leader-def
@@ -502,14 +502,15 @@
   "ni" 'org-roam-node-insert
   "nc" 'org-roam-capture
   ;; workspaces
-  "tt" 'tab-bar-new-tab
-  "tp" 'tab-bar-switch-to-prev-tab
-  "tn" 'tab-bar-switch-to-next-tab
-  "td" 'tab-bar-close-tab
-  "ts" 'tab-bar-switch-to-tab
-  ;; open
-  "ot" 'vterm-toggle
-  "of" 'make-frame
+  "TAB TAB" 'tab-bar-new-tab
+  "TAB p" 'tab-bar-switch-to-prev-tab
+  "TAB n" 'tab-bar-switch-to-next-tab
+  "TAB d" 'tab-bar-close-tab
+  "TAB s" 'tab-bar-switch-to-tab
+  ;; toggles
+  "tt" 'vterm-toggle
+  "tl" 'display-line-numbers-mode
+  "tp" 'popper-toggle-latest
   ;; git
   "gg" 'magit
   "gt" 'goto-line
@@ -540,6 +541,11 @@
   "e" 'utop
   "b" 'utop-eval-buffer
   "=" 'ocp-indent-buffer)
+
+(spc-local-leader-def
+  :keymaps 'sml-mode-map
+  "e" 'run-sml
+  "b" 'sml-prog-proc-send-buffer)
 
 (spc-local-leader-def
   :keymaps 'python-mode-map
