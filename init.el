@@ -298,7 +298,12 @@
   ((prog-mode text-mode) . smartparens-mode)
   :init
   (require 'smartparens-config)
-  (sp-pair "'" nil :actions nil))
+  (sp-pair "(" nil :unless '(sp-point-before-word-p))
+  (sp-pair "[" nil :unless '(sp-point-before-word-p))
+  (sp-pair "{" nil :unless '(sp-point-before-word-p))
+  (sp-pair "\"" nil :unless '(sp-point-before-word-p))
+  (sp-pair "'" nil :unless '(sp-point-before-word-p))
+  (sp-local-pair 'latex-mode "$" nil :unless '(sp-point-before-word-p)))
 
 (use-package rainbow-delimiters
   :straight t
