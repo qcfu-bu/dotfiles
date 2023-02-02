@@ -21,6 +21,7 @@
 ;; system
 (setq make-backup-files nil)
 (setq dired-use-ls-dired nil)
+(setq dired-dwim-target t)
 (setq frame-resize-pixelwise t)
 (setq use-short-answers t)
 (setq hscroll-margin 2
@@ -233,10 +234,6 @@
   (setq tab-bar-show nil
 	tab-bar-new-tab-choice "*scratch*"))
 
-(use-package dired
-  :config
-  (setq dired-dwim-target t))
-
 (use-package popper
   :straight t
   :config
@@ -280,7 +277,7 @@
   (presentation
    :type git
    :host github
-   :repo  "zonuexe/emacs-presentation-mode"))
+   :repo "zonuexe/emacs-presentation-mode"))
 
 ;; appearance
 (set-face-attribute 'default nil :font "Fira Code-14")
