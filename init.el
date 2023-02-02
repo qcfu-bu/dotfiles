@@ -245,6 +245,7 @@
         '("\\*Messages\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
+	  "^\\*Org Select\\*$"
           compilation-mode
           "^\\*vterm\\*$" vterm-mode
 	  "^\\*utop\\*$"
