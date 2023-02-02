@@ -299,8 +299,10 @@
   (sp-pair "(" nil :unless '(sp-point-before-word-p))
   (sp-pair "[" nil :unless '(sp-point-before-word-p))
   (sp-pair "{" nil :unless '(sp-point-before-word-p))
-  (sp-pair "\"" nil :unless '(sp-point-before-word-p))
-  (sp-local-pair 'latex-mode "$" nil :unless '(sp-point-before-word-p))
+  (sp-pair "\"" nil :unless '(sp-point-before-word-p
+			      sp-point-after-word-p))
+  (sp-local-pair 'latex-mode "$" nil :unless '(sp-point-before-word-p
+					       sp-point-after-word-p))
   (sp-pair "'" nil :actions nil))
 
 (use-package rainbow-delimiters
@@ -378,8 +380,27 @@
   :hook
   ((org-mode . org-superstar-mode)
    (org-mode . visual-line-mode)
-   (org-mode . flyspell-mode))
+   (org-mode . flyspell-mode)
+   (org-mode . org-setup-<>-syntax-fix))
   :config
+  (defun org-mode-<>-syntax-fix (start end)
+    "Change syntax of characters ?< and ?> to symbol within source code blocks."
+    (let ((case-fold-search t))
+      (when (eq major-mode 'org-mode)
+	(save-excursion
+	  (goto-char start)
+	  (while (re-search-forward "<\\|>" end t)
+	    (when (save-excursion
+		    (and
+		     (re-search-backward "[[:space:]]*#\\+\\(begin\\|end\\)_src\\_>" nil t)
+		     (string-equal (downcase (match-string 1)) "begin")))
+	      (put-text-property (point) (1- (point))
+				 'syntax-table (string-to-syntax "_"))))))))
+  (defun org-setup-<>-syntax-fix ()
+    "Setup for characters ?< and ?> in source code blocks."
+    (make-local-variable 'syntax-propertize-function)
+    (setq syntax-propertize-function 'org-mode-<>-syntax-fix)
+    (syntax-propertize (point-max)))
   (setq org-startup-indented t))
 
 (use-package org-roam
