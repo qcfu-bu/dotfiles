@@ -226,6 +226,8 @@
 (use-package counsel-projectile
   :straight t
   :config
+  (setq counsel-projectile-switch-project-action
+	'counsel-projectile-switch-project-action-dired)
   (counsel-projectile-mode))
 
 ;; tools
@@ -541,6 +543,12 @@
   "c" 'TeX-command-master
   "e" 'TeX-command-run-all
   "v" 'TeX-view)
+
+(spc-local-leader-def
+  :keymaps 'org-mode-map
+  "i" 'org-insert-structure-template
+  "l" 'org-insert-link
+  "e" 'org-export-dispatch)
 
 (spc-local-leader-def
   :keymaps 'coq-mode-map
