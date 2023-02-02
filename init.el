@@ -529,7 +529,8 @@
   "tc" 'olivetti-mode
   ;; git
   "gg" 'magit
-  "gt" 'goto-line
+  "gl" 'goto-line
+  "gc" 'goto-char
   ;; quit
   "qq" 'save-buffers-kill-emacs)
 
