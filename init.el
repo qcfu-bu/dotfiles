@@ -293,7 +293,7 @@
 (use-package smartparens
   :straight t
   :hook
-  ((prog-mode text-mode) . smartparens-mode)
+  (prog-mode . smartparens-mode)
   :init
   (require 'smartparens-config)
   (sp-pair "(" nil :unless '(sp-point-before-word-p))
@@ -307,7 +307,7 @@
 (use-package rainbow-delimiters
   :straight t
   :hook
-  ((prog-mode text-mode) . rainbow-delimiters-mode))
+  (prog-mode . rainbow-delimiters-mode))
 
 (use-package doom-modeline
   :straight t
@@ -342,7 +342,9 @@
   :hook
   ((LaTeX-mode . eglot-ensure)
    (LaTeX-mode . visual-line-mode)
-   (LaTeX-mode . flyspell-mode))
+   (LaTeX-mode . flyspell-mode)
+   (LaTeX-mode . smartparens-mode)
+   (LaTeX-mode . rainbow-delimiters-mode))
   :init
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   (setq-default TeX-PDF-mode t)
