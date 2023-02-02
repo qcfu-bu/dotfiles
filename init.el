@@ -226,8 +226,6 @@
 (use-package counsel-projectile
   :straight t
   :config
-  (setq counsel-projectile-switch-project-action
-	'counsel-projectile-switch-project-action-dired)
   (counsel-projectile-mode))
 
 ;; tools
