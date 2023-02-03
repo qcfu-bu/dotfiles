@@ -59,8 +59,6 @@
   (setq esup-depth 0))
 
 (use-package display-line-numbers
-  :hook
-  ((prog-mode text-mode) . display-line-numbers-mode)
   :config
   (setq-default display-line-numbers-width 3))
 
@@ -287,9 +285,16 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(setq modus-themes-subtle-line-numbers t
-      modus-themes-vivendi-color-overrides '((bg-main . "#292b2e")))
-(load-theme 'modus-vivendi t)
+(use-package modus-themes
+  :straight t
+  :config
+  (setq modus-operandi-palette-overrides
+	'((bg-dim bg-main)
+	  (bg-line-number-active bg-main)))
+  (setq modus-vivendi-palette-overrides
+	'((bg-main bg-dim)
+	  (bg-line-number-active bg-dim)))
+  (load-theme 'modus-vivendi t))
 
 (use-package smartparens
   :straight t
@@ -535,6 +540,7 @@
   "tl" 'display-line-numbers-mode
   "tp" 'popper-toggle-latest
   "tc" 'olivetti-mode
+  "tz" 'presentation-mode
   ;; git
   "gg" 'magit
   "gl" 'goto-line
