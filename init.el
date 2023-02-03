@@ -285,16 +285,10 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package modus-themes
-  :straight t
+(use-package spacemacs-common
+  :straight spacemacs-theme
   :config
-  (setq modus-operandi-palette-overrides
-	'((bg-dim bg-main)
-	  (bg-line-number-active bg-main)))
-  (setq modus-vivendi-palette-overrides
-	'((bg-main bg-dim)
-	  (bg-line-number-active bg-dim)))
-  (load-theme 'modus-vivendi t))
+  (load-theme 'spacemacs-dark t))
 
 (use-package smartparens
   :straight t
