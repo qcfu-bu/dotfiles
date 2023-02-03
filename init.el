@@ -417,6 +417,7 @@
 	markdown-gfm-additional-languages '("sh")
 	markdown-make-gfm-checkboxes-buttons t
 	markdown-fontify-whole-heading-line t
+	markdown-fontify-code-blocks-natively t
 	markdown-command "multimarkdown"))
 
 ;; code
