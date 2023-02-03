@@ -541,6 +541,7 @@
   "tp" 'popper-toggle-latest
   "tc" 'olivetti-mode
   "tz" 'presentation-mode
+  "tm" 'modus-themes-toggle
   ;; git
   "gg" 'magit
   "gl" 'goto-line
