@@ -70,7 +70,7 @@
   :straight t
   :after undo-fu
   :config
-  (global-undo-fu-session-mode))
+  (undo-fu-session-global-mode))
 
 (use-package savehist
   :init
@@ -390,13 +390,6 @@
   :config
   (setq org-startup-indented t))
 
-(use-package org-roam
-  :straight t
-  :defer t
-  :config
-  (setq org-roam-directory (file-truename "~/git/RoamNotes"))
-  (org-roam-db-autosync-mode))
-
 (use-package markdown-mode
   :straight t
   :mode
@@ -520,11 +513,6 @@
   "pr" 'counsel-recentf
   "pd" 'counsel-projectile-find-dir
   "pg" 'counsel-projectile-grep
-  ;; org-roam
-  "nf" 'org-roam-node-find
-  "ng" 'org-roam-graph
-  "ni" 'org-roam-node-insert
-  "nc" 'org-roam-capture
   ;; workspaces
   "TAB TAB" 'tab-bar-new-tab
   "TAB p" 'tab-bar-switch-to-prev-tab
