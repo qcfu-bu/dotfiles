@@ -126,20 +126,6 @@
   :config
   (evilem-default-keybindings "gs"))
 
-(use-package general
-  :straight t
-  :after evil
-  :config
-  (general-override-mode 1)
-  (general-create-definer spc-leader-def
-    :states '(normal)
-    :keymaps 'override
-    :prefix "SPC")
-  (general-create-definer spc-local-leader-def
-    :states '(normal)
-    :keymaps 'override
-    :prefix "SPC m"))
-
 (use-package which-key
   :straight t
   :config
@@ -147,29 +133,49 @@
   (which-key-mode))
 
 ;; completion
-(use-package ivy-prescient
-  :straight t)
-
-(use-package ivy-rich
+(use-package vertico
   :straight t
-  :after counsel
   :config
-  (ivy-rich-mode t))
+  ;; vertico configuration
+  (setq vertico-resize nil
+	vertico-count 14)
+  (vertico-mode)
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  ;; Enable recursive minibuffers
+  (setq enable-recursive-minibuffers t))
 
 (use-package orderless
-  :straight t)
-
-(use-package counsel
   :straight t
-  :init
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
-  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight))
   :config
-  (ivy-prescient-mode)
-  (prescient-persist-mode)
-  (ivy-mode)
-  (counsel-mode))
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package consult
+  :straight t
+  :defer t
+  :after vertico
+  :config
+  (setq consult-preview-key nil))
+
+(use-package marginalia
+  :straight t
+  :after vertico
+  :config
+  (marginalia-mode))
 
 (use-package company-prescient
   :straight t
@@ -222,12 +228,12 @@
   (setq projectile-ignored-projects '("~/")
 	projectile-project-root-files '()
 	projectile-project-root-files-bottom-up '(".projectile" ".git")
-	projectile-project-root-files-top-down-recurring '("Makefile")))
+	projectile-project-root-files-top-down-recurring '("Makefile"))
+  (projectile-mode))
 
-(use-package counsel-projectile
+(use-package consult-projectile
   :straight t
-  :config
-  (counsel-projectile-mode))
+  :defer t)
 
 ;; tools
 (use-package tab-bar
@@ -373,7 +379,7 @@
   :config
   (auctex-latexmk-setup))
 
-(use-package org-superstar
+(use-package org-modern
   :straight t
   :defer t)
 
@@ -381,7 +387,7 @@
   :straight t
   :defer t
   :hook
-  ((org-mode . org-superstar-mode)
+  ((org-mode . org-modern-mode)
    (org-mode . visual-line-mode)
    (org-mode . flyspell-mode)
    (org-mode . (lambda ()
@@ -473,105 +479,118 @@
   (python-mode . eglot-ensure))
 
 ;; keybinding
-(spc-leader-def
-  ;; general
-  ""    nil
-  "SPC" 'counsel-M-x
-  "\\" 'toggle-input-method
-  ;; help
-  "hv" 'counsel-describe-variable
-  "hf" 'counsel-describe-function
-  "hs" 'counsel-describe-symbol
-  "hb" 'counsel-descbinds
-  "ht" 'counsel-load-theme
-  "hk" 'describe-key
-  "hm" 'describe-mode
-  ;; files
-  "ff" 'counsel-find-file
-  "fr" 'counsel-recentf
-  "fl" 'counsel-find-library
-  "fs" 'save-buffer
-  ;; buffers
-  "bb" 'ivy-switch-buffer
-  "bi" 'counsel-imenu
-  "bp" 'switch-to-prev-buffer
-  "bn" 'switch-to-next-buffer
-  "bd" 'kill-this-buffer
-  ;; windows
-  "ws" 'evil-window-split
-  "wv" 'evil-window-vsplit
-  "wh" 'evil-window-left
-  "wj" 'evil-window-down
-  "wk" 'evil-window-up
-  "wl" 'evil-window-right
-  "wp" 'evil-window-prev
-  "wn" 'evil-window-next
-  "wd" 'evil-window-delete
-  ;; projects
-  "pp" 'counsel-projectile-switch-project
-  "pf" 'counsel-projectile-find-file
-  "pr" 'counsel-recentf
-  "pd" 'counsel-projectile-find-dir
-  "pg" 'counsel-projectile-grep
-  ;; workspaces
-  "TAB TAB" 'tab-bar-new-tab
-  "TAB p" 'tab-bar-switch-to-prev-tab
-  "TAB n" 'tab-bar-switch-to-next-tab
-  "TAB d" 'tab-bar-close-tab
-  "TAB s" 'tab-bar-switch-to-tab
-  ;; toggles
-  "tt" 'vterm-toggle
-  "tl" 'display-line-numbers-mode
-  "tp" 'popper-toggle-latest
-  "tc" 'olivetti-mode
-  "tz" 'presentation-mode
-  ;; git
-  "gg" 'magit
-  "gl" 'goto-line
-  "gc" 'goto-char
-  ;; quit
-  "qq" 'save-buffers-kill-emacs)
+(use-package general
+  :straight t
+  :after evil
+  :config
+  (general-override-mode 1)
+  (general-create-definer spc-leader-def
+    :states '(normal)
+    :keymaps 'override
+    :prefix "SPC")
+  (general-create-definer spc-local-leader-def
+    :states '(normal)
+    :keymaps 'override
+    :prefix "SPC m")
 
-(spc-local-leader-def
-  :keymaps 'emacs-lisp-mode-map
-  "e" 'eval-buffer)
+  (spc-leader-def
+    ;; general
+    ""    nil
+    "SPC" 'execute-extended-command
+    "\\" 'toggle-input-method
+    ;; help
+    "hv" 'describe-variable
+    "hf" 'describe-function
+    "hs" 'describe-symbol
+    "hb" 'describe-bindings
+    "ht" 'consult-theme
+    "hk" 'describe-key
+    "hm" 'describe-mode
+    ;; files
+    "ff" 'find-file
+    "fr" 'consult-recent-file
+    "fl" 'find-library
+    "fs" 'save-buffer
+    ;; buffers
+    "bb" 'consult-buffer
+    "bi" 'consult-imenu
+    "bp" 'switch-to-prev-buffer
+    "bn" 'switch-to-next-buffer
+    "bd" 'kill-this-buffer
+    ;; windows
+    "ws" 'evil-window-split
+    "wv" 'evil-window-vsplit
+    "wh" 'evil-window-left
+    "wj" 'evil-window-down
+    "wk" 'evil-window-up
+    "wl" 'evil-window-right
+    "wp" 'evil-window-prev
+    "wn" 'evil-window-next
+    "wd" 'evil-window-delete
+    ;; projects
+    "pp" 'consult-projectile-switch-project
+    "pf" 'consult-projectile-find-file
+    "pr" 'consult-projectile-recentf
+    "pd" 'consult-projectile-find-dir
+    ;; workspaces
+    "TAB TAB" 'tab-bar-new-tab
+    "TAB p" 'tab-bar-switch-to-prev-tab
+    "TAB n" 'tab-bar-switch-to-next-tab
+    "TAB d" 'tab-bar-close-tab
+    "TAB s" 'tab-bar-switch-to-tab
+    ;; toggles
+    "tt" 'vterm-toggle
+    "tl" 'display-line-numbers-mode
+    "tp" 'popper-toggle-latest
+    "tc" 'olivetti-mode
+    "tz" 'presentation-mode
+    ;; git
+    "gg" 'magit
+    "gl" 'goto-line
+    "gc" 'goto-char
+    ;; quit
+    "qq" 'save-buffers-kill-emacs)
 
-(spc-local-leader-def
-  :keymaps 'LaTeX-mode-map
-  "c" 'TeX-command-master
-  "e" 'TeX-command-run-all
-  "v" 'TeX-view)
+  (spc-local-leader-def
+    :keymaps 'emacs-lisp-mode-map
+    "e" 'eval-buffer)
 
-(spc-local-leader-def
-  :keymaps 'org-mode-map
-  "i" 'org-insert-structure-template
-  "l" 'org-insert-link
-  "e" 'org-export-dispatch)
+  (spc-local-leader-def
+    :keymaps 'LaTeX-mode-map
+    "c" 'TeX-command-master
+    "e" 'TeX-command-run-all
+    "v" 'TeX-view)
 
-(spc-local-leader-def
-  :keymaps 'coq-mode-map
-  "." 'proof-goto-point
-  "f" 'proof-assert-next-command-interactive
-  "b" 'proof-undo-last-successful-command
-  "pp" 'proof-process-buffer
-  "pr" 'proof-retract-buffer
-  "pk" 'proof-shell-exit)
+  (spc-local-leader-def
+    :keymaps 'org-mode-map
+    "i" 'org-insert-structure-template
+    "l" 'org-insert-link
+    "e" 'org-export-dispatch)
 
-(spc-local-leader-def
-  :keymaps 'tuareg-mode-map
-  "e" 'utop
-  "b" 'utop-eval-buffer
-  "=" 'ocp-indent-buffer)
+  (spc-local-leader-def
+    :keymaps 'coq-mode-map
+    "." 'proof-goto-point
+    "f" 'proof-assert-next-command-interactive
+    "b" 'proof-undo-last-successful-command
+    "pp" 'proof-process-buffer
+    "pr" 'proof-retract-buffer
+    "pk" 'proof-shell-exit)
 
-(spc-local-leader-def
-  :keymaps 'sml-mode-map
-  "e" 'run-sml
-  "b" 'sml-prog-proc-send-buffer)
+  (spc-local-leader-def
+    :keymaps 'tuareg-mode-map
+    "e" 'utop
+    "b" 'utop-eval-buffer
+    "=" 'ocp-indent-buffer)
 
-(spc-local-leader-def
-  :keymaps 'python-mode-map
-  "e" 'run-python
-  "b" 'python-shell-send-buffer)
+  (spc-local-leader-def
+    :keymaps 'sml-mode-map
+    "e" 'run-sml
+    "b" 'sml-prog-proc-send-buffer)
+
+  (spc-local-leader-def
+    :keymaps 'python-mode-map
+    "e" 'run-python
+    "b" 'python-shell-send-buffer))
 
 ;; miscellaneous
 (add-to-list 'load-path "~/Git/TLL")
