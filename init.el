@@ -492,7 +492,7 @@
     ;; files
     "ff" 'counsel-find-file
     "fr" 'counsel-recentf
-    "fl" 'counsel-find-library
+    "fl" 'swiper
     "fs" 'save-buffer
     ;; buffers
     "bb" 'ivy-switch-buffer
