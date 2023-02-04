@@ -139,7 +139,7 @@
   :config
   ;; vertico configuration
   (setq vertico-resize nil
-	vertico-count 14)
+	vertico-count 16)
   (vertico-mode)
   ;; Add prompt indicator to `completing-read-multiple'.
   ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
@@ -167,8 +167,8 @@
 
 (use-package consult
   :straight t
-  :defer t
   :after vertico
+  :bind ("M-s" . consult-line)
   :config
   (setq consult-preview-key nil))
 
