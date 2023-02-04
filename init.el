@@ -135,49 +135,29 @@
   (which-key-mode))
 
 ;; completion
-(use-package vertico
+(use-package ivy-prescient
+  :straight t)
+
+(use-package ivy-rich
   :straight t
+  :after counsel
   :config
-  ;; vertico configuration
-  (setq vertico-resize nil
-	vertico-count 16)
-  (vertico-mode)
-  ;; Add prompt indicator to `completing-read-multiple'.
-  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
-  (defun crm-indicator (args)
-    (cons (format "[CRM%s] %s"
-                  (replace-regexp-in-string
-                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-                   crm-separator)
-                  (car args))
-          (cdr args)))
-  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
-  ;; Do not allow the cursor in the minibuffer prompt
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-  ;; Enable recursive minibuffers
-  (setq enable-recursive-minibuffers t))
+  (ivy-rich-mode t))
 
 (use-package orderless
-  :straight t
-  :config
-  (setq completion-styles '(orderless basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+  :straight t)
 
-(use-package consult
+(use-package counsel
   :straight t
-  :defer t
-  :after vertico
+  :init
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
+  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight))
   :config
-  (setq consult-preview-key nil))
-
-(use-package marginalia
-  :straight t
-  :after vertico
-  :config
-  (marginalia-mode))
+  (ivy-prescient-mode)
+  (prescient-persist-mode)
+  (ivy-mode)
+  (counsel-mode))
 
 (use-package company-prescient
   :straight t
@@ -230,12 +210,12 @@
   (setq projectile-ignored-projects '("~/")
 	projectile-project-root-files '()
 	projectile-project-root-files-bottom-up '(".projectile" ".git")
-	projectile-project-root-files-top-down-recurring '("Makefile"))
-  (projectile-mode))
+	projectile-project-root-files-top-down-recurring '("Makefile")))
 
-(use-package consult-projectile
+(use-package counsel-projectile
   :straight t
-  :defer t)
+  :config
+  (counsel-projectile-mode))
 
 ;; tools
 (use-package tab-bar
@@ -499,24 +479,24 @@
   (spc-leader-def
     ;; general
     ""    nil
-    "SPC" 'execute-extended-command
+    "SPC" 'counsel-M-x
     "\\" 'toggle-input-method
     ;; help
-    "hv" 'describe-variable
-    "hf" 'describe-function
-    "hs" 'describe-symbol
-    "hb" 'describe-bindings
-    "ht" 'consult-theme
+    "hv" 'counsel-describe-variable
+    "hf" 'counsel-describe-function
+    "hs" 'counsel-describe-symbol
+    "hb" 'counsel-descbinds
+    "ht" 'counsel-load-theme
     "hk" 'describe-key
     "hm" 'describe-mode
     ;; files
-    "ff" 'find-file
-    "fr" 'consult-recent-file
-    "fl" 'consult-line
+    "ff" 'counsel-find-file
+    "fr" 'counsel-recentf
+    "fl" 'counsel-find-library
     "fs" 'save-buffer
     ;; buffers
-    "bb" 'consult-buffer
-    "bi" 'consult-imenu
+    "bb" 'ivy-switch-buffer
+    "bi" 'counsel-imenu
     "bp" 'switch-to-prev-buffer
     "bn" 'switch-to-next-buffer
     "bd" 'kill-this-buffer
@@ -531,10 +511,11 @@
     "wn" 'evil-window-next
     "wd" 'evil-window-delete
     ;; projects
-    "pp" 'consult-projectile-switch-project
-    "pf" 'consult-projectile-find-file
-    "pr" 'consult-projectile-recentf
-    "pd" 'consult-projectile-find-dir
+    "pp" 'counsel-projectile-switch-project
+    "pf" 'counsel-projectile-find-file
+    "pr" 'counsel-recentf
+    "pd" 'counsel-projectile-find-dir
+    "pg" 'counsel-projectile-grep
     ;; workspaces
     "TAB TAB" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
