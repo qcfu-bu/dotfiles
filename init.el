@@ -492,7 +492,6 @@
     ;; files
     "ff" 'counsel-find-file
     "fr" 'counsel-recentf
-    "fl" 'swiper
     "fs" 'save-buffer
     ;; buffers
     "bb" 'ivy-switch-buffer
@@ -510,6 +509,11 @@
     "wp" 'evil-window-prev
     "wn" 'evil-window-next
     "wd" 'evil-window-delete
+    ;; editor
+    "el" 'goto-line
+    "ec" 'goto-char
+    "es" 'swiper
+    "er" 'anzu-query-replace
     ;; projects
     "pp" 'counsel-projectile-switch-project
     "pf" 'counsel-projectile-find-file
@@ -530,8 +534,6 @@
     "tz" 'presentation-mode
     ;; git
     "gg" 'magit
-    "gl" 'goto-line
-    "gc" 'goto-char
     ;; quit
     "qq" 'save-buffers-kill-emacs)
 
