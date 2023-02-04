@@ -380,7 +380,7 @@
   :config
   (auctex-latexmk-setup))
 
-(use-package org-modern
+(use-package org-superstar
   :straight t
   :defer t)
 
@@ -388,7 +388,7 @@
   :straight t
   :defer t
   :hook
-  ((org-mode . org-modern-mode)
+  ((org-mode . org-superstar-mode)
    (org-mode . visual-line-mode)
    (org-mode . flyspell-mode)
    (org-mode . (lambda ()
