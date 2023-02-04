@@ -220,7 +220,8 @@
 ;; tools
 (use-package tab-bar
   :init
-  (setq tab-bar-new-button-show nil
+  (setq tab-bar-show 1
+	tab-bar-new-button-show nil
 	tab-bar-close-button-show nil
 	tab-bar-new-tab-choice "*scratch*"))
 
