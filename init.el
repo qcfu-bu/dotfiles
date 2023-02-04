@@ -168,8 +168,8 @@
 
 (use-package consult
   :straight t
+  :defer t
   :after vertico
-  :bind ("M-s" . consult-line)
   :config
   (setq consult-preview-key nil))
 
@@ -512,7 +512,7 @@
     ;; files
     "ff" 'find-file
     "fr" 'consult-recent-file
-    "fl" 'find-library
+    "fl" 'consult-line
     "fs" 'save-buffer
     ;; buffers
     "bb" 'consult-buffer
