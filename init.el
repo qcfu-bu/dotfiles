@@ -173,6 +173,22 @@
   :config
   (setq consult-preview-key nil))
 
+(use-package embark
+  :straight t
+  :bind
+  (("C-." . embark-act)
+   ("M-." . embark-dwim))
+   :init
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+  :straight t)
+
 (use-package marginalia
   :straight t
   :after vertico
