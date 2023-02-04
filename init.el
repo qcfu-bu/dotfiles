@@ -91,7 +91,8 @@
   (setq evil-want-integration t
 	evil-want-keybinding nil
 	evil-undo-system 'undo-fu)
-  :config (evil-mode 1))
+  :config
+  (evil-mode 1))
 
 (use-package evil-collection
   :straight t
@@ -463,6 +464,7 @@
 
 (use-package sml-mode
   :straight t
+  :defer t
   :config
   (setq sml-program-name "poly"))
 
