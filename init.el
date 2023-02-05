@@ -20,33 +20,51 @@
 (straight-use-package 'use-package)
 
 ;; system
-(setq make-backup-files nil)
-(setq dired-use-ls-dired nil)
-(setq dired-dwim-target t)
-(setq frame-resize-pixelwise t)
-(setq use-short-answers t)
-(setq hscroll-margin 2
-      hscroll-step 1
-      ;; Emacs spends too much effort recentering the screen if you scroll the
-      ;; cursor more than N lines past window edges (where N is the settings of
-      ;; `scroll-conservatively'). This is especially slow in larger files
-      ;; during large-scale scrolling commands. If kept over 100, the window is
-      ;; never automatically recentered.
-      scroll-conservatively 101
-      scroll-margin 0
-      scroll-preserve-screen-position t
-      ;; Reduce cursor lag by a tiny bit by not auto-adjusting `window-vscroll'
-      ;; for tall lines.
-      auto-window-vscroll nil
-      ;; mouse
-      mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
-      mouse-wheel-scroll-amount-horizontal 2)
-(when (memq window-system '(mac ns x))
-  (setq mac-redisplay-dont-reset-vscroll t
-	mac-mouse-wheel-smooth-scroll nil)
-  (setq delete-by-moving-to-trash t
-	trash-directory "~/.Trash"))
-(save-place-mode 1)
+(use-package emacs
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+  ;; Do not allow the cursor in the minibuffer prompt.
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  ;; Enable recursive minibuffers.
+  (setq enable-recursive-minibuffers t)
+  ;; Nicer defaults.
+  (setq make-backup-files nil)
+  (setq dired-use-ls-dired nil)
+  (setq dired-dwim-target t)
+  (setq frame-resize-pixelwise t)
+  (setq use-short-answers t)
+  (setq hscroll-margin 2
+	hscroll-step 1
+	;; Emacs spends too much effort recentering the screen if you scroll the
+	;; cursor more than N lines past window edges (where N is the settings of
+	;; `scroll-conservatively'). This is especially slow in larger files
+	;; during large-scale scrolling commands. If kept over 100, the window is
+	;; never automatically recentered.
+	scroll-conservatively 101
+	scroll-margin 0
+	scroll-preserve-screen-position t
+	;; Reduce cursor lag by a tiny bit by not auto-adjusting `window-vscroll'
+	;; for tall lines.
+	auto-window-vscroll nil
+	;; mouse
+	mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
+	mouse-wheel-scroll-amount-horizontal 2)
+  (when (memq window-system '(mac ns x))
+    (setq mac-redisplay-dont-reset-vscroll t
+	  mac-mouse-wheel-smooth-scroll nil)
+    (setq delete-by-moving-to-trash t
+	  trash-directory "~/.Trash")))
 
 (use-package exec-path-from-shell
   :straight t
@@ -75,6 +93,7 @@
 
 (use-package savehist
   :init
+  (save-place-mode 1)
   (savehist-mode))
 
 (use-package recentf
@@ -135,29 +154,32 @@
   (which-key-mode))
 
 ;; completion
-(use-package ivy-prescient
-  :straight t)
-
-(use-package ivy-rich
+(use-package vertico
   :straight t
-  :after counsel
   :config
-  (ivy-rich-mode t))
+  (setq vertico-resize nil
+	vertico-count 16)
+  (vertico-mode))
 
 (use-package orderless
-  :straight t)
-
-(use-package counsel
   :straight t
-  :init
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
-  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight))
   :config
-  (ivy-prescient-mode)
-  (prescient-persist-mode)
-  (ivy-mode)
-  (counsel-mode))
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package consult
+  :straight t
+  :defer t
+  :after vertico
+  :config
+  (setq consult-preview-key nil))
+
+(use-package marginalia
+  :straight t
+  :after vertico
+  :config
+  (marginalia-mode))
 
 (use-package company-prescient
   :straight t
@@ -210,12 +232,12 @@
   (setq projectile-ignored-projects '("~/")
 	projectile-project-root-files '()
 	projectile-project-root-files-bottom-up '(".projectile" ".git")
-	projectile-project-root-files-top-down-recurring '("Makefile")))
+	projectile-project-root-files-top-down-recurring '("Makefile"))
+  (projectile-mode))
 
-(use-package counsel-projectile
+(use-package consult-projectile
   :straight t
-  :config
-  (counsel-projectile-mode))
+  :defer t)
 
 ;; tools
 (use-package tab-bar
@@ -479,23 +501,28 @@
   (spc-leader-def
     ;; general
     ""    nil
-    "SPC" 'counsel-M-x
+    "SPC" 'execute-extended-command
     "\\" 'toggle-input-method
     ;; help
-    "hv" 'counsel-describe-variable
-    "hf" 'counsel-describe-function
-    "hs" 'counsel-describe-symbol
-    "hb" 'counsel-descbinds
-    "ht" 'counsel-load-theme
+    "hv" 'describe-variable
+    "hf" 'describe-function
+    "hs" 'describe-symbol
+    "hb" 'describe-bindings
+    "ht" 'consult-theme
     "hk" 'describe-key
     "hm" 'describe-mode
+    ;; editor
+    "el" 'goto-line
+    "ec" 'goto-char
+    "es" 'consult-line
+    "er" 'anzu-query-replace
     ;; files
-    "ff" 'counsel-find-file
-    "fr" 'counsel-recentf
+    "ff" 'find-file
+    "fr" 'consult-recent-file
     "fs" 'save-buffer
     ;; buffers
-    "bb" 'ivy-switch-buffer
-    "bi" 'counsel-imenu
+    "bb" 'consult-buffer
+    "bi" 'consult-imenu
     "bp" 'switch-to-prev-buffer
     "bn" 'switch-to-next-buffer
     "bd" 'kill-this-buffer
@@ -509,17 +536,11 @@
     "wp" 'evil-window-prev
     "wn" 'evil-window-next
     "wd" 'evil-window-delete
-    ;; editor
-    "el" 'goto-line
-    "ec" 'goto-char
-    "es" 'swiper
-    "er" 'anzu-query-replace
     ;; projects
-    "pp" 'counsel-projectile-switch-project
-    "pf" 'counsel-projectile-find-file
-    "pr" 'counsel-recentf
-    "pd" 'counsel-projectile-find-dir
-    "pg" 'counsel-projectile-grep
+    "pp" 'consult-projectile-switch-project
+    "pf" 'consult-projectile-find-file
+    "pr" 'consult-projectile-recentf
+    "pd" 'consult-projectile-find-dir
     ;; workspaces
     "TAB TAB" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
