@@ -502,6 +502,7 @@
     "ec" 'goto-char
     "es" 'consult-line
     "er" 'anzu-query-replace
+    "ey" 'consult-yank-pop
     ;; files
     "ff" 'find-file
     "fr" 'consult-recent-file
@@ -524,7 +525,7 @@
     "wd" 'evil-window-delete
     ;; projects
     "pp" 'project-switch-project
-    "pb" 'project-switch-to-buffer
+    "pb" 'consult-project-buffer
     "pf" 'project-find-file
     "pd" 'project-find-dir
     ;; workspaces
@@ -541,6 +542,7 @@
     "tz" 'presentation-mode
     ;; git
     "gg" 'magit
+    "gr" 'consult-git-grep
     ;; quit
     "qq" 'save-buffers-kill-emacs)
 
