@@ -225,17 +225,6 @@
   :straight t
   :defer t)
 
-(use-package projectile
-  :straight t
-  :defer t
-  :init
-  (setq projectile-ignored-projects '("~/")
-	projectile-project-root-files '()
-	projectile-project-root-files-bottom-up '(".projectile" ".git")
-	projectile-project-root-files-top-down-recurring '("Makefile"))
-  :config
-  (projectile-mode))
-
 ;; tools
 (use-package tab-bar
   :init
@@ -534,10 +523,10 @@
     "wn" 'evil-window-next
     "wd" 'evil-window-delete
     ;; projects
-    "pp" 'projectile-switch-project
-    "pb" 'projectile-switch-to-buffer
-    "pf" 'projectile-find-file
-    "pd" 'projectile-find-dir
+    "pp" 'project-switch-project
+    "pb" 'project-switch-to-buffer
+    "pf" 'project-find-file
+    "pd" 'project-find-dir
     ;; workspaces
     "TAB TAB" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
