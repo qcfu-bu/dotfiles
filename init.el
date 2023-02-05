@@ -38,7 +38,7 @@
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
   ;; Enable recursive minibuffers.
   (setq enable-recursive-minibuffers t)
-  ;; Nicer defaults.
+  ;; Better defaults.
   (setq make-backup-files nil)
   (setq dired-use-ls-dired nil)
   (setq dired-dwim-target t)
@@ -228,16 +228,13 @@
 (use-package projectile
   :straight t
   :defer t
-  :config
+  :init
   (setq projectile-ignored-projects '("~/")
 	projectile-project-root-files '()
 	projectile-project-root-files-bottom-up '(".projectile" ".git")
 	projectile-project-root-files-top-down-recurring '("Makefile"))
+  :config
   (projectile-mode))
-
-(use-package consult-projectile
-  :straight t
-  :defer t)
 
 ;; tools
 (use-package tab-bar
@@ -537,10 +534,10 @@
     "wn" 'evil-window-next
     "wd" 'evil-window-delete
     ;; projects
-    "pp" 'consult-projectile-switch-project
-    "pf" 'consult-projectile-find-file
-    "pr" 'consult-projectile-recentf
-    "pd" 'consult-projectile-find-dir
+    "pp" 'projectile-switch-project
+    "pb" 'projectile-switch-to-buffer
+    "pf" 'projectile-find-file
+    "pd" 'projectile-find-dir
     ;; workspaces
     "TAB TAB" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
