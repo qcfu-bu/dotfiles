@@ -528,7 +528,7 @@
     "pf" 'project-find-file
     "pd" 'project-find-dir
     ;; workspaces
-    "TAB TAB" 'tab-bar-new-tab
+    "TAB o" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
     "TAB n" 'tab-bar-switch-to-next-tab
     "TAB d" 'tab-bar-close-tab
