@@ -39,6 +39,7 @@
   ;; Enable recursive minibuffers.
   (setq enable-recursive-minibuffers t)
   ;; Better defaults.
+  (save-place-mode 1)
   (setq make-backup-files nil)
   (setq dired-use-ls-dired nil)
   (setq dired-dwim-target t)
@@ -93,7 +94,6 @@
 
 (use-package savehist
   :init
-  (save-place-mode 1)
   (savehist-mode))
 
 (use-package recentf
