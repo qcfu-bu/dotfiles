@@ -45,7 +45,6 @@
   (setq dired-dwim-target t)
   (setq frame-resize-pixelwise t)
   (setq use-short-answers t)
-  (setq compilation-scroll-output t)
   (setq hscroll-margin 2
 	hscroll-step 1
 	;; Emacs spends too much effort recentering the screen if you scroll the
@@ -208,6 +207,11 @@
   (add-to-list 'eglot-server-programs '(latex-mode . ("texlab"))))
 
 ;; project
+(use-package compile
+  :config
+  (setq compilation-scroll-output t
+	compile-command "make"))
+
 (use-package magit
   :straight t
   :defer t)
