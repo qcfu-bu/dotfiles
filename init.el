@@ -45,6 +45,7 @@
   (setq dired-dwim-target t)
   (setq frame-resize-pixelwise t)
   (setq use-short-answers t)
+  (setq compilation-scroll-output t)
   (setq hscroll-margin 2
 	hscroll-step 1
 	;; Emacs spends too much effort recentering the screen if you scroll the
@@ -503,6 +504,9 @@
     "es" 'consult-line
     "er" 'anzu-query-replace
     "ey" 'consult-yank-pop
+    ;; compilation
+    "cc" 'compile
+    "cr" 'recompile
     ;; files
     "ff" 'find-file
     "fr" 'consult-recent-file
@@ -528,6 +532,7 @@
     "pb" 'consult-project-buffer
     "pf" 'project-find-file
     "pd" 'project-find-dir
+    "pc" 'project-compile
     ;; workspaces
     "TAB o" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
