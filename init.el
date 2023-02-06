@@ -539,11 +539,11 @@
     "pd" 'project-find-dir
     "pc" 'project-compile
     ;; workspaces
+    "TAB TAB" 'tab-bar-switch-to-tab
     "TAB o" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
     "TAB n" 'tab-bar-switch-to-next-tab
     "TAB d" 'tab-bar-close-tab
-    "TAB s" 'tab-bar-switch-to-tab
     ;; toggles
     "tt" 'vterm-toggle
     "tl" 'display-line-numbers-mode
