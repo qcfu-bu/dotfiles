@@ -247,6 +247,7 @@
         '("\\*Messages\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
+	  "^\\*eldoc\\*$"
 	  "^\\*Org Select\\*$"
           compilation-mode
           "^\\*vterm\\*$" vterm-mode
@@ -508,6 +509,7 @@
     "ht" 'consult-theme
     "hk" 'describe-key
     "hm" 'describe-mode
+    "he" 'eldoc
     ;; editor
     "el" 'goto-line
     "ec" 'goto-char
