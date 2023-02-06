@@ -247,7 +247,7 @@
         '("\\*Messages\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
-	  "^\\*eldoc\\*$"
+	  "^\\*eldoc.\*"
 	  "^\\*Org Select\\*$"
           compilation-mode
           "^\\*vterm\\*$" vterm-mode
