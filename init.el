@@ -44,6 +44,7 @@
   (setq dired-use-ls-dired nil)
   (setq dired-dwim-target t)
   (setq frame-resize-pixelwise t)
+  (setq frame-inhibit-implied-resize t)
   (setq use-short-answers t)
   (setq hscroll-margin 2
 	hscroll-step 1
