@@ -543,6 +543,7 @@
     "TAB o" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
     "TAB n" 'tab-bar-switch-to-next-tab
+    "TAB r" 'tab-bar-switch-to-recent-tab
     "TAB d" 'tab-bar-close-tab
     ;; toggles
     "tt" 'vterm-toggle
