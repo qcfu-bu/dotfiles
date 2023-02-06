@@ -205,6 +205,7 @@
   :defer t
   :after yasnippet
   :config
+  (setq eldoc-echo-area-use-multiline-p nil)
   (add-to-list 'eglot-server-programs '(latex-mode . ("texlab"))))
 
 ;; project
