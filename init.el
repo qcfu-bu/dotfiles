@@ -471,6 +471,10 @@
    :repo "qcfu-bu/ATS2-emacs")
   :defer t)
 
+(use-package cc
+  :hook
+  (c-mode . eglot-ensure))
+
 (use-package python
   :hook
   (python-mode . eglot-ensure))
