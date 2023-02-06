@@ -205,8 +205,10 @@
   :defer t
   :after yasnippet
   :config
-  (setq eldoc-echo-area-use-multiline-p nil)
-  (add-to-list 'eglot-server-programs '(latex-mode . ("texlab"))))
+  (add-to-list 'eglot-server-programs
+	       '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab")))
+  (add-to-list 'eglot-server-programs
+	       '((c++-mode c-mode) . ("ccls"))))
 
 ;; project
 (use-package compile
