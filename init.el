@@ -205,9 +205,8 @@
   :defer t
   :after yasnippet
   :config
-  (setq eldoc-idle-delay 0.8)
-  (add-to-list 'eglot-server-programs
-	       '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
+  (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab")))
+  (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("ccls"))))
 
 ;; project
 (use-package compile
