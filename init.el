@@ -199,12 +199,15 @@
   :config
   (yas-global-mode 1))
 
+(use-package eldoc
+  :init
+  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
+
 (use-package eglot
   :straight t
   :defer t
   :after yasnippet
   :config
-  (setq eldoc-echo-area-use-multiline-p nil)
   (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab"))))
 
 ;; project
