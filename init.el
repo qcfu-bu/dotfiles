@@ -41,8 +41,6 @@
   ;; Better defaults.
   (save-place-mode 1)
   (setq make-backup-files nil)
-  (setq dired-use-ls-dired nil)
-  (setq dired-dwim-target t)
   (setq frame-resize-pixelwise t)
   (setq frame-inhibit-implied-resize t)
   (setq use-short-answers t)
@@ -210,11 +208,6 @@
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("ccls"))))
 
 ;; project
-(use-package compile
-  :config
-  (setq compilation-scroll-output t
-	compile-command "make"))
-
 (use-package magit
   :straight t
   :defer t)
@@ -232,6 +225,16 @@
 (use-package gitignore-templates
   :straight t
   :defer t)
+
+(use-package dired
+  :config
+  (setq dired-use-ls-dired nil)
+  (setq dired-dwim-target t))
+
+(use-package compile
+  :config
+  (setq compilation-scroll-output t
+	compile-command "make"))
 
 ;; tools
 (use-package tab-bar
