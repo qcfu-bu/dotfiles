@@ -40,6 +40,7 @@
   (setq enable-recursive-minibuffers t)
   ;; Better defaults.
   (save-place-mode 1)
+  (global-auto-revert-mode 1)
   (setq make-backup-files nil)
   (setq frame-resize-pixelwise t)
   (setq frame-inhibit-implied-resize t)
