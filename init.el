@@ -204,8 +204,7 @@
   :after yasnippet
   :config
   (setq eldoc-echo-area-use-multiline-p nil)
-  (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab")))
-  (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("ccls"))))
+  (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab"))))
 
 ;; project
 (use-package magit
