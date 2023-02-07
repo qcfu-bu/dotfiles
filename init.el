@@ -512,7 +512,7 @@
     "ht" 'consult-theme
     "hk" 'describe-key
     "hm" 'describe-mode
-    "he" 'eldoc-print-current-symbol-info
+    "he" 'eldoc
     ;; editor
     "el" 'goto-line
     "ec" 'goto-char
