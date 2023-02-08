@@ -230,9 +230,11 @@
   :defer t)
 
 (use-package dired
+  :hook
+  (dired-mode . dired-omit-mode)
   :config
-  (setq dired-use-ls-dired nil)
-  (setq dired-dwim-target t))
+  (setq dired-use-ls-dired nil
+	dired-dwim-target t))
 
 (use-package compile
   :config
