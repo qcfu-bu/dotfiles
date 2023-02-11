@@ -591,7 +591,7 @@
 
   (spc-local-leader-def
     :keymaps 'coq-mode-map
-    "e" 'proof-goto-point
+    "." 'proof-goto-point
     "f" 'proof-assert-next-command-interactive
     "b" 'proof-undo-last-successful-command
     "pp" 'proof-process-buffer
