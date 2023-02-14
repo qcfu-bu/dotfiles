@@ -519,7 +519,7 @@
     "ht" 'consult-theme
     "hk" 'describe-key
     "hm" 'describe-mode
-    "he" 'eldoc
+    "hh" 'eldoc
     ;; editor
     "el" 'goto-line
     "ec" 'goto-char
