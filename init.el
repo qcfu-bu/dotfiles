@@ -55,7 +55,8 @@
     (setq mac-redisplay-dont-reset-vscroll t
 	  mac-mouse-wheel-smooth-scroll nil)
     (setq delete-by-moving-to-trash t
-	  trash-directory "~/.Trash")))
+	  trash-directory "~/.Trash"))
+  (setq-default indent-tabs-mode nil))
 
 (use-package exec-path-from-shell
   :straight t
