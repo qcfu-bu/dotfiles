@@ -71,6 +71,8 @@
   (setq esup-depth 0))
 
 (use-package display-line-numbers
+  :hook
+  ((prog-mode text-mode) . display-line-numbers-mode)
   :config
   (setq-default display-line-numbers-width 3))
 
@@ -291,10 +293,19 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package spacemacs-common
-  :straight spacemacs-theme
+(use-package modus-themes
+  :straight t
+  :init
+  (setq modus-operandi-palette-overrides
+        '((bg-dim bg-main)
+          (bg-active bg-main)
+          (fringe bg-inactive)))
+  (setq modus-vivendi-palette-overrides
+        '((bg-main bg-dim)
+          (bg-active bg-dim)
+          (fringe bg-inactive)))
   :config
-  (load-theme 'spacemacs-dark t))
+  (load-theme 'modus-vivendi t))
 
 (use-package smartparens
   :straight t
