@@ -293,19 +293,10 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package modus-themes
-  :straight t
-  :init
-  (setq modus-operandi-palette-overrides
-        '((bg-dim bg-main)
-          (bg-active bg-main)
-          (fringe bg-inactive)))
-  (setq modus-vivendi-palette-overrides
-        '((bg-main bg-dim)
-          (bg-active bg-dim)
-          (fringe bg-inactive)))
+(use-package spacemacs-common
+  :straight spacemacs-theme
   :config
-  (load-theme 'modus-vivendi t))
+  (load-theme 'spacemacs-dark t))
 
 (use-package smartparens
   :straight t
