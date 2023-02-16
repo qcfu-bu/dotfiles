@@ -6,4 +6,5 @@
 (setq ring-bell-function 'ignore)
 (setq package-enable-at-startup nil)
 (setq-default frame-title-format '(""))
-(setq-default initial-scratch-message nil)
+(setq-default initial-major-mode 'fundamental-mode
+              initial-scratch-message nil)
