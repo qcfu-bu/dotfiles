@@ -293,10 +293,10 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package doom-themes
+(use-package timu-spacegrey-theme
   :straight t
   :config
-  (load-theme 'doom-spacegrey t))
+  (load-theme 'timu-spacegrey t))
 
 (use-package smartparens
   :straight t
