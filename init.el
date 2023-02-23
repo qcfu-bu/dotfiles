@@ -71,8 +71,6 @@
   (setq esup-depth 0))
 
 (use-package display-line-numbers
-  :hook
-  ((prog-mode text-mode) . display-line-numbers-mode)
   :config
   (setq-default display-line-numbers-width 3))
 
@@ -293,10 +291,10 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package timu-spacegrey-theme
-  :straight t
+(use-package spacemacs-common
+  :straight spacemacs-theme
   :config
-  (load-theme 'timu-spacegrey t))
+  (load-theme 'spacemacs-dark t))
 
 (use-package smartparens
   :straight t
@@ -321,7 +319,8 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-icon nil)
+  (setq doom-modeline-icon nil
+        doom-modeline-height 0)
   (doom-modeline-mode 1))
 
 ;; prose
