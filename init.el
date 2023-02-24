@@ -291,16 +291,10 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package modus-themes
+(use-package gruvbox-theme
   :straight t
   :config
-  (setq modus-operandi-palette-overrides
-        '((bg-dim bg-main)
-          (bg-active bg-main)))
-  (setq modus-vivendi-palette-overrides
-        '((bg-main bg-dim)
-          (bg-active bg-dim)))
-  (load-theme 'modus-vivendi t))
+  (load-theme 'gruvbox-dark-hard t))
 
 (use-package smartparens
   :straight t
