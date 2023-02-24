@@ -145,32 +145,33 @@
   (which-key-mode))
 
 ;; completion
-(use-package vertico
+(use-package ivy-prescient
   :straight t
   :config
-  (setq vertico-resize nil
-	vertico-count 16)
-  (vertico-mode))
+  (prescient-persist-mode t)
+  (ivy-prescient-mode t))
+
+(use-package ivy
+  :straight t
+  :config
+  (ivy-mode t))
+
+(use-package counsel
+  :straight t
+  :config
+  (counsel-mode t))
+
+(use-package ivy-rich
+  :straight t
+  :after counsel
+  :config
+  (ivy-rich-mode t))
 
 (use-package orderless
   :straight t
   :config
-  (setq completion-styles '(orderless basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
-
-(use-package consult
-  :straight t
-  :defer t
-  :after vertico
-  :config
-  (setq consult-preview-key nil))
-
-(use-package marginalia
-  :straight t
-  :after vertico
-  :config
-  (marginalia-mode))
+  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
+  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight)))
 
 (use-package company-prescient
   :straight t
@@ -219,6 +220,20 @@
 (use-package gitignore-templates
   :straight t
   :defer t)
+
+(use-package projectile
+  :straight t
+  :defer t
+  :config
+  (setq projectile-ignored-projects '("~/")
+	projectile-project-root-files '()
+	projectile-project-root-files-bottom-up '(".projectile" ".git")
+	projectile-project-root-files-top-down-recurring '("Makefile")))
+
+(use-package counsel-projectile
+  :straight t
+  :config
+  (counsel-projectile-mode))
 
 (use-package dired
   :hook
@@ -498,33 +513,33 @@
   (spc-leader-def
     ;; general
     ""    nil
-    "SPC" 'execute-extended-command
+    "SPC" 'counsel-M-x
     "\\" 'toggle-input-method
     ;; help
-    "hv" 'describe-variable
-    "hf" 'describe-function
-    "hs" 'describe-symbol
-    "hb" 'describe-bindings
-    "ht" 'consult-theme
+    "hv" 'counsel-describe-variable
+    "hf" 'counsel-describe-function
+    "hs" 'counsel-describe-symbol
+    "hb" 'counsel-descbinds
+    "ht" 'counsel-load-theme
     "hk" 'describe-key
     "hm" 'describe-mode
     "hh" 'eldoc
     ;; editor
     "el" 'goto-line
     "ec" 'goto-char
-    "es" 'consult-line
+    "es" 'swiper
     "er" 'anzu-query-replace
-    "ey" 'consult-yank-pop
+    "ey" 'counsel-yank-pop
     ;; compilation
     "cc" 'compile
     "cr" 'recompile
     ;; files
-    "ff" 'find-file
-    "fr" 'consult-recent-file
+    "ff" 'counsel-find-file
+    "fr" 'counsel-recentf
     "fs" 'save-buffer
     ;; buffers
-    "bb" 'consult-buffer
-    "bi" 'consult-imenu
+    "bb" 'ivy-switch-buffer
+    "bi" 'counsel-imenu
     "bp" 'switch-to-prev-buffer
     "bn" 'switch-to-next-buffer
     "bd" 'kill-this-buffer
@@ -539,11 +554,11 @@
     "wn" 'evil-window-next
     "wd" 'evil-window-delete
     ;; projects
-    "pp" 'project-switch-project
-    "pb" 'consult-project-buffer
-    "pf" 'project-find-file
-    "pd" 'project-find-dir
-    "pc" 'project-compile
+    "pp" 'counsel-projectile-switch-project
+    "pb" 'counsel-projectile-switch-to-buffer
+    "pf" 'counsel-projectile-find-file
+    "pd" 'counsel-projectile-find-dir
+    "pc" 'projectile-compile-project
     ;; workspaces
     "TAB TAB" 'tab-bar-switch-to-tab
     "TAB o" 'tab-bar-new-tab
@@ -559,7 +574,7 @@
     "tz" 'presentation-mode
     ;; git
     "gg" 'magit
-    "gr" 'consult-git-grep
+    "gr" 'counsel-git-grep
     ;; quit
     "qq" 'save-buffers-kill-emacs)
 
