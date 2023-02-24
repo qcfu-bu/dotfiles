@@ -154,6 +154,8 @@
 (use-package ivy
   :straight t
   :config
+  (setq ivy-height 17
+        ivy-fixed-height-minibuffer t)
   (ivy-mode t))
 
 (use-package counsel
@@ -256,7 +258,7 @@
 (use-package popper
   :straight t
   :config
-  (setq popper-window-height 0.33
+  (setq popper-window-height 17
 	popper-mode-line nil)
   (setq popper-reference-buffers
         '("\\*Messages\\*"
