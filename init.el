@@ -294,7 +294,7 @@
 (use-package gruvbox-theme
   :straight t
   :config
-  (load-theme 'gruvbox-dark-hard t))
+  (load-theme 'gruvbox t))
 
 (use-package smartparens
   :straight t
