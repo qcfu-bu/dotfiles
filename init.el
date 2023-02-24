@@ -71,8 +71,6 @@
   (setq esup-depth 0))
 
 (use-package display-line-numbers
-  :hook
-  ((prog-mode text-mode) . display-line-numbers-mode)
   :config
   (setq-default display-line-numbers-width 3))
 
@@ -175,7 +173,8 @@
   :straight t
   :config
   (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
-  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight)))
+  (add-to-list 'ivy-highlight-functions-alist
+               '(orderless-ivy-re-builder . orderless-ivy-highlight)))
 
 (use-package company-prescient
   :straight t
