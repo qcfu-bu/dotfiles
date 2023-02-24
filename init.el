@@ -291,10 +291,10 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package gruvbox-theme
+(use-package timu-spacegrey-theme
   :straight t
   :config
-  (load-theme 'gruvbox t))
+  (load-theme 'timu-spacegrey t))
 
 (use-package smartparens
   :straight t
@@ -316,12 +316,10 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package doom-modeline
+(use-package minions
   :straight t
   :config
-  (setq doom-modeline-icon nil
-        doom-modeline-height 0)
-  (doom-modeline-mode 1))
+  (minions-mode 1))
 
 ;; prose
 (use-package adaptive-wrap
