@@ -306,9 +306,6 @@
    :host github
    :repo "zonuexe/emacs-presentation-mode"))
 
-
-
-
 ;; appearance
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
