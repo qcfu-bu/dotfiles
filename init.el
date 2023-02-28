@@ -360,11 +360,12 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package minions
+(use-package rich-minority
   :straight t
   :config
-  (setq minions-prominent-modes '(flymake-mode))
-  (minions-mode t))
+  (setq rm-whitelist "^ Fly.*$")
+  (unless rich-minority-mode
+    (rich-minority-mode 1)))
 
 ;;------------------------------------------------------------------------------
 ;; Prose
