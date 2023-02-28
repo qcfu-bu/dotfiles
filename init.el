@@ -574,6 +574,7 @@
     "ht" 'consult-theme
     "hk" 'describe-key
     "hm" 'describe-mode
+    "hi" 'describe-input-method
     "hh" 'eldoc
     ;; editor
     "el" 'goto-line
