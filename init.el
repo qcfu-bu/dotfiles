@@ -2,7 +2,10 @@
 (setq gc-cons-threshold 100000000)
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 
-;; straight bootstrap
+;;------------------------------------------------------------------------------
+;; Straight Bootstrap
+;;------------------------------------------------------------------------------
+
 (setq straight-check-for-modifications '(check-on-save)
       straight-cache-autoloads t)
 (defvar bootstrap-version)
@@ -19,7 +22,10 @@
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
 
-;; system
+;;------------------------------------------------------------------------------
+;; System
+;;------------------------------------------------------------------------------
+
 (use-package emacs
   :init
   ;; Do not allow the cursor in the minibuffer prompt.
@@ -95,7 +101,10 @@
   :config
   (add-to-list 'recentf-exclude "/private/var/folders/*"))
 
-;; evil
+;;------------------------------------------------------------------------------
+;; Evil
+;;------------------------------------------------------------------------------
+
 (use-package evil
   :straight t
   :init
@@ -149,7 +158,11 @@
   (which-key-setup-minibuffer)
   (which-key-mode))
 
-;; completion
+;;------------------------------------------------------------------------------
+;; Completion
+;;------------------------------------------------------------------------------
+
+;; Vertico
 (use-package orderless
   :straight t
   :config
@@ -187,6 +200,7 @@
   :straight t
   :defer t)
 
+;; Company
 (use-package company-prescient
   :straight t
   :defer t)
@@ -205,10 +219,7 @@
   :config
   (yas-global-mode 1))
 
-(use-package eldoc
-  :init
-  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
-
+;; LSP
 (use-package eglot
   :straight t
   :defer t
@@ -216,7 +227,10 @@
   :config
   (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab"))))
 
-;; project
+;;------------------------------------------------------------------------------
+;; Project
+;;------------------------------------------------------------------------------
+
 (use-package magit
   :straight t
   :defer t)
@@ -252,11 +266,18 @@
   (setq compilation-scroll-output t
 	compile-command "make"))
 
-;; tools
+;;------------------------------------------------------------------------------
+;; Tools
+;;------------------------------------------------------------------------------
+
 (use-package tab-bar
   :init
   (setq tab-bar-show nil
 	tab-bar-new-tab-choice "*scratch*"))
+
+(use-package eldoc
+  :init
+  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
 
 (use-package popper
   :straight t
@@ -306,7 +327,10 @@
    :host github
    :repo "zonuexe/emacs-presentation-mode"))
 
-;; appearance
+;;------------------------------------------------------------------------------
+;; Appearance
+;;------------------------------------------------------------------------------
+
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
@@ -343,7 +367,10 @@
   :config
   (minions-mode 1))
 
-;; prose
+;;------------------------------------------------------------------------------
+;; Prose
+;;------------------------------------------------------------------------------
+
 (use-package adaptive-wrap
   :straight t
   :hook
@@ -364,6 +391,7 @@
   (evil-define-key 'normal pdf-view-mode-map
     (kbd "zm") 'pdf-view-themed-minor-mode))
 
+;; LaTeX
 (use-package auctex
   :straight t
   :hook
@@ -398,6 +426,7 @@
   :config
   (auctex-latexmk-setup))
 
+;; Org
 (use-package org-superstar
   :straight t
   :defer t)
@@ -415,6 +444,7 @@
   :config
   (setq org-startup-indented t))
 
+;; Markdown
 (use-package markdown-mode
   :straight t
   :mode
@@ -433,7 +463,11 @@
 	markdown-fontify-code-blocks-natively t
 	markdown-command "multimarkdown"))
 
-;; code
+;;------------------------------------------------------------------------------
+;; Code
+;;------------------------------------------------------------------------------
+
+;; Coq
 (use-package company-coq
   :straight t
   :defer t)
@@ -445,6 +479,7 @@
   :init
   (setq proof-splash-enable nil))
 
+;; OCaml
 (use-package tuareg
   :straight t
   :after ocp-indent
@@ -475,17 +510,20 @@
   :hook
   (dune-mode . dune-format-on-save-mode))
 
+;; Haskell
 (use-package haskell-mode
   :straight t
   :hook
   (haskell-mode . eglot-ensure))
 
+;; SML
 (use-package sml-mode
   :straight t
   :defer t
   :config
   (setq sml-program-name "poly"))
 
+;; ATS
 (use-package ats2-mode
   :straight
   (ats2-mode
@@ -494,15 +532,20 @@
    :repo "qcfu-bu/ATS2-emacs")
   :defer t)
 
+;; C/C++
 (use-package cc
   :hook
   (c-mode . eglot-ensure))
 
+;; Python
 (use-package python
   :hook
   (python-mode . eglot-ensure))
 
-;; keybinding
+;;------------------------------------------------------------------------------
+;; Keybindings
+;;------------------------------------------------------------------------------
+
 (use-package general
   :straight t
   :after evil
@@ -517,6 +560,7 @@
     :keymaps 'override
     :prefix "SPC m")
 
+  ;; default
   (spc-leader-def
     ;; general
     ""    nil
@@ -625,7 +669,3 @@
     :keymaps 'python-mode-map
     "e" 'run-python
     "b" 'python-shell-send-buffer))
-
-;; miscellaneous
-(add-to-list 'load-path "~/Git/TLL")
-(require 'tll-mode)
