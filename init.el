@@ -179,7 +179,8 @@
    ("C-;" . embark-dwim)))
 
 (use-package embark-consult
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package company-prescient
   :straight t
