@@ -121,6 +121,11 @@
 	evil-escape-delay 0.2)
   (evil-escape-mode))
 
+(use-package evil-surround
+  :straight t
+  :config
+  (global-evil-surround-mode t))
+
 (use-package evil-commentary
   :straight t
   :config
@@ -236,6 +241,11 @@
   :config
   (setq dired-use-ls-dired nil
 	dired-dwim-target t))
+
+(use-package diredfl
+  :straight t
+  :config
+  (diredfl-global-mode t))
 
 (use-package compile
   :config
