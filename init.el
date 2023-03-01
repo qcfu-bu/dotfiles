@@ -360,11 +360,12 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package minions
+(use-package doom-modeline
   :straight t
   :config
-  (setq minions-prominent-modes '(flymake-mode))
-  (minions-mode t))
+  (setq doom-modeline-icon nil
+        doom-modeline-height 0)
+  (doom-modeline-mode))
 
 ;;------------------------------------------------------------------------------
 ;; Prose
