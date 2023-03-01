@@ -196,8 +196,9 @@
 (use-package embark
   :straight t
   :bind
-  (("C-." . embark-act)
-   ("C-;" . embark-dwim)))
+  (("C-;" . embark-act))
+  :config
+  (setq embark-quit-after-action nil))
 
 (use-package embark-consult
   :straight t
