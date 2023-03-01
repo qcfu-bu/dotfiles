@@ -227,7 +227,8 @@
   :defer t
   :after yasnippet
   :config
-  (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab"))))
+  (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab")))
+  (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("ccls"))))
 
 ;;------------------------------------------------------------------------------
 ;; Project
@@ -276,10 +277,6 @@
   :init
   (setq tab-bar-show nil
 	tab-bar-new-tab-choice "*scratch*"))
-
-(use-package eldoc
-  :init
-  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
 
 (use-package popper
   :straight t
@@ -362,12 +359,11 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package rich-minority
+(use-package minions
   :straight t
   :config
-  (setq rm-whitelist "^ Fly.*$")
-  (unless rich-minority-mode
-    (rich-minority-mode 1)))
+  (setq minions-prominent-modes '(flymake-mode))
+  (minions-mode t))
 
 ;;------------------------------------------------------------------------------
 ;; Prose
@@ -577,7 +573,6 @@
     "hk" 'describe-key
     "hm" 'describe-mode
     "hi" 'describe-input-method
-    "hh" 'eldoc
     ;; editor
     "el" 'goto-line
     "ec" 'goto-char
