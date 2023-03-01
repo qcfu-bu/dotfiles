@@ -155,6 +155,12 @@
   :config
   (evilem-default-keybindings "gs"))
 
+(use-package which-key
+  :straight t
+  :config
+  (which-key-setup-minibuffer)
+  (which-key-mode))
+
 ;;------------------------------------------------------------------------------
 ;; Completion
 ;;------------------------------------------------------------------------------
