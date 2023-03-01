@@ -38,6 +38,7 @@
   (save-place-mode 1)
   (global-auto-revert-mode 1)
   (setq make-backup-files nil)
+  (setq auto-save-default nil)
   (setq frame-resize-pixelwise t)
   (setq frame-inhibit-implied-resize t)
   (setq use-short-answers t)
