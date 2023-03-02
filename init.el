@@ -336,16 +336,6 @@
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
 
-(use-package dashboard
-  :straight t
-  :config
-  (setq dashboard-startup-banner 3
-        dashboard-projects-backend 'project-el
-        dashboard-footer-messages nil
-        dashboard-items '((projects . 10)
-                          (recents . 20)))
-  (dashboard-setup-startup-hook))
-
 (use-package doom-themes
   :straight t
   :config
