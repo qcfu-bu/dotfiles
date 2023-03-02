@@ -427,23 +427,18 @@
   :config
   (auctex-latexmk-setup))
 
-;; Org
-(use-package org-superstar
-  :straight t
-  :defer t)
-
 (use-package org
   :straight t
   :defer t
   :hook
-  ((org-mode . org-superstar-mode)
-   (org-mode . visual-line-mode)
+  ((org-mode . visual-line-mode)
    (org-mode . flyspell-mode)
    (org-mode . (lambda ()
 		 (modify-syntax-entry ?< "." org-mode-syntax-table)
 		 (modify-syntax-entry ?> "." org-mode-syntax-table))))
   :config
-  (setq org-startup-indented t))
+  (setq org-startup-indented t
+        org-hide-leading-stars t))
 
 ;; Markdown
 (use-package markdown-mode
