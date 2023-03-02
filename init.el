@@ -363,6 +363,10 @@
 
 (use-package minions
   :straight t
+  :custom-face
+  (mode-line-buffer-id ((t (:inherit 'font-lock-constant-face))))
+  (eglot-mode-line ((t (:inherit 'font-lock-keyword-face))))
+  (vc-state-base ((t (:inherit 'font-lock-string-face))))
   :config
   (setq minions-prominent-modes '(flymake-mode))
   (minions-mode t))
@@ -564,6 +568,7 @@
     ;; help
     "hv" 'describe-variable
     "hf" 'describe-function
+    "hF" 'describe-face
     "hs" 'describe-symbol
     "hb" 'embark-bindings
     "ht" 'consult-theme
