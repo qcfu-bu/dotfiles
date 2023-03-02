@@ -361,16 +361,12 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package minions
+(use-package doom-modeline
   :straight t
-  :custom-face
-  (mode-line-buffer-id ((t (:inherit 'font-lock-constant-face))))
-  (vc-state-base ((t (:inherit 'font-lock-string-face))))
-  (eglot-mode-line ((t (:inherit 'bold))))
   :config
-  (setq minions-prominent-modes '(flymake-mode)
-        minions-mode-line-face font-lock-warning-face)
-  (minions-mode t))
+  (setq doom-modeline-icon nil
+        doom-modeline-height 0)
+  (doom-modeline-mode t))
 
 ;;------------------------------------------------------------------------------
 ;; Prose
