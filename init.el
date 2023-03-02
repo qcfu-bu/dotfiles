@@ -365,8 +365,8 @@
   :straight t
   :custom-face
   (mode-line-buffer-id ((t (:inherit 'font-lock-constant-face))))
-  (eglot-mode-line ((t (:inherit 'font-lock-keyword-face))))
   (vc-state-base ((t (:inherit 'font-lock-string-face))))
+  (eglot-mode-line ((t (:inherit 'bold))))
   :config
   (setq minions-prominent-modes '(flymake-mode)
         minions-mode-line-face font-lock-warning-face)
