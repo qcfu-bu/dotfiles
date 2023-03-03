@@ -595,6 +595,7 @@
     "hk" 'describe-key
     "hm" 'describe-mode
     "hi" 'describe-input-method
+    "hd" 'consult-flymake
     ;; editor
     "el" 'goto-line
     "ec" 'goto-char
