@@ -1,7 +1,6 @@
 ;;; init.el -*- lexical-binding: t; -*-
 (setq gc-cons-threshold 100000000)
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
-(add-hook 'after-init-hook #'dired-jump)
 
 ;;------------------------------------------------------------------------------
 ;; Straight Bootstrap
@@ -36,13 +35,11 @@
   ;; Enable recursive minibuffers.
   (setq enable-recursive-minibuffers t)
   ;; Better defaults.
-  (save-place-mode 1)
-  (global-auto-revert-mode 1)
-  (setq make-backup-files nil)
-  (setq auto-save-default nil)
-  (setq frame-resize-pixelwise t)
-  (setq frame-inhibit-implied-resize t)
+  (setq frame-resize-pixelwise t
+        frame-inhibit-implied-resize t)
   (setq use-short-answers t)
+  (setq-default indent-tabs-mode nil)
+  ;; Scrolling
   (setq hscroll-margin 2
 	hscroll-step 1
 	;; Emacs spends too much effort recentering the screen if you scroll the
@@ -63,8 +60,7 @@
     (setq mac-redisplay-dont-reset-vscroll t
 	  mac-mouse-wheel-smooth-scroll nil)
     (setq delete-by-moving-to-trash t
-	  trash-directory "~/.Trash"))
-  (setq-default indent-tabs-mode nil))
+	  trash-directory "~/.Trash")))
 
 (use-package exec-path-from-shell
   :straight t
@@ -78,11 +74,14 @@
   :config
   (setq esup-depth 0))
 
-(use-package display-line-numbers
-  :hook
-  ((prog-mode text-mode) . display-line-numbers-mode)
+;;------------------------------------------------------------------------------
+;; File History
+;;------------------------------------------------------------------------------
+
+(use-package files
   :config
-  (setq-default display-line-numbers-width 3))
+  (setq make-backup-files nil)
+  (setq auto-save-default nil))
 
 (use-package undo-fu
   :straight t)
@@ -92,6 +91,14 @@
   :after undo-fu
   :config
   (undo-fu-session-global-mode))
+
+(use-package autorevert
+  :init
+  (global-auto-revert-mode))
+
+(use-package saveplace
+  :init
+  (save-place-mode))
 
 (use-package savehist
   :init
@@ -257,6 +264,7 @@
 
 (use-package dired
   :hook
+  (after-init . dired-jump)
   (dired-mode . dired-omit-mode)
   :config
   (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
@@ -337,6 +345,12 @@
 (set-face-attribute 'default nil :font "Fira Code-14")
 (set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
 (set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
+
+(use-package display-line-numbers
+  :hook
+  ((prog-mode text-mode) . display-line-numbers-mode)
+  :config
+  (setq-default display-line-numbers-width 3))
 
 (use-package doom-themes
   :straight t
