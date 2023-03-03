@@ -371,7 +371,9 @@
   :after smart-mode-line
   :config
   (setq minions-prominent-modes '(flymake-mode)
-        minions-mode-line-face 'warning)
+        minions-mode-line-lighter "+"
+        minions-mode-line-face 'warning
+        minions-mode-line-delimiters nil)
   (minions-mode t))
 
 ;;------------------------------------------------------------------------------
