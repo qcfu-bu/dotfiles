@@ -361,12 +361,14 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package doom-modeline
-  :straight t
+(use-package mood-line
+  :straight
+  (mood-line
+   :type git
+   :host gitlab
+   :repo "qcfu-bu/mood-line")
   :config
-  (setq doom-modeline-icon nil
-        doom-modeline-height 0)
-  (doom-modeline-mode t))
+  (mood-line-mode t))
 
 ;;------------------------------------------------------------------------------
 ;; Prose
@@ -463,6 +465,15 @@
 ;; Code
 ;;------------------------------------------------------------------------------
 
+(use-package reformatter
+  :straight t
+  :config
+  (reformatter-define ocaml-format
+    :program "ocp-indent")
+  (reformatter-define sml-format
+    :program "smlfmt"
+    :args '("--stdio")))
+
 ;; Coq
 (use-package company-coq
   :straight t
@@ -478,33 +489,26 @@
 ;; OCaml
 (use-package tuareg
   :straight t
-  :after ocp-indent
   :hook
   (tuareg-mode . eglot-ensure)
+  (tuareg-mode . utop-minor-mode)
+  (tuareg-mode . ocaml-format-on-save-mode)
   :config
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
 
-(use-package ocp-indent
-  :straight t
-  :config
-  (defun ocp-indent-buffer ()
-    (interactive nil)
-    (ocp-indent-region 1 (buffer-size))))
-
 (use-package utop
   :straight t
-  :defer t
-  :hook
-  (tuareg-mode . utop-minor-mode))
+  :defer t)
 
 (use-package dune
-  :straight t)
-
-(use-package dune-format
   :straight t
   :hook
   (dune-mode . dune-format-on-save-mode))
+
+(use-package dune-format
+  :straight t
+  :defer t)
 
 ;; Haskell
 (use-package haskell-mode
@@ -516,6 +520,8 @@
 (use-package sml-mode
   :straight t
   :defer t
+  :hook
+  (sml-mode . sml-format-on-save-mode)
   :config
   (setq sml-program-name "poly"))
 
@@ -537,6 +543,7 @@
 (use-package python
   :hook
   (python-mode . eglot-ensure))
+
 
 ;;------------------------------------------------------------------------------
 ;; Keybindings
@@ -654,8 +661,7 @@
   (spc-local-leader-def
     :keymaps 'tuareg-mode-map
     "e" 'utop
-    "b" 'utop-eval-buffer
-    "=" 'ocp-indent-buffer)
+    "b" 'utop-eval-buffer)
 
   (spc-local-leader-def
     :keymaps 'sml-mode-map
