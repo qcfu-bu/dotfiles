@@ -361,20 +361,12 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package smart-mode-line
+(use-package doom-modeline
   :straight t
   :config
-  (sml/setup))
-
-(use-package minions
-  :straight t
-  :after smart-mode-line
-  :config
-  (setq minions-prominent-modes '(flymake-mode)
-        minions-mode-line-lighter "+"
-        minions-mode-line-face 'warning
-        minions-mode-line-delimiters nil)
-  (minions-mode t))
+  (setq doom-modeline-icon nil
+        doom-modeline-height 0)
+  (doom-modeline-mode t))
 
 ;;------------------------------------------------------------------------------
 ;; Prose
