@@ -1,6 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 (setq gc-cons-threshold 100000000)
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+(add-hook 'after-init-hook #'dired-jump)
 
 ;;------------------------------------------------------------------------------
 ;; Straight Bootstrap
@@ -258,7 +259,8 @@
   :hook
   (dired-mode . dired-omit-mode)
   :config
-  (setq dired-use-ls-dired nil
+  (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
+        dired-use-ls-dired nil
 	dired-dwim-target t))
 
 (use-package diredfl
