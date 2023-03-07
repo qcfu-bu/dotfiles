@@ -264,7 +264,6 @@
 
 (use-package dired
   :hook
-  (after-init . dired-jump)
   (dired-mode . dired-omit-mode)
   :config
   (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
