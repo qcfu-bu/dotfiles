@@ -560,6 +560,8 @@
   :hook
   (python-mode . eglot-ensure))
 
+(use-package yaml-mode
+  :straight t)
 
 ;;------------------------------------------------------------------------------
 ;; Keybindings
@@ -641,6 +643,7 @@
     ;; toggles
     "tt" 'vterm-toggle
     "tl" 'display-line-numbers-mode
+    "tr" 'toggle-truncate-lines
     "tp" 'popper-toggle-latest
     "tc" 'olivetti-mode
     "tz" 'presentation-mode
