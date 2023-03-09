@@ -38,6 +38,7 @@
   (setq frame-resize-pixelwise t
         frame-inhibit-implied-resize t)
   (setq use-short-answers t)
+  (setq-default truncate-lines t)
   (setq-default indent-tabs-mode nil)
   ;; Scrolling
   (setq hscroll-margin 2
@@ -376,6 +377,21 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
+(use-package hl-todo
+  :straight t
+  :hook
+  ((prog-mode text-mode) . hl-todo-mode)
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        '(("TODO" warning bold)
+          ("FIXME" error bold)
+          ("REVIEW" font-lock-keyword-face bold)
+          ("HACK" font-lock-constant-face bold)
+          ("DEPRECATED" font-lock-doc-face bold)
+          ("NOTE" success bold)
+          ("BUG" error bold))))
+
 (use-package mood-line
   :straight
   (mood-line
@@ -560,7 +576,8 @@
   (python-mode . eglot-ensure))
 
 (use-package yaml-mode
-  :straight t)
+  :straight t
+  :defer t)
 
 ;;------------------------------------------------------------------------------
 ;; Keybindings
@@ -642,7 +659,6 @@
     ;; toggles
     "tt" 'vterm-toggle
     "tl" 'display-line-numbers-mode
-    "tr" 'toggle-truncate-lines
     "tp" 'popper-toggle-latest
     "tc" 'olivetti-mode
     "tz" 'presentation-mode
