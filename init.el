@@ -392,14 +392,12 @@
           ("NOTE" success bold)
           ("BUG" error bold))))
 
-(use-package mood-line
-  :straight
-  (mood-line
-   :type git
-   :host gitlab
-   :repo "qcfu-bu/mood-line")
+(use-package doom-modeline
+  :straight t
   :config
-  (mood-line-mode t))
+  (setq doom-modeline-icon nil
+        doom-modeline-height 0)
+  (doom-modeline-mode t))
 
 ;;------------------------------------------------------------------------------
 ;; Prose
