@@ -249,17 +249,11 @@
   :straight t
   :defer t)
 
-(use-package diff-hl
-  :straight t
-  :hook
-  (dired-mode . diff-hl-dired-mode)
-  :config
-  (global-diff-hl-mode t))
-
 (use-package git-gutter-fringe
   :straight t
   :config
-  (setq git-gutter-fr:side 'right-fringe))
+  (setq git-gutter-fr:side 'left-fringe)
+  (global-git-gutter-mode t))
 
 (use-package gitignore-templates
   :straight t
