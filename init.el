@@ -252,7 +252,7 @@
 (use-package git-gutter-fringe
   :straight t
   :config
-  (setq git-gutter-fr:side 'left-fringe)
+  (setq git-gutter-fr:side 'right-fringe)
   (global-git-gutter-mode t))
 
 (use-package gitignore-templates
