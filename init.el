@@ -251,6 +251,8 @@
 
 (use-package diff-hl
   :straight t
+  :hook
+  (dired-mode . diff-hl-dired-mode)
   :config
   (global-diff-hl-mode t))
 
