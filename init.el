@@ -249,10 +249,10 @@
   :straight t
   :defer t)
 
-(use-package git-gutter
+(use-package diff-hl
   :straight t
   :config
-  (global-git-gutter-mode 1))
+  (global-diff-hl-mode t))
 
 (use-package git-gutter-fringe
   :straight t
@@ -342,9 +342,9 @@
 ;; Appearance
 ;;------------------------------------------------------------------------------
 
-(set-face-attribute 'default nil :font "Fira Code-14")
-(set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
-(set-face-attribute 'variable-pitch nil :font "Fira Sans-14")
+(set-face-attribute 'default nil :font "Iosevka Fixed-14")
+(set-face-attribute 'fixed-pitch nil :font "Iosevka Fixed-14")
+(set-face-attribute 'variable-pitch nil :font "Iosevka Fixed-14")
 
 (use-package display-line-numbers
   :hook
