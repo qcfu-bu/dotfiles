@@ -249,6 +249,7 @@
   :straight t
   :defer t)
 
+
 (use-package diff-hl
   :straight t
   :hook
