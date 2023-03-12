@@ -241,6 +241,11 @@
   (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab")))
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("ccls"))))
 
+(use-package eldoc
+  :straight t
+  :config
+  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
+
 ;;------------------------------------------------------------------------------
 ;; Project
 ;;------------------------------------------------------------------------------
@@ -611,6 +616,7 @@
     "hm" 'describe-mode
     "hi" 'describe-input-method
     "hd" 'consult-flymake
+    "hh" 'eldoc
     ;; editor
     "el" 'goto-line
     "ec" 'goto-char
