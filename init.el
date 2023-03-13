@@ -346,9 +346,9 @@
 ;; Appearance
 ;;------------------------------------------------------------------------------
 
-(set-face-attribute 'default nil :font "Iosevka Fixed-14")
-(set-face-attribute 'fixed-pitch nil :font "Iosevka Fixed-14")
-(set-face-attribute 'variable-pitch nil :font "Iosevka Fixed-14")
+(set-face-attribute 'default nil :font "JuliaMono-14")
+(set-face-attribute 'fixed-pitch nil :font "JuliaMono-14")
+(set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
 
 (use-package display-line-numbers
   :hook
