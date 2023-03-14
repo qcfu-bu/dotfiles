@@ -381,6 +381,10 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
+(use-package rainbow-mode
+  :straight t
+  :defer t)
+
 (use-package hl-todo
   :straight t
   :hook
@@ -499,6 +503,7 @@
 ;; Code
 ;;------------------------------------------------------------------------------
 
+;; Formatting
 (use-package reformatter
   :straight t
   :config
