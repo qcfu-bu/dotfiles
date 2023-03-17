@@ -241,11 +241,6 @@
   (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab")))
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("ccls"))))
 
-(use-package eldoc
-  :straight t
-  :config
-  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
-
 ;;------------------------------------------------------------------------------
 ;; Project
 ;;------------------------------------------------------------------------------
@@ -269,6 +264,7 @@
 
 (use-package dired
   :hook
+  (after-init . dired-jump)
   (dired-mode . dired-omit-mode)
   :config
   (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
@@ -507,8 +503,6 @@
 (use-package reformatter
   :straight t
   :config
-  (reformatter-define ocaml-format
-    :program "ocp-indent")
   (reformatter-define sml-format
     :program "smlfmt"
     :args '("--stdio")))
@@ -531,7 +525,7 @@
   :hook
   (tuareg-mode . eglot-ensure)
   (tuareg-mode . utop-minor-mode)
-  (tuareg-mode . ocaml-format-on-save-mode)
+  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer)))
   :config
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
