@@ -237,7 +237,7 @@
   :straight t
   :after yasnippet
   :init
-  (setq lsp-diagnostics-provider 'flymake
+  (setq lsp-diagnostics-provider :flymake
         lsp-lens-enable nil
         lsp-signature-auto-activate nil
         lsp-headerline-breadcrumb-enable nil
