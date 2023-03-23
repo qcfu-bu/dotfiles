@@ -360,20 +360,10 @@
   :config
   (load-theme 'doom-one t))
 
-(use-package smartparens
-  :straight t
-  :hook
-  (prog-mode . smartparens-mode)
-  :init
-  (require 'smartparens-config)
-  (sp-pair "(" nil :unless '(sp-point-before-word-p))
-  (sp-pair "[" nil :unless '(sp-point-before-word-p))
-  (sp-pair "{" nil :unless '(sp-point-before-word-p))
-  (sp-pair "\"" nil :unless '(sp-point-before-word-p
-			      sp-point-after-word-p))
-  (sp-local-pair 'latex-mode "$" nil :unless '(sp-point-before-word-p
-					       sp-point-after-word-p))
-  (sp-pair "'" nil :actions nil))
+(use-package electric
+  :config
+  (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+  (electric-pair-mode t))
 
 (use-package rainbow-delimiters
   :straight t
@@ -438,7 +428,6 @@
   ((LaTeX-mode . lsp)
    (LaTeX-mode . visual-line-mode)
    (LaTeX-mode . flyspell-mode)
-   (LaTeX-mode . smartparens-mode)
    (LaTeX-mode . rainbow-delimiters-mode))
   :init
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
@@ -529,7 +518,7 @@
   (tuareg-mode . lsp)
   (tuareg-mode . utop-minor-mode)
   (tuareg-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer)))
-  (tuareg-mode . (lambda () (setq compile-command "dune build --profile release")))
+  (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   :config
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
