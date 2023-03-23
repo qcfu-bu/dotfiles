@@ -233,13 +233,22 @@
   (yas-global-mode 1))
 
 ;; LSP
-(use-package eglot
+(use-package lsp-mode
   :straight t
-  :defer t
   :after yasnippet
-  :config
-  (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab")))
-  (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("ccls"))))
+  :commands lsp-deferred
+  :init
+  (setq eldoc-echo-area-use-multiline-p nil)
+  (setq lsp-diagnostics-provider :flymake
+        lsp-lens-enable nil
+        lsp-eldoc-enable-hover nil
+        lsp-signature-auto-activate nil
+        lsp-headerline-breadcrumb-enable nil
+        lsp-modeline-code-actions-enable nil
+        lsp-modeline-diagnostics-enable nil))
+
+(use-package lsp-ui
+  :straight t)
 
 ;;------------------------------------------------------------------------------
 ;; Project
@@ -422,7 +431,7 @@
 (use-package auctex
   :straight t
   :hook
-  ((LaTeX-mode . eglot-ensure)
+  ((LaTeX-mode . lsp-deferred)
    (LaTeX-mode . visual-line-mode)
    (LaTeX-mode . flyspell-mode)
    (LaTeX-mode . rainbow-delimiters-mode))
@@ -512,9 +521,9 @@
 (use-package tuareg
   :straight t
   :hook
-  (tuareg-mode . eglot-ensure)
+  (tuareg-mode . lsp-deferred)
   (tuareg-mode . utop-minor-mode)
-  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer)))
+  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer)))
   (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   :config
   (setq tuareg-opam-insinuate t)
@@ -537,7 +546,7 @@
 (use-package haskell-mode
   :straight t
   :hook
-  (haskell-mode . eglot-ensure))
+  (haskell-mode . lsp-deferred))
 
 ;; SML
 (use-package sml-mode
@@ -560,12 +569,12 @@
 ;; C/C++
 (use-package cc
   :hook
-  (c-mode . eglot-ensure))
+  (c-mode . lsp-deferred))
 
 ;; Python
 (use-package python
   :hook
-  (python-mode . eglot-ensure))
+  (python-mode . lsp-deferred))
 
 (use-package yaml-mode
   :straight t
