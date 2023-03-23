@@ -236,6 +236,7 @@
 (use-package lsp-mode
   :straight t
   :after yasnippet
+  :commands lsp-deferred
   :init
   (setq eldoc-echo-area-use-multiline-p nil)
   (setq lsp-diagnostics-provider :flymake
@@ -426,7 +427,7 @@
 (use-package auctex
   :straight t
   :hook
-  ((LaTeX-mode . lsp)
+  ((LaTeX-mode . lsp-deferred)
    (LaTeX-mode . visual-line-mode)
    (LaTeX-mode . flyspell-mode)
    (LaTeX-mode . rainbow-delimiters-mode))
@@ -516,7 +517,7 @@
 (use-package tuareg
   :straight t
   :hook
-  (tuareg-mode . lsp)
+  (tuareg-mode . lsp-deferred)
   (tuareg-mode . utop-minor-mode)
   (tuareg-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer)))
   (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
@@ -541,7 +542,7 @@
 (use-package haskell-mode
   :straight t
   :hook
-  (haskell-mode . lsp))
+  (haskell-mode . lsp-deferred))
 
 ;; SML
 (use-package sml-mode
@@ -564,12 +565,12 @@
 ;; C/C++
 (use-package cc
   :hook
-  (c-mode . lsp))
+  (c-mode . lsp-deferred))
 
 ;; Python
 (use-package python
   :hook
-  (python-mode . lsp))
+  (python-mode . lsp-deferred))
 
 (use-package yaml-mode
   :straight t
