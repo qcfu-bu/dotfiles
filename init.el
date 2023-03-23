@@ -227,6 +227,10 @@
   (company-prescient-mode)
   (prescient-persist-mode))
 
+(use-package flycheck
+  :straight t
+  :defer t)
+
 (use-package yasnippet
   :straight t
   :config
@@ -235,19 +239,18 @@
 ;; LSP
 (use-package lsp-mode
   :straight t
-  :after yasnippet
   :commands lsp-deferred
   :init
-  (setq lsp-diagnostics-provider :flymake
+  (setq lsp-diagnostics-provider :flycheck
+        lsp-completion-provider :company
         lsp-lens-enable nil
-        lsp-eldoc-enable-hover nil
-        lsp-signature-auto-activate nil
         lsp-headerline-breadcrumb-enable nil
         lsp-modeline-code-actions-enable nil
         lsp-modeline-diagnostics-enable nil))
 
 (use-package lsp-ui
-  :straight t)
+  :straight t
+  :defer t)
 
 ;;------------------------------------------------------------------------------
 ;; Project
