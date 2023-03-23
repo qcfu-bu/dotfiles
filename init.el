@@ -227,10 +227,6 @@
   (company-prescient-mode)
   (prescient-persist-mode))
 
-(use-package flycheck
-  :straight t
-  :defer t)
-
 (use-package yasnippet
   :straight t
   :config
@@ -241,16 +237,12 @@
   :straight t
   :commands lsp-deferred
   :init
-  (setq lsp-diagnostics-provider :flycheck
+  (setq lsp-diagnostics-provider :flymake
         lsp-completion-provider :company
         lsp-lens-enable nil
         lsp-headerline-breadcrumb-enable nil
         lsp-modeline-code-actions-enable nil
         lsp-modeline-diagnostics-enable nil))
-
-(use-package lsp-ui
-  :straight t
-  :defer t)
 
 ;;------------------------------------------------------------------------------
 ;; Project
