@@ -237,6 +237,7 @@
   :straight t
   :after yasnippet
   :init
+  (setq eldoc-echo-area-use-multiline-p nil)
   (setq lsp-diagnostics-provider :flymake
         lsp-lens-enable nil
         lsp-signature-auto-activate nil
