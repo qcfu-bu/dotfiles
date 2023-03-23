@@ -233,13 +233,16 @@
   (yas-global-mode 1))
 
 ;; LSP
-(use-package eglot
+(use-package lsp-mode
   :straight t
-  :defer t
   :after yasnippet
-  :config
-  (add-to-list 'eglot-server-programs '((tex-mode bibtex-mode) . ("texlab")))
-  (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("ccls"))))
+  :init
+  (setq lsp-diagnostics-provider 'flymake
+        lsp-lens-enable nil
+        lsp-signature-auto-activate nil
+        lsp-headerline-breadcrumb-enable nil
+        lsp-modeline-code-actions-enable nil
+        lsp-modeline-diagnostics-enable nil))
 
 ;;------------------------------------------------------------------------------
 ;; Project
@@ -432,7 +435,7 @@
 (use-package auctex
   :straight t
   :hook
-  ((LaTeX-mode . eglot-ensure)
+  ((LaTeX-mode . lsp)
    (LaTeX-mode . visual-line-mode)
    (LaTeX-mode . flyspell-mode)
    (LaTeX-mode . smartparens-mode)
@@ -523,9 +526,10 @@
 (use-package tuareg
   :straight t
   :hook
-  (tuareg-mode . eglot-ensure)
+  (tuareg-mode . lsp)
   (tuareg-mode . utop-minor-mode)
-  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer)))
+  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer)))
+  (tuareg-mode . (lambda () (setq compile-command "dune build --profile release")))
   :config
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
@@ -547,7 +551,7 @@
 (use-package haskell-mode
   :straight t
   :hook
-  (haskell-mode . eglot-ensure))
+  (haskell-mode . lsp))
 
 ;; SML
 (use-package sml-mode
@@ -570,12 +574,12 @@
 ;; C/C++
 (use-package cc
   :hook
-  (c-mode . eglot-ensure))
+  (c-mode . lsp))
 
 ;; Python
 (use-package python
   :hook
-  (python-mode . eglot-ensure))
+  (python-mode . lsp))
 
 (use-package yaml-mode
   :straight t
