@@ -301,6 +301,7 @@
 	popper-mode-line nil)
   (setq popper-reference-buffers
         '("\\*Messages\\*"
+	  "\\*Help\\*"
 	  "\\*Warnings\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
