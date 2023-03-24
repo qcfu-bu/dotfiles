@@ -239,7 +239,8 @@
   :init
   (setq lsp-diagnostics-provider :flymake
         lsp-completion-provider :company
-        lsp-lens-enable nil
+        lsp-lens-place-position 'above-line
+        lsp-signature-auto-activate nil
         lsp-headerline-breadcrumb-enable nil
         lsp-modeline-code-actions-enable nil
         lsp-modeline-diagnostics-enable nil))
