@@ -360,7 +360,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one t))
+  (load-theme 'doom-dark+ t))
 
 (use-package electric
   :config
