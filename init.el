@@ -301,7 +301,6 @@
 	popper-mode-line nil)
   (setq popper-reference-buffers
         '("\\*Messages\\*"
-	  "\\*Help\\*"
 	  "\\*Warnings\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
@@ -705,3 +704,7 @@
     :keymaps 'python-mode-map
     "e" 'run-python
     "b" 'python-shell-send-buffer))
+
+;; other
+(add-to-list 'load-path "~/Git/TLL")
+(require 'tll-mode)
