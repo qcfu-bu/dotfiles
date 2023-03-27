@@ -405,6 +405,7 @@
   :config
   (setq doom-modeline-icon nil
         doom-modeline-height 0
+        doom-modeline-buffer-file-name-style 'buffer-name
         doom-modeline-buffer-encoding nil)
   (doom-modeline-mode t))
 
