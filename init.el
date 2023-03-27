@@ -32,8 +32,7 @@
         user-mail-address "qcfu@bu.edu")
 
   ;; Better defaults.
-  (setq frame-resize-pixelwise t
-        frame-inhibit-implied-resize t)
+  (setq frame-resize-pixelwise t)
   (setq use-short-answers t)
   (setq-default truncate-lines t)
   (setq-default indent-tabs-mode nil)
