@@ -258,7 +258,8 @@
   :straight t
   :defer t
   :config
-  (setq flycheck-display-errors-function nil))
+  (setq flycheck-display-errors-function nil
+        flycheck-check-syntax-automatically '(mode-enabled save)))
 
 ;; LSP
 (use-package lsp-mode
