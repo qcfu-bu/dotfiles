@@ -248,12 +248,13 @@
   :config
   (setq company-box-doc-enable nil))
 
+;; Yasnippet
 (use-package yasnippet
   :straight t
   :config
   (yas-global-mode 1))
 
-;; flycheck
+;; Flycheck
 (use-package flycheck
   :straight t
   :defer t
@@ -642,7 +643,6 @@
     "hm" 'describe-mode
     "hi" 'describe-input-method
     "hc" 'consult-flycheck
-    "hh" 'eldoc
     ;; editor
     "el" 'goto-line
     "ec" 'goto-char
