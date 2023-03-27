@@ -256,13 +256,9 @@
 ;; flycheck
 (use-package flycheck
   :straight t
-  :defer t)
-
-(use-package flycheck-posframe
-  :straight t
-  :after flycheck
-  :hook
-  (flycheck-mode . flycheck-posframe-mode))
+  :defer t
+  :config
+  (setq flycheck-display-errors-function nil))
 
 ;; LSP
 (use-package lsp-mode
