@@ -545,7 +545,7 @@
   :hook
   (tuareg-mode . lsp-deferred)
   (tuareg-mode . utop-minor-mode)
-  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer)))
+  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer nil t)))
   (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   :config
   (setq tuareg-opam-insinuate t)
