@@ -227,54 +227,6 @@
   :straight t
   :defer t)
 
-;; Company
-(use-package company-prescient
-  :straight t
-  :defer t)
-
-(use-package company
-  :straight t
-  :init
-  (setq company-minimum-prefix-length 2)
-  :config
-  (global-company-mode)
-  (company-prescient-mode)
-  (prescient-persist-mode))
-
-(use-package company-box
-  :straight t
-  :hook
-  (company-mode . company-box-mode)
-  :config
-  (setq company-box-doc-enable nil))
-
-;; Yasnippet
-(use-package yasnippet
-  :straight t
-  :config
-  (yas-global-mode 1))
-
-;; Flycheck
-(use-package flycheck
-  :straight t
-  :defer t
-  :config
-  (setq flycheck-display-errors-function nil
-        flycheck-check-syntax-automatically '(mode-enabled save)))
-
-;; LSP
-(use-package lsp-mode
-  :straight t
-  :commands lsp-deferred
-  :init
-  (setq lsp-diagnostics-provider :flycheck
-        lsp-completion-provider :company
-        lsp-lens-enable nil
-        lsp-signature-auto-activate nil
-        lsp-headerline-breadcrumb-enable nil
-        lsp-modeline-code-actions-enable nil
-        lsp-modeline-diagnostics-enable nil))
-
 ;;------------------------------------------------------------------------------
 ;; Project
 ;;------------------------------------------------------------------------------
@@ -427,6 +379,58 @@
         doom-modeline-buffer-file-name-style 'buffer-name
         doom-modeline-buffer-encoding nil)
   (doom-modeline-mode t))
+
+;;------------------------------------------------------------------------------
+;; IDE
+;;------------------------------------------------------------------------------
+
+;; Company
+(use-package company-prescient
+  :straight t
+  :defer t)
+
+(use-package company
+  :straight t
+  :init
+  (setq company-minimum-prefix-length 2)
+  :config
+  (global-company-mode)
+  (company-prescient-mode)
+  (prescient-persist-mode))
+
+(use-package company-box
+  :straight t
+  :hook
+  (company-mode . company-box-mode)
+  :config
+  (setq company-box-doc-enable nil))
+
+;; Yasnippet
+(use-package yasnippet
+  :straight t
+  :config
+  (yas-global-mode 1))
+
+;; Flycheck
+(use-package flycheck
+  :straight t
+  :defer t
+  :config
+  (setq flycheck-display-errors-function nil
+        flycheck-check-syntax-automatically '(mode-enabled save)))
+
+;; LSP
+(use-package lsp-mode
+  :straight t
+  :commands lsp-deferred
+  :init
+  (setq lsp-diagnostics-provider :flycheck
+        lsp-completion-provider :company
+        lsp-lens-enable nil
+        lsp-signature-auto-activate nil
+        lsp-headerline-breadcrumb-enable nil
+        lsp-modeline-code-actions-enable nil
+        lsp-modeline-diagnostics-enable nil))
 
 ;;------------------------------------------------------------------------------
 ;; Prose
@@ -737,6 +741,9 @@
     "e" 'run-python
     "b" 'python-shell-send-buffer))
 
-;; other
+;;------------------------------------------------------------------------------
+;; Miscellaneous
+;;------------------------------------------------------------------------------
+
 (add-to-list 'load-path "~/Git/TLL")
 (require 'tll-mode)
