@@ -398,13 +398,6 @@
   (company-prescient-mode)
   (prescient-persist-mode))
 
-(use-package company-box
-  :straight t
-  :hook
-  (company-mode . company-box-mode)
-  :config
-  (setq company-box-doc-enable nil))
-
 ;; Yasnippet
 (use-package yasnippet
   :straight t
@@ -606,7 +599,9 @@
 ;; Python
 (use-package python
   :hook
-  (python-mode . lsp-deferred))
+  (python-mode . lsp-deferred)
+  :config
+  (setq python-shell-completion-native-enable nil))
 
 (use-package yaml-mode
   :straight t
