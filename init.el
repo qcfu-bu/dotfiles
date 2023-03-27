@@ -601,7 +601,7 @@
   :hook
   (python-mode . lsp-deferred)
   :config
-  (setq python-shell-completion-native-enable nil))
+  (setq python-shell-interpreter "python3.10"))
 
 (use-package yaml-mode
   :straight t
