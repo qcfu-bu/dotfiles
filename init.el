@@ -206,6 +206,10 @@
   :config
   (setq consult-preview-key nil))
 
+(use-package consult-flycheck
+  :straight t
+  :defer t)
+
 (use-package marginalia
   :straight t
   :after vertico
@@ -237,17 +241,35 @@
   (company-prescient-mode)
   (prescient-persist-mode))
 
+(use-package company-box
+  :straight t
+  :hook
+  (company-mode . company-box-mode)
+  :config
+  (setq company-box-doc-enable nil))
+
 (use-package yasnippet
   :straight t
   :config
   (yas-global-mode 1))
+
+;; flycheck
+(use-package flycheck
+  :straight t
+  :defer t)
+
+(use-package flycheck-posframe
+  :straight t
+  :after flycheck
+  :hook
+  (flycheck-mode . flycheck-posframe-mode))
 
 ;; LSP
 (use-package lsp-mode
   :straight t
   :commands lsp-deferred
   :init
-  (setq lsp-diagnostics-provider :flymake
+  (setq lsp-diagnostics-provider :flycheck
         lsp-completion-provider :company
         lsp-lens-enable nil
         lsp-signature-auto-activate nil
@@ -278,7 +300,6 @@
 
 (use-package dired
   :hook
-  (after-init . dired-jump)
   (dired-mode . dired-omit-mode)
   :config
   (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
@@ -570,7 +591,10 @@
    :type git
    :host github
    :repo "qcfu-bu/ATS2-emacs")
-  :defer t)
+  :hook
+  (ats2-mode . flycheck-mode)
+  :config
+  (ats2-flycheck-setup))
 
 ;; C/C++
 (use-package cc
@@ -620,7 +644,7 @@
     "hk" 'describe-key
     "hm" 'describe-mode
     "hi" 'describe-input-method
-    "hd" 'consult-flymake
+    "hc" 'consult-flycheck
     "hh" 'eldoc
     ;; editor
     "el" 'goto-line
