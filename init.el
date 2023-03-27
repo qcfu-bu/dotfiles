@@ -28,18 +28,27 @@
 
 (use-package emacs
   :init
-  ;; Do not allow the cursor in the minibuffer prompt.
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-  ;; Enable recursive minibuffers.
-  (setq enable-recursive-minibuffers t)
+  (setq user-full-name "Qiancheng Fu"
+        user-mail-address "qcfu@bu.edu")
+
   ;; Better defaults.
   (setq frame-resize-pixelwise t
         frame-inhibit-implied-resize t)
   (setq use-short-answers t)
   (setq-default truncate-lines t)
   (setq-default indent-tabs-mode nil)
+
+  ;; Suppress native comp warnings.
+  (setq native-comp-async-report-warnings-errors nil)
+
+  ;; Do not allow the cursor in the minibuffer prompt.
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  ;; Enable recursive minibuffers.
+  (setq enable-recursive-minibuffers t)
+
   ;; Scrolling
   (setq hscroll-margin 2
 	hscroll-step 1
@@ -57,6 +66,8 @@
 	;; mouse
 	mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
 	mouse-wheel-scroll-amount-horizontal 2)
+
+  ;; MacOS.
   (when (memq window-system '(mac ns x))
     (setq mac-redisplay-dont-reset-vscroll t
 	  mac-mouse-wheel-smooth-scroll nil)
