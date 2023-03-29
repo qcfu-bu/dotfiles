@@ -352,6 +352,13 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
+(use-package vi-tilde-fringe
+  :straight t
+  :hook
+  (prog-mode . vi-tilde-fringe-mode)
+  (text-mode . vi-tilde-fringe-mode)
+  (conf-mode . vi-tilde-fringe-mode))
+
 (use-package rainbow-mode
   :straight t
   :defer t)
