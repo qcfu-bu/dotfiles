@@ -21,4 +21,3 @@
 (setq inhibit-splash-screen t)
 (setq use-file-dialog nil)
 (setq ring-bell-function 'ignore)
-(setq-default frame-title-format '(""))
