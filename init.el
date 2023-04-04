@@ -34,6 +34,7 @@
   ;; Better defaults.
   (setq frame-resize-pixelwise t)
   (setq use-short-answers t)
+  (setq-default line-spacing 0.2)
   (setq-default truncate-lines t)
   (setq-default indent-tabs-mode nil)
 
