@@ -341,7 +341,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one t))
+  (load-theme 'doom-dark+ t))
 
 (use-package electric
   :config
@@ -464,6 +464,17 @@
         lsp-headerline-breadcrumb-enable nil
         lsp-modeline-code-actions-enable nil
         lsp-modeline-diagnostics-enable nil))
+
+;; Tree-sitter
+(use-package tree-sitter
+  :straight t
+  :hook
+  (tree-sitter-after-on . tree-sitter-hl-mode)
+  :config
+  (global-tree-sitter-mode t))
+
+(use-package tree-sitter-langs
+  :straight t)
 
 ;;------------------------------------------------------------------------------
 ;; Prose
