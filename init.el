@@ -34,7 +34,7 @@
   ;; Better defaults.
   (setq frame-resize-pixelwise t)
   (setq use-short-answers t)
-  (setq-default line-spacing 0.2)
+  (setq-default line-spacing 0.3)
   (setq-default truncate-lines t)
   (setq-default indent-tabs-mode nil)
 
@@ -634,7 +634,8 @@
 ;; C/C++
 (use-package cc
   :hook
-  (c-mode . lsp-deferred))
+  (c-mode . lsp-deferred)
+  (c-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer nil t))))
 
 ;; Python
 (use-package python
