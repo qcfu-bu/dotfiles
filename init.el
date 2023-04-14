@@ -338,10 +338,12 @@
   :config
   (setq-default display-line-numbers-width 3))
 
-(use-package vscode-dark-plus-theme
+(use-package modus-themes
   :straight t
   :config
-  (load-theme 'vscode-dark-plus t))
+  (setq modus-vivendi-palette-overrides '((bg-main bg-dim)))
+  (setq modus-operandi-palette-overrides '((bg-dim bg-main)))
+  (load-theme 'modus-vivendi t))
 
 (use-package electric
   :config
