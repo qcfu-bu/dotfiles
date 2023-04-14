@@ -338,10 +338,10 @@
   :config
   (setq-default display-line-numbers-width 3))
 
-(use-package doom-themes
+(use-package vscode-dark-plus-theme
   :straight t
   :config
-  (load-theme 'doom-one t))
+  (load-theme 'vscode-dark-plus t))
 
 (use-package electric
   :config
