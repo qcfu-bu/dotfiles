@@ -342,7 +342,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one-light t))
+  (load-theme 'doom-one t))
 
 (use-package electric
   :config
