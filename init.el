@@ -339,10 +339,12 @@
   :config
   (setq-default display-line-numbers-width 3))
 
-(use-package doom-themes
+(use-package modus-themes
   :straight t
   :config
-  (load-theme 'doom-one t))
+  (setq modus-vivendi-palette-overrides '((bg-main bg-dim)))
+  (setq modus-operandi-palette-overrides '((bg-dim bg-main)))
+  (load-theme 'modus-vivendi t))
 
 (use-package electric
   :config
@@ -648,6 +650,10 @@
 (use-package yaml-mode
   :straight t
   :defer t)
+
+;; Z3
+(use-package z3-mode
+  :straight t)
 
 ;;------------------------------------------------------------------------------
 ;; Keybindings
