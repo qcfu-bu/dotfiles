@@ -316,7 +316,7 @@
 (use-package olivetti
   :straight t
   :config
-  (setq-default fill-column 90))
+  (setq-default fill-column 100))
 
 (use-package presentation
   :straight
