@@ -339,12 +339,10 @@
   :config
   (setq-default display-line-numbers-width 3))
 
-(use-package modus-themes
+(use-package doom-themes
   :straight t
   :config
-  (setq modus-vivendi-palette-overrides '((bg-main bg-dim)))
-  (setq modus-operandi-palette-overrides '((bg-dim bg-main)))
-  (load-theme 'modus-operandi t))
+  (load-theme 'doom-one t))
 
 (use-package electric
   :config
