@@ -220,8 +220,7 @@
 
 (use-package embark
   :straight t
-  :bind
-  (("C-;" . embark-act))
+  :bind (("C-;" . embark-act))
   :config
   (setq embark-quit-after-action nil))
 
