@@ -511,7 +511,7 @@
 	TeX-source-correlate-mode t
 	TeX-source-correlate-method 'synctex
 	TeX-source-correlate-start-server t
-        TeX-electric-math t
+        TeX-electric-math '("$" . "$")
 	TeX-electric-sub-and-superscript t))
 
 (use-package auctex-latexmk
