@@ -311,7 +311,7 @@
 
 (use-package vterm-toggle
   :straight t
-  :defer t)
+  :bind ("C-`" . vterm-toggle))
 
 (use-package olivetti
   :straight t
@@ -718,7 +718,7 @@
     "wn" 'evil-window-next
     "wd" 'evil-window-delete
     ;; frames
-    "Fm" 'make-frame
+    "F+" 'make-frame
     "Fo" 'other-frame
     "Fd" 'delete-frame
     ;; projects
@@ -727,17 +727,20 @@
     "pf" 'project-find-file
     "pd" 'project-find-dir
     "pc" 'project-compile
+    ;; bookmarks
+    "Bb" 'consult-bookmark
+    "B+" 'bookmark-set
+    "Bd" 'bookmark-delete
     ;; workspaces
     "TAB TAB" 'tab-bar-switch-to-tab
-    "TAB o" 'tab-bar-new-tab
+    "TAB +" 'tab-bar-new-tab
     "TAB p" 'tab-bar-switch-to-prev-tab
     "TAB n" 'tab-bar-switch-to-next-tab
     "TAB r" 'tab-bar-switch-to-recent-tab
     "TAB d" 'tab-bar-close-tab
     ;; toggles
-    "tt" 'vterm-toggle
+    "tt" 'popper-toggle-latest
     "tl" 'display-line-numbers-mode
-    "tp" 'popper-toggle-latest
     "tc" 'olivetti-mode
     "tz" 'presentation-mode
     ;; git
