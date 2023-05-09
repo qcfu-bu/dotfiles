@@ -384,6 +384,7 @@
   :config
   (setq doom-modeline-icon nil
         doom-modeline-height 0
+        doom-modeline-bar-width 0
         doom-modeline-buffer-file-name-style 'buffer-name
         doom-modeline-buffer-encoding nil)
   (doom-modeline-mode t))
@@ -511,6 +512,7 @@
 	TeX-source-correlate-mode t
 	TeX-source-correlate-method 'synctex
 	TeX-source-correlate-start-server t
+        TeX-electric-math t
 	TeX-electric-sub-and-superscript t))
 
 (use-package auctex-latexmk
