@@ -343,7 +343,7 @@
   :config
   (setq modus-vivendi-palette-overrides '((bg-main bg-dim)))
   (setq modus-operandi-palette-overrides '((bg-dim bg-main)))
-  (load-theme 'modus-vivendi t))
+  (load-theme 'modus-operandi t))
 
 (use-package electric
   :config
