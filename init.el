@@ -32,7 +32,6 @@
         user-mail-address "qcfu@bu.edu")
 
   ;; Better defaults.
-  (display-time-mode t)
   (setq frame-resize-pixelwise t)
   (setq use-short-answers t)
   (setq-default line-spacing 0.3)
@@ -341,9 +340,17 @@
 (use-package modus-themes
   :straight t
   :config
+  (setq modus-themes-common-palette-overrides
+        '((bg-line-number-active unspecifed)
+          (bg-line-number-inactive unspecified)))
   (setq modus-vivendi-palette-overrides '((bg-main bg-dim)))
   (setq modus-operandi-palette-overrides '((bg-dim bg-main)))
-  (load-theme 'modus-vivendi t))
+  (load-theme 'modus-operandi t))
+
+(use-package minions
+  :straight t
+  :config
+  (minions-mode t))
 
 (use-package electric
   :config
@@ -380,15 +387,6 @@
           ("DEPRECATED" font-lock-doc-face bold)
           ("NOTE" success bold)
           ("BUG" error bold))))
-
-(use-package doom-modeline
-  :straight t
-  :config
-  (setq doom-modeline-icon nil
-        doom-modeline-height 0
-        doom-modeline-buffer-file-name-style 'buffer-name
-        doom-modeline-buffer-encoding nil)
-  (doom-modeline-mode t))
 
 ;;------------------------------------------------------------------------------
 ;; IDE
