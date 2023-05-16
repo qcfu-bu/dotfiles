@@ -345,7 +345,7 @@
           (bg-line-number-inactive unspecified)))
   (setq modus-vivendi-palette-overrides '((bg-main bg-dim)))
   (setq modus-operandi-palette-overrides '((bg-dim bg-main)))
-  (load-theme 'modus-operandi t))
+  (load-theme 'modus-vivendi t))
 
 (use-package minions
   :straight t
