@@ -337,20 +337,20 @@
   :config
   (setq-default display-line-numbers-width 3))
 
-(use-package modus-themes
+(use-package doom-themes
   :straight t
   :config
-  (setq modus-themes-common-palette-overrides
-        '((bg-line-number-active unspecifed)
-          (bg-line-number-inactive unspecified)))
-  (setq modus-vivendi-palette-overrides '((bg-main bg-dim)))
-  (setq modus-operandi-palette-overrides '((bg-dim bg-main)))
-  (load-theme 'modus-vivendi t))
+  (load-theme 'doom-one t))
 
-(use-package minions
+(use-package doom-modeline
   :straight t
   :config
-  (minions-mode t))
+  (setq doom-modeline-icon nil
+        doom-modeline-height 0
+        doom-modeline-bar-width 0
+        doom-modeline-buffer-file-name-style 'buffer-name
+        doom-modeline-buffer-encoding nil)
+  (doom-modeline-mode t))
 
 (use-package electric
   :config
