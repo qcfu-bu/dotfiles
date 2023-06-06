@@ -499,7 +499,8 @@
    (LaTeX-mode . rainbow-delimiters-mode))
   :init
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
-  (setq-default TeX-PDF-mode t)
+  (setq-default TeX-PDF-mode t
+                TeX-master nil)
   (setq TeX-parse-self t
 	TeX-auto-save t
 	TeX-save-query nil
