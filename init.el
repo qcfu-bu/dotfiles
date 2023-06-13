@@ -341,9 +341,6 @@
 	  "^\\*Python\\*$"))
   (popper-mode 1))
 
-(use-package hide-mode-line
-  :straight t)
-
 (use-package vterm
   :straight t
   :defer t
@@ -537,7 +534,8 @@
 		 (modify-syntax-entry ?> "." org-mode-syntax-table))))
   :config
   (setq org-startup-indented t
-        org-hide-leading-stars t))
+        org-hide-leading-stars t
+        org-src-window-setup 'current-window))
 
 ;; Markdown
 (use-package markdown-mode
@@ -766,7 +764,8 @@
     :keymaps 'org-mode-map
     "i" 'org-insert-structure-template
     "l" 'org-insert-link
-    "e" 'org-export-dispatch)
+    "e" 'org-edit-special
+    "x" 'org-export-dispatch)
 
   (spc-local-leader-def
     :keymaps 'coq-mode-map
