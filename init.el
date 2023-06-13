@@ -182,52 +182,6 @@
   (which-key-mode))
 
 ;;------------------------------------------------------------------------------
-;; Editor
-;;------------------------------------------------------------------------------
-
-(set-face-attribute 'default nil :font "JuliaMono-14")
-(set-face-attribute 'fixed-pitch nil :font "JuliaMono-14")
-(set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
-
-(use-package display-line-numbers
-  :config
-  (setq-default display-line-numbers-width 3))
-
-(use-package electric
-  :config
-  (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
-  (electric-pair-mode t))
-
-(use-package adaptive-wrap
-  :straight t
-  :hook
-  (visual-line-mode . adaptive-wrap-prefix-mode))
-
-(use-package rainbow-delimiters
-  :straight t
-  :hook
-  (prog-mode . rainbow-delimiters-mode))
-
-(use-package rainbow-mode
-  :straight t
-  :defer t)
-
-(use-package hl-todo
-  :straight t
-  :hook
-  ((prog-mode text-mode) . hl-todo-mode)
-  :config
-  (setq hl-todo-highlight-punctuation ":"
-        hl-todo-keyword-faces
-        '(("TODO" warning bold)
-          ("FIXME" error bold)
-          ("REVIEW" font-lock-keyword-face bold)
-          ("HACK" font-lock-constant-face bold)
-          ("DEPRECATED" font-lock-doc-face bold)
-          ("NOTE" success bold)
-          ("BUG" error bold))))
-
-;;------------------------------------------------------------------------------
 ;; Completion
 ;;------------------------------------------------------------------------------
 
@@ -281,11 +235,14 @@
   :straight t
   :defer t)
 
-(use-package diff-hl
+(use-package git-gutter-fringe
   :straight t
   :config
-  (setq diff-hl-side 'right)
-  (global-diff-hl-mode t))
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom)
+  (setq git-gutter-fr:side 'right-fringe)
+  (global-git-gutter-mode t))
 
 (use-package gitignore-templates
   :straight t
@@ -294,7 +251,6 @@
 (use-package dired
   :hook
   (dired-mode . dired-omit-mode)
-  (dired-mode . diff-hl-dired-mode)
   :config
   (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
         dired-use-ls-dired nil
@@ -309,6 +265,52 @@
   :config
   (setq compilation-scroll-output t
 	compile-command "make"))
+
+;;------------------------------------------------------------------------------
+;; Editor
+;;------------------------------------------------------------------------------
+
+(set-face-attribute 'default nil :font "JuliaMono-14")
+(set-face-attribute 'fixed-pitch nil :font "JuliaMono-14")
+(set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
+
+(use-package display-line-numbers
+  :config
+  (setq-default display-line-numbers-width 3))
+
+(use-package electric
+  :config
+  (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+  (electric-pair-mode t))
+
+(use-package adaptive-wrap
+  :straight t
+  :hook
+  (visual-line-mode . adaptive-wrap-prefix-mode))
+
+(use-package rainbow-delimiters
+  :straight t
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
+
+(use-package rainbow-mode
+  :straight t
+  :defer t)
+
+(use-package hl-todo
+  :straight t
+  :hook
+  ((prog-mode text-mode) . hl-todo-mode)
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        '(("TODO" warning bold)
+          ("FIXME" error bold)
+          ("REVIEW" font-lock-keyword-face bold)
+          ("HACK" font-lock-constant-face bold)
+          ("DEPRECATED" font-lock-doc-face bold)
+          ("NOTE" success bold)
+          ("BUG" error bold))))
 
 ;;------------------------------------------------------------------------------
 ;; Tools
