@@ -376,7 +376,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (load-theme 'doom-one t))
+  (load-theme 'doom-gruvbox t))
 
 (use-package doom-modeline
   :straight t
