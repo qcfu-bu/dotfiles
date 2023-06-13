@@ -1,4 +1,4 @@
-#+TITLE: dotfile
+#+TITLE: config
 #+AUTHOR: Qiancheng Fu
 #+EMAIL: qcfu@bu.edu
 
