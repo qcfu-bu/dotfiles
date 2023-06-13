@@ -391,9 +391,7 @@
 (use-package vi-tilde-fringe
   :straight t
   :hook
-  (prog-mode . vi-tilde-fringe-mode)
-  (text-mode . vi-tilde-fringe-mode)
-  (conf-mode . vi-tilde-fringe-mode))
+  ((prog-mode text-mode conf-mode) . vi-tilde-fringe-mode))
 
 ;;------------------------------------------------------------------------------
 ;; IDE
