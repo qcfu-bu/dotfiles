@@ -1,6 +1,7 @@
 #+TITLE: config
 #+AUTHOR: Qiancheng Fu
 #+EMAIL: qcfu@bu.edu
+#+STARTUP: content
 
 * bootstrap
 ** gc
@@ -227,7 +228,8 @@
     :init
     (setq evil-want-integration t
           evil-want-keybinding nil
-          evil-undo-system 'undo-fu)
+          evil-undo-system 'undo-fu
+          evil-respect-visual-line-mode t)
     :config
     (evil-mode 1))
 
@@ -321,7 +323,7 @@
   (use-package doom-themes
     :straight t
     :config
-    (load-theme 'doom-one t))
+    (load-theme 'doom-gruvbox t))
 #+end_src
 
 ** modeline
