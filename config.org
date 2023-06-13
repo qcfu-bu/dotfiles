@@ -635,7 +635,8 @@
     :hook
     (coq-mode . company-coq-mode)
     :init
-    (setq proof-splash-enable nil))
+    (setq proof-splash-enable nil
+          proof-three-window-mode-policy 'hybrid))
 #+end_src
 
 ** ocaml
