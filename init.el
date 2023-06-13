@@ -283,14 +283,11 @@
   :straight t
   :defer t)
 
-(use-package git-gutter-fringe
+(use-package diff-hl
   :straight t
   :config
-  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom)
-  (setq git-gutter-fr:side 'right-fringe)
-  (global-git-gutter-mode t))
+  (setq diff-hl-side 'right)
+  (global-diff-hl-mode t))
 
 (use-package gitignore-templates
   :straight t
