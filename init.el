@@ -118,8 +118,8 @@
 
 (use-package recentf
   :init
-  (setq recentf-max-menu-items 100
-	recentf-max-saved-items 100)
+  (setq recentf-max-menu-items 40
+	recentf-max-saved-items 40)
   (recentf-mode 1)
   :config
   (add-to-list 'recentf-exclude "/private/var/folders/*"))
