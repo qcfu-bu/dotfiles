@@ -275,6 +275,8 @@
 (set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
 
 (use-package display-line-numbers
+  :hook
+  ((prog-mode text-mode) . display-line-numbers-mode)
   :config
   (setq-default display-line-numbers-width 3))
 
