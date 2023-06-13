@@ -296,6 +296,7 @@
 (use-package dired
   :hook
   (dired-mode . dired-omit-mode)
+  (dired-mode . diff-hl-dired-mode)
   :config
   (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
         dired-use-ls-dired nil
