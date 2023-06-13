@@ -200,6 +200,11 @@
   (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
   (electric-pair-mode t))
 
+(use-package adaptive-wrap
+  :straight t
+  :hook
+  (visual-line-mode . adaptive-wrap-prefix-mode))
+
 (use-package rainbow-delimiters
   :straight t
   :hook
@@ -473,26 +478,6 @@
 ;; Prose
 ;;------------------------------------------------------------------------------
 
-(use-package adaptive-wrap
-  :straight t
-  :hook
-  (visual-line-mode . adaptive-wrap-prefix-mode))
-
-(use-package pdf-tools
-  :straight t
-  :defer t
-  :hook
-  ((pdf-view-mode
-    . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
-  :init
-  (pdf-loader-install)
-  :config
-  (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-view-use-scaling t
-	pdf-view-use-imagemagick nil)
-  (evil-define-key 'normal pdf-view-mode-map
-    (kbd "zm") 'pdf-view-themed-minor-mode))
-
 ;; LaTeX
 (use-package auctex
   :straight t
@@ -529,6 +514,22 @@
   :config
   (auctex-latexmk-setup))
 
+(use-package pdf-tools
+  :straight t
+  :defer t
+  :hook
+  ((pdf-view-mode
+    . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
+  :init
+  (pdf-loader-install)
+  :config
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-view-use-scaling t
+	pdf-view-use-imagemagick nil)
+  (evil-define-key 'normal pdf-view-mode-map
+    (kbd "zm") 'pdf-view-themed-minor-mode))
+
+;; Org
 (use-package org
   :straight t
   :defer t
