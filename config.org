@@ -375,7 +375,10 @@
   (use-package display-line-numbers
     :config
     (setq-default display-line-numbers-width 3))
+#+end_src
 
+** vi-tilde
+#+begin_src emacs-lisp
   (use-package vi-tilde-fringe
     :straight t
     :hook
