@@ -1,7 +1,7 @@
 #+TITLE: config
 #+AUTHOR: Qiancheng Fu
 #+EMAIL: qcfu@bu.edu
-#+STARTUP: content
+#+STARTUP: show2levels
 
 * bootstrap
 ** gc
