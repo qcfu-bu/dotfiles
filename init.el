@@ -182,6 +182,49 @@
   (which-key-mode))
 
 ;;------------------------------------------------------------------------------
+;; Editor
+;;------------------------------------------------------------------------------
+
+(set-face-attribute 'default nil :font "JuliaMono-14")
+(set-face-attribute 'fixed-pitch nil :font "JuliaMono-14")
+(set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
+
+(use-package display-line-numbers
+  :hook
+  ((prog-mode text-mode) . display-line-numbers-mode)
+  :config
+  (setq-default display-line-numbers-width 3))
+
+(use-package electric
+  :config
+  (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+  (electric-pair-mode t))
+
+(use-package rainbow-delimiters
+  :straight t
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
+
+(use-package rainbow-mode
+  :straight t
+  :defer t)
+
+(use-package hl-todo
+  :straight t
+  :hook
+  ((prog-mode text-mode) . hl-todo-mode)
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        '(("TODO" warning bold)
+          ("FIXME" error bold)
+          ("REVIEW" font-lock-keyword-face bold)
+          ("HACK" font-lock-constant-face bold)
+          ("DEPRECATED" font-lock-doc-face bold)
+          ("NOTE" success bold)
+          ("BUG" error bold))))
+
+;;------------------------------------------------------------------------------
 ;; Completion
 ;;------------------------------------------------------------------------------
 
@@ -327,16 +370,6 @@
 ;; Appearance
 ;;------------------------------------------------------------------------------
 
-(set-face-attribute 'default nil :font "JuliaMono-14")
-(set-face-attribute 'fixed-pitch nil :font "JuliaMono-14")
-(set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
-
-(use-package display-line-numbers
-  :hook
-  ((prog-mode text-mode) . display-line-numbers-mode)
-  :config
-  (setq-default display-line-numbers-width 3))
-
 (use-package doom-themes
   :straight t
   :config
@@ -352,41 +385,12 @@
         doom-modeline-buffer-encoding nil)
   (doom-modeline-mode t))
 
-(use-package electric
-  :config
-  (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
-  (electric-pair-mode t))
-
-(use-package rainbow-delimiters
-  :straight t
-  :hook
-  (prog-mode . rainbow-delimiters-mode))
-
 (use-package vi-tilde-fringe
   :straight t
   :hook
   (prog-mode . vi-tilde-fringe-mode)
   (text-mode . vi-tilde-fringe-mode)
   (conf-mode . vi-tilde-fringe-mode))
-
-(use-package rainbow-mode
-  :straight t
-  :defer t)
-
-(use-package hl-todo
-  :straight t
-  :hook
-  ((prog-mode text-mode) . hl-todo-mode)
-  :config
-  (setq hl-todo-highlight-punctuation ":"
-        hl-todo-keyword-faces
-        '(("TODO" warning bold)
-          ("FIXME" error bold)
-          ("REVIEW" font-lock-keyword-face bold)
-          ("HACK" font-lock-constant-face bold)
-          ("DEPRECATED" font-lock-doc-face bold)
-          ("NOTE" success bold)
-          ("BUG" error bold))))
 
 ;;------------------------------------------------------------------------------
 ;; IDE
