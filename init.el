@@ -287,6 +287,7 @@
   :straight t
   :config
   (setq diff-hl-side 'right)
+  (diff-hl-flydiff-mode t)
   (global-diff-hl-mode t))
 
 (use-package gitignore-templates
