@@ -38,8 +38,9 @@
 
 ** defaults
 #+begin_src emacs-lisp
-  (setq frame-resize-pixelwise t)
   (setq use-short-answers t)
+  (setq frame-resize-pixelwise t)
+  (setq native-comp-async-report-warnings-errors nil)
   (setq-default line-spacing 0.3)
   (setq-default truncate-lines t)
   (setq-default indent-tabs-mode nil)
@@ -114,7 +115,8 @@
     (setq mac-redisplay-dont-reset-vscroll t
           mac-mouse-wheel-smooth-scroll nil)
     (setq delete-by-moving-to-trash t
-          trash-directory "~/.Trash"))
+          trash-directory "~/.Trash")
+    (menu-bar-mode 1))
 
   (use-package exec-path-from-shell
     :straight t
@@ -323,7 +325,7 @@
   (use-package doom-themes
     :straight t
     :config
-    (load-theme 'doom-gruvbox t))
+    (load-theme 'doom-one t))
 #+end_src
 
 ** modeline
@@ -352,7 +354,7 @@
   (use-package popper
     :straight t
     :config
-    (setq popper-window-height 24
+    (setq popper-window-height 22
           popper-mode-line nil)
     (setq popper-reference-buffers
           '("\\*Messages\\*"
@@ -729,13 +731,14 @@
 ** z3
 #+begin_src emacs-lisp
   (use-package z3-mode
-    :straight t)
+    :straight t
+    :defer t)
 #+end_src
 
 ** tll
 #+begin_src emacs-lisp
-  (add-to-list 'load-path "~/Git/TLL")
-  (require 'tll-mode)
+  (use-package tll-mode
+    :load-path "~/Git/TLL")
 #+end_src
 
 * keybinds
