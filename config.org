@@ -530,7 +530,6 @@
           pdf-view-use-imagemagick nil)
     (evil-define-key 'normal pdf-view-mode-map
       (kbd "zm") 'pdf-view-themed-minor-mode))
-
 #+end_src
 
 ** lsp
