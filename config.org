@@ -384,7 +384,8 @@
             "^\\*haskell\\*$"
             "^\\*poly\\*$"
             "^\\*Python\\*$"))
-    (popper-mode 1))
+    (popper-mode 1)
+    (popper-echo-mode 1))
 #+end_src
 
 ** linum
@@ -899,6 +900,8 @@
 #+begin_src emacs-lisp
   (spc-leader-def
     "tt" 'popper-toggle-latest
+    "tn" 'popper-cycle
+    "tp" 'popper-cycle-backwards
     "tl" 'display-line-numbers-mode
     "tc" 'olivetti-mode
     "tz" 'presentation-mode)
