@@ -320,6 +320,27 @@
   (set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
 #+end_src
 
+** icons
+#+begin_src emacs-lisp
+  (use-package nerd-icons
+    :straight t)
+
+  (use-package nerd-icons-dired
+    :straight t
+    :hook
+    (dired-mode . nerd-icons-dired-mode))
+
+  (use-package nerd-icons-completion
+    :straight t
+    :config
+    (nerd-icons-completion-mode))
+
+  (use-package nerd-icons-ibuffer
+    :straight t
+    :hook
+    (ibuffer-mode . nerd-icons-ibuffer-mode))
+#+end_src
+
 ** theme
 #+begin_src emacs-lisp
   (use-package doom-themes
@@ -333,11 +354,6 @@
   (use-package doom-modeline
     :straight t
     :config
-    (setq doom-modeline-icon nil
-          doom-modeline-height 0
-          doom-modeline-bar-width 0
-          doom-modeline-buffer-file-name-style 'buffer-name
-          doom-modeline-buffer-encoding nil)
     (doom-modeline-mode t))
 #+end_src
 
@@ -822,7 +838,8 @@
 #+begin_src emacs-lisp
   (spc-leader-def
     "bb" 'consult-buffer
-    "bi" 'consult-imenu
+    "bm" 'consult-imenu
+    "bi" 'ibuffer
     "bp" 'switch-to-prev-buffer
     "bn" 'switch-to-next-buffer
     "bd" 'kill-this-buffer)
