@@ -29,6 +29,16 @@
   (straight-use-package 'use-package)
 #+end_src
 
+** path
+#+begin_src emacs-lisp
+  (use-package exec-path-from-shell
+    :straight t
+    :config
+    (when (memq window-system '(mac ns x))
+      (setq exec-path-from-shell-arguments nil)
+      (exec-path-from-shell-initialize)))
+#+end_src
+
 * emacs
 ** info
 #+begin_src emacs-lisp
@@ -40,6 +50,7 @@
 #+begin_src emacs-lisp
   (setq use-short-answers t)
   (setq frame-resize-pixelwise t)
+  (setq delete-by-moving-to-trash t)
   (setq native-comp-async-report-warnings-errors nil)
   (setq-default line-spacing 0.3)
   (setq-default truncate-lines t)
@@ -111,19 +122,11 @@
 * os
 ** macos
 #+begin_src emacs-lisp
-  (when (memq window-system '(mac ns x))
+  (when (eq system-type 'darwin)
     (setq mac-redisplay-dont-reset-vscroll t
           mac-mouse-wheel-smooth-scroll nil)
-    (setq delete-by-moving-to-trash t
-          trash-directory "~/.Trash")
+    (setq trash-directory "~/.Trash")
     (menu-bar-mode 1))
-
-  (use-package exec-path-from-shell
-    :straight t
-    :config
-    (when (memq window-system '(mac ns x))
-      (setq exec-path-from-shell-arguments nil)
-      (exec-path-from-shell-initialize)))
 #+end_src
 
 * completion
