@@ -323,27 +323,6 @@
   (set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
 #+end_src
 
-** icons
-#+begin_src emacs-lisp
-  (use-package nerd-icons
-    :straight t)
-
-  (use-package nerd-icons-dired
-    :straight t
-    :hook
-    (dired-mode . nerd-icons-dired-mode))
-
-  (use-package nerd-icons-completion
-    :straight t
-    :config
-    (nerd-icons-completion-mode))
-
-  (use-package nerd-icons-ibuffer
-    :straight t
-    :hook
-    (ibuffer-mode . nerd-icons-ibuffer-mode))
-#+end_src
-
 ** theme
 #+begin_src emacs-lisp
   (use-package doom-themes
@@ -357,6 +336,8 @@
   (use-package doom-modeline
     :straight t
     :config
+    (setq doom-modeline-icon nil
+          doom-modeline-height 0)
     (doom-modeline-mode t))
 #+end_src
 
