@@ -328,9 +328,9 @@
   (use-package modus-themes
     :straight t
     :config
-    ;; Make line numbers less intense
     (setq modus-themes-common-palette-overrides
-          '((fg-line-number-inactive "gray50")
+          '(;; Make line numbers less intense
+            (fg-line-number-inactive "gray50")
             (fg-line-number-active fg-main)
             (bg-line-number-inactive unspecified)
             (bg-line-number-active unspecified)))
