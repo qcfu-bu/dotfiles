@@ -493,6 +493,7 @@
     (dired-mode . dired-omit-mode)
     :config
     (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
+          dired-listing-switches "-alh"
           dired-use-ls-dired nil
           dired-dwim-target t))
 
