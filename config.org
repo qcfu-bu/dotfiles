@@ -347,7 +347,6 @@
     :straight t
     :config
     (setq doom-modeline-height 0
-          doom-modeline-bar-width 0
           doom-modeline-icon nil
           doom-modeline-buffer-encoding nil
           doom-modeline-buffer-file-name-style 'buffer-name)
