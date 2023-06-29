@@ -316,7 +316,7 @@
 #+end_src
 
 * ui
-** font
+** fonts
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil :font "JuliaMono-14")
   (set-face-attribute 'fixed-pitch nil :font "JuliaMono-14")
