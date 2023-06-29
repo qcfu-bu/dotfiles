@@ -236,6 +236,16 @@
           evil-undo-system 'undo-fu
           evil-respect-visual-line-mode t)
     :config
+    (setq evil-emacs-state-tag "E"
+          evil-insert-state-tag "I"
+          evil-motion-state-tag "M"
+          evil-normal-state-tag "N"
+          evil-operator-state-tag "O"
+          evil-replace-state-tag "R"
+          evil-visual-char-tag "V"
+          evil-visual-block-tag "Vb"
+          evil-visual-line-tag "Vl"
+          evil-visual-screen-line-tag "Vs")
     (evil-mode 1))
 
   (use-package evil-collection
