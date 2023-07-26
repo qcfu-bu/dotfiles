@@ -338,7 +338,8 @@
   (use-package doom-themes
     :straight t
     :config
-    (load-theme 'doom-one t))
+    (load-theme 'doom-one t)
+    (doom-themes-org-config))
 #+end_src
 
 ** modeline
