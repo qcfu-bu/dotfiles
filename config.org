@@ -328,9 +328,33 @@
 * ui
 ** fonts
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :font "JuliaMono-14")
-  (set-face-attribute 'fixed-pitch nil :font "JuliaMono-14")
-  (set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
+  (set-face-attribute 'default nil :font "DejaVu Sans Mono-14")
+  (set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono-14")
+  (set-face-attribute 'variable-pitch nil :font "DejaVu Sans Mono-14")
+#+end_src
+
+** icons
+#+begin_src emacs-lisp
+  (use-package nerd-icons
+    :straight t
+    :custom
+    (nerd-icons-font-family "DejaVuSansM Nerd Font Propo"))
+
+  (use-package nerd-icons-completion
+    :straight t
+    :after marginalia
+    :config
+    (nerd-icons-completion-mode))
+
+  (use-package nerd-icons-ibuffer
+    :straight t
+    :hook
+    (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+  (use-package nerd-icons-dired
+    :straight t
+    :hook
+    (dired-mode . nerd-icons-dired-mode))
 #+end_src
 
 ** theme
@@ -348,7 +372,6 @@
     :straight t
     :config
     (setq doom-modeline-height 0
-          doom-modeline-icon nil
           doom-modeline-buffer-encoding nil
           doom-modeline-buffer-file-name-style 'buffer-name)
     (doom-modeline-mode t))
