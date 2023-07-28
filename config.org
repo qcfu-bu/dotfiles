@@ -154,7 +154,8 @@
     :defer t
     :after vertico
     :config
-    (setq consult-preview-key nil))
+    (setq consult-preview-key nil)
+    (add-to-list 'consult-buffer-filter "^\\*"))
 
   (use-package consult-flycheck
     :straight t
@@ -860,8 +861,7 @@
     "bb" 'consult-buffer
     "bm" 'consult-imenu
     "bi" 'ibuffer
-    "bp" 'switch-to-prev-buffer
-    "bn" 'switch-to-next-buffer
+    "bp" 'mode-line-other-bufferother-buffer
     "bd" 'kill-this-buffer)
 #+end_src
 
