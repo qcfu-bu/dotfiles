@@ -861,7 +861,9 @@
     "bb" 'consult-buffer
     "bm" 'consult-imenu
     "bi" 'ibuffer
-    "bp" 'mode-line-other-buffer
+    "bo" 'mode-line-other-buffer
+    "bn" 'evil-next-buffer
+    "bp" 'evil-prev-buffer
     "bd" 'kill-this-buffer)
 #+end_src
 
