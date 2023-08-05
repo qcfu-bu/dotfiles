@@ -523,7 +523,9 @@
 #+begin_src emacs-lisp
   (use-package magit
     :straight t
-    :defer t)
+    :defer t
+    :config
+    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 
   (use-package git-gutter-fringe
     :straight t
