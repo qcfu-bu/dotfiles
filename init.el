@@ -319,12 +319,6 @@
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
-(use-package treemacs-nerd-icons
-  :straight t
-  :after treemacs
-  :config
-  (treemacs-load-theme "nerd-icons"))
-
 ;;;; themes
 (use-package doom-themes
   :straight t
@@ -356,29 +350,6 @@
                           (recents . 10)))
   :config
   (dashboard-setup-startup-hook))
-
-;;;; treemacs
-(use-package treemacs
-  :straight t
-  :defer t
-  :init
-  (setq treemacs-follow-after-init t
-        treemacs-sorting 'alphabetic-case-insensitive-asc
-        treemacs-width 30)
-  :config
-  (treemacs-follow-mode -1))
-
-(use-package treemacs-evil
-  :straight t
-  :after treemacs)
-
-(use-package treemacs-magit
-  :straight t
-  :after (treemacs magit))
-
-(use-package lsp-treemacs
-  :straight t
-  :after (treemacs lsp))
 
 ;;;; popup
 (use-package popper
@@ -865,8 +836,7 @@
   "tp" 'popper-cycle-backwards
   "tl" 'display-line-numbers-mode
   "tc" 'olivetti-mode
-  "tz" 'presentation-mode
-  "tm" 'treemacs)
+  "tz" 'presentation-mode)
 
 ;;;;; git
 (spc-leader-def
