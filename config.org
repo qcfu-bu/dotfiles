@@ -395,9 +395,9 @@
     :defer t
     :init
     (setq treemacs-follow-after-init t
-          treemacs-sorting 'alphabetic-case-insensitive-asc)
+          treemacs-sorting 'alphabetic-case-insensitive-asc
+          treemacs-width 30)
     :config
-    (setq treemacs-width 30)
     (treemacs-follow-mode -1)
     (treemacs-load-theme "nerd-icons"))
 
