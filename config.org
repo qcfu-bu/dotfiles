@@ -954,7 +954,8 @@
     "tp" 'popper-cycle-backwards
     "tl" 'display-line-numbers-mode
     "tc" 'olivetti-mode
-    "tz" 'presentation-mode)
+    "tz" 'presentation-mode
+    "tm" 'treemacs)
 #+end_src
 
 *** git
