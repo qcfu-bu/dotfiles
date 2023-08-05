@@ -380,12 +380,23 @@
     (doom-modeline-mode t))
 #+end_src
 
-** tabs
+** dashboard
 #+begin_src emacs-lisp
-  (use-package tab-bar
+  (use-package dashboard
+    :straight t
     :init
-    (setq tab-bar-show nil
-          tab-bar-new-tab-choice "*scratch*"))
+    (setq dashboard-startup-banner 3
+          dashboard-set-footer nil
+          dashboard-display-icons-p t
+          dashboard-icon-type 'nerd-icons
+          dashboard-set-heading-icons t
+          dashboard-set-file-icons t
+          dashboard-projects-backend 'project-el
+          dashboard-items '((bookmarks . 10)
+                            (projects . 10)
+                            (recents . 10)))
+    :config
+    (dashboard-setup-startup-hook))
 #+end_src
 
 ** treemacs
@@ -435,6 +446,14 @@
             "^\\*Python\\*$"))
     (popper-mode 1)
     (popper-echo-mode 1))
+#+end_src
+
+** tabs
+#+begin_src emacs-lisp
+  (use-package tab-bar
+    :init
+    (setq tab-bar-show nil
+          tab-bar-new-tab-choice "*scratch*"))
 #+end_src
 
 ** linum
