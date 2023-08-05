@@ -301,7 +301,7 @@
 (use-package nerd-icons
   :straight t
   :custom
-  (nerd-icons-font-family "DejaVuSansM Nerd Font Propo"))
+  (nerd-icons-font-family "Symbols Nerd Font Mono"))
 
 (use-package nerd-icons-completion
   :straight t
