@@ -525,7 +525,8 @@
     :straight t
     :defer t
     :config
-    (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
+    (setq magit-bury-buffer-function 'magit-restore-window-configuration
+          magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 
   (use-package git-gutter-fringe
     :straight t
