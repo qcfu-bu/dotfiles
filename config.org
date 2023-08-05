@@ -619,6 +619,12 @@
           lsp-modeline-diagnostics-enable nil))
 #+end_src
 
+** restart
+#+begin_src emacs-lisp
+  (use-package restart-emacs
+    :straight t)
+#+end_src
+
 ** profiling
 #+begin_src emacs-lisp
   (use-package esup
@@ -862,6 +868,7 @@
   (spc-leader-def
     "SPC" 'execute-extended-command
     "\\" 'toggle-input-method
+    "qr" 'restart-emacs
     "qq" 'save-buffers-kill-emacs)
 #+end_src
   
