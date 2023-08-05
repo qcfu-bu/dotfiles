@@ -356,6 +356,9 @@
     :straight t
     :hook
     (dired-mode . nerd-icons-dired-mode))
+
+  (use-package treemacs-nerd-icons
+    :straight t)
 #+end_src
 
 ** theme
@@ -383,6 +386,32 @@
     :init
     (setq tab-bar-show nil
           tab-bar-new-tab-choice "*scratch*"))
+#+end_src
+
+** treemacs
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :straight t
+    :defer t
+    :init
+    (setq treemacs-follow-after-init t
+          treemacs-sorting 'alphabetic-case-insensitive-asc)
+    :config
+    (setq treemacs-width 30)
+    (treemacs-follow-mode -1)
+    (treemacs-load-theme "nerd-icons"))
+
+  (use-package treemacs-evil
+    :straight t
+    :after treemacs)
+
+  (use-package treemacs-magit
+    :straight t
+    :after (treemacs magit))
+
+  (use-package lsp-treemacs
+    :straight t
+    :after (treemacs lsp))
 #+end_src
 
 ** popup
@@ -801,7 +830,7 @@
 ** global
 #+begin_src emacs-lisp
   (general-create-definer spc-leader-def
-    :states '(normal)
+    :states '(normal treemacs)
     :keymaps 'override
     :prefix "SPC")
  #+end_src
