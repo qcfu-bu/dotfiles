@@ -435,7 +435,9 @@
    :host github
    :repo "jdtsmith/outli")
   :hook
-  (emacs-lisp-mode . outli-mode))
+  (emacs-lisp-mode . outli-mode)
+  :config
+  (setq outli-default-nobar t))
 
 (use-package presentation
   :straight
