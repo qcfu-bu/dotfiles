@@ -323,7 +323,7 @@
         dashboard-items
         '((bookmarks . 10)
           (projects . 10)
-          (recents . 10)))
+          (recents . 20)))
   :config
   (dashboard-setup-startup-hook))
 
