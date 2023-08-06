@@ -133,10 +133,6 @@
   (setq consult-preview-key nil)
   (add-to-list 'consult-buffer-filter "^\\*"))
 
-(use-package consult-flycheck
-  :straight t
-  :defer t)
-
 (use-package marginalia
   :straight t
   :after vertico
@@ -423,16 +419,6 @@
    :repo "zonuexe/emacs-presentation-mode"))
 
 
-;;; checkers
-;;;; flycheck
-(use-package flycheck
-  :straight t
-  :defer t
-  :config
-  (setq flycheck-display-errors-function nil
-        flycheck-check-syntax-automatically '(mode-enabled save)))
-
-
 ;;; tools
 ;;;; magit
 (use-package magit
@@ -492,18 +478,12 @@
   (evil-define-key 'normal pdf-view-mode-map
     (kbd "zm") 'pdf-view-themed-minor-mode))
 
-;;;; lsp
-(use-package lsp-mode
-  :straight t
-  :commands lsp-deferred
-  :init
-  (setq lsp-diagnostics-provider :flycheck
-        lsp-completion-provider :company
-        lsp-lens-enable nil
-        lsp-signature-auto-activate nil
-        lsp-headerline-breadcrumb-enable nil
-        lsp-modeline-code-actions-enable nil
-        lsp-modeline-diagnostics-enable nil))
+;;;; eglot
+(use-package eglot
+  :commands (eglot-ensure eglot-format-buffer)
+  :config
+  (add-to-list 'eglot-server-programs
+               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
 
 ;;;; restart
 (use-package restart-emacs
@@ -571,7 +551,7 @@
 (use-package auctex
   :straight t
   :hook
-  ((LaTeX-mode . lsp-deferred)
+  ((LaTeX-mode . eglot-ensure)
    (LaTeX-mode . visual-line-mode)
    (LaTeX-mode . flyspell-mode)
    (LaTeX-mode . rainbow-delimiters-mode))
@@ -620,9 +600,9 @@
 (use-package tuareg
   :straight t
   :hook
-  (tuareg-mode . lsp-deferred)
+  (tuareg-mode . eglot-ensure)
   (tuareg-mode . utop-minor-mode)
-  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer nil t)))
+  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t)))
   (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   (tuareg-menhir-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   :config
@@ -646,7 +626,7 @@
 (use-package haskell-mode
   :straight t
   :hook
-  (haskell-mode . lsp-deferred))
+  (haskell-mode . eglot-ensure))
 
 ;;;; sml
 (use-package sml-mode
@@ -672,13 +652,13 @@
 ;;;; c/c++
 (use-package cc
   :hook
-  (c-mode . lsp-deferred)
-  (c-mode . (lambda () (add-hook 'before-save-hook 'lsp-format-buffer nil t))))
+  (c-mode . eglot-ensure)
+  (c-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t))))
 
 ;;;; python
 (use-package python
   :hook
-  (python-mode . lsp-deferred)
+  (python-mode . eglot-ensure)
   :config
   (setq python-shell-interpreter "python3.10"))
 
