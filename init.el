@@ -713,7 +713,7 @@
 
 ;;;; global
 (general-create-definer spc-leader-def
-  :states '(normal treemacs)
+  :states '(normal)
   :keymaps 'override
   :prefix "SPC")
 
