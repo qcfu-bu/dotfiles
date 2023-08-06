@@ -441,6 +441,19 @@
   :straight t
   :defer t)
 
+;;;; eldoc
+(use-package eldoc
+  :straight t
+  :config
+  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
+
+;;;; eglot
+(use-package eglot
+  :commands (eglot-ensure eglot-format-buffer)
+  :config
+  (add-to-list 'eglot-server-programs
+               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
+
 ;;;; dired
 (use-package dired
   :hook
@@ -477,13 +490,6 @@
         pdf-view-use-imagemagick nil)
   (evil-define-key 'normal pdf-view-mode-map
     (kbd "zm") 'pdf-view-themed-minor-mode))
-
-;;;; eglot
-(use-package eglot
-  :commands (eglot-ensure eglot-format-buffer)
-  :config
-  (add-to-list 'eglot-server-programs
-               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
 
 ;;;; restart
 (use-package restart-emacs
@@ -644,10 +650,7 @@
    :type git
    :host github
    :repo "qcfu-bu/ATS2-emacs")
-  :hook
-  (ats2-mode . flycheck-mode)
-  :config
-  (ats2-flycheck-setup))
+  :defer t)
 
 ;;;; c/c++
 (use-package cc
@@ -706,6 +709,7 @@
 
 ;;;;; help
 (spc-leader-def
+  "hh" 'eldoc
   "hv" 'describe-variable
   "hf" 'describe-function
   "hF" 'describe-face
@@ -715,7 +719,7 @@
   "hk" 'describe-key
   "hm" 'describe-mode
   "hi" 'describe-input-method
-  "hc" 'consult-flycheck)
+  "hc" 'consult-flymake)
 
 ;;;;; editor
 (spc-leader-def
