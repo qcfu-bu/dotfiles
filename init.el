@@ -670,11 +670,6 @@
   :straight t
   :defer t)
 
-;;;; z3
-(use-package z3-mode
-  :straight t
-  :defer t)
-
 ;;;; tll
 (use-package tll-mode
   :load-path "~/Git/TLL")
