@@ -472,6 +472,7 @@
 
 ;;;; compile
 (use-package compile
+  :commands (compile recompile)
   :config
   (setq compilation-scroll-output t
         compile-command "make"))
