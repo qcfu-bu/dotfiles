@@ -42,7 +42,7 @@
 (setq frame-resize-pixelwise t)
 (setq delete-by-moving-to-trash t)
 (setq native-comp-async-report-warnings-errors nil)
-(setq-default line-spacing 0.3)
+(setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
 
@@ -105,7 +105,8 @@
   (setq mac-redisplay-dont-reset-vscroll t
         mac-mouse-wheel-smooth-scroll nil)
   (setq trash-directory "~/.Trash")
-  (menu-bar-mode 1))
+  (menu-bar-mode 1)
+  (mac-auto-operator-composition-mode 1))
 
 
 ;;; completion
@@ -289,9 +290,9 @@
 
 ;;; ui
 ;;;; fonts
-(set-face-attribute 'default nil :font "DejaVu Sans Mono-14")
-(set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono-14")
-(set-face-attribute 'variable-pitch nil :font "DejaVu Sans Mono-14")
+(set-face-attribute 'default nil :font "Fira Code-14")
+(set-face-attribute 'fixed-pitch nil :font "Fira Code-14")
+(set-face-attribute 'variable-pitch nil :font "Fira Code-16")
 
 ;;;; themes
 (use-package doom-themes
