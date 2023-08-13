@@ -105,8 +105,7 @@
   (setq mac-redisplay-dont-reset-vscroll t
         mac-mouse-wheel-smooth-scroll nil)
   (setq trash-directory "~/.Trash")
-  (menu-bar-mode 1)
-  (mac-auto-operator-composition-mode 1))
+  (menu-bar-mode 1))
 
 
 ;;; completion
@@ -290,9 +289,9 @@
 
 ;;; ui
 ;;;; fonts
-(set-face-attribute 'default nil :font "JuliaMono-14")
-(set-face-attribute 'fixed-pitch nil :font "JuliaMono-14")
-(set-face-attribute 'variable-pitch nil :font "JuliaMono-14")
+(set-face-attribute 'default nil :font "DejaVu Sans Mono-14")
+(set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono-14")
+(set-face-attribute 'variable-pitch nil :font "DejaVu Sans Mono-14")
 
 ;;;; themes
 (use-package doom-themes
