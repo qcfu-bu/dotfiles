@@ -281,10 +281,7 @@
 ;;;; format
 (use-package reformatter
   :straight t
-  :config
-  (reformatter-define sml-format
-    :program "smlfmt"
-    :args '("--stdio")))
+  :commands reformatter-define)
 
 
 ;;; ui
@@ -610,10 +607,13 @@
   :hook
   (tuareg-mode . eglot-ensure)
   (tuareg-mode . utop-minor-mode)
+  ;; (tuareg-mode . ocp-format-on-save-mode)
   (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t)))
   (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   (tuareg-menhir-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   :config
+  (reformatter-define ocp-format
+    :program "ocp-indent")
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
 
@@ -643,6 +643,9 @@
   :hook
   (sml-mode . sml-format-on-save-mode)
   :config
+  (reformatter-define sml-format
+    :program "smlfmt"
+    :args '("--stdio"))
   (setq sml-program-name "poly"))
 
 ;;;; ats
