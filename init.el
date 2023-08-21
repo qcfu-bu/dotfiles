@@ -293,9 +293,19 @@
 ;;;; themes
 (use-package doom-themes
   :straight t
+  :init
+  (setq ui:light-theme 'doom-one-light)
+  (setq ui:dark-theme 'doom-one)
+  (defun ui:appearance-change ()
+    (let ((appearance (plist-get (mac-application-state) :appearance)))
+      (cond ((equal appearance "NSAppearanceNameAqua")
+             (load-theme ui:light-theme t))
+            ((equal appearance "NSAppearanceNameDarkAqua")
+             (load-theme ui:dark-theme t)))
+      (doom-themes-org-config)))
   :config
-  (load-theme 'doom-one t)
-  (doom-themes-org-config))
+  (add-hook 'mac-effective-appearance-change-hook 'ui:appearance-change)
+  (ui:appearance-change))
 
 ;;;; modeline
 (use-package doom-modeline
