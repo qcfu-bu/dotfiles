@@ -311,7 +311,6 @@
   :hook
   (ibuffer-mode . nerd-icons-ibuffer-mode))
 
-
 ;;;; themes
 (use-package doom-themes
   :straight t
