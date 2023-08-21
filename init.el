@@ -472,7 +472,6 @@
 
 ;;;; eglot
 (use-package eglot
-  :straight t
   :commands (eglot-ensure eglot-format-buffer)
   :config
   (add-to-list 'eglot-server-programs
