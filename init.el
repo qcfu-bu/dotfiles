@@ -293,19 +293,35 @@
 ;;;; themes
 (use-package doom-themes
   :straight t
-  :init
-  (setq ui:light-theme 'doom-one-light)
-  (setq ui:dark-theme 'doom-one)
-  (defun ui:appearance-change ()
-    (let ((appearance (plist-get (mac-application-state) :appearance)))
-      (cond ((equal appearance "NSAppearanceNameAqua")
-             (load-theme ui:light-theme t))
-            ((equal appearance "NSAppearanceNameDarkAqua")
-             (load-theme ui:dark-theme t)))
-      (doom-themes-org-config)))
   :config
-  (add-hook 'mac-effective-appearance-change-hook 'ui:appearance-change)
-  (ui:appearance-change))
+  (doom-themes-org-config))
+
+(use-package modus-themes
+  :straight t
+  :config
+  (setq modus-themes-common-palette-overrides
+        '((fg-line-number-inactive "gray50")
+          (fg-line-number-active fg-main)
+          (bg-line-number-inactive unspecified)
+          (bg-line-number-active unspecified)))
+  (setq modus-vivendi-palette-overrides
+        '((bg-main bg-dim)))
+  (setq modus-operandi-palette-overrides
+        '((bg-main bg-dim))))
+
+;; set light and dark themes
+(setq ui:light-theme 'doom-one-light)
+(setq ui:dark-theme 'doom-one)
+
+;; change theme according to system theme
+(defun ui:appearance-change ()
+  (let ((appearance (plist-get (mac-application-state) :appearance)))
+    (cond ((equal appearance "NSAppearanceNameAqua")
+           (load-theme ui:light-theme t))
+          ((equal appearance "NSAppearanceNameDarkAqua")
+           (load-theme ui:dark-theme t)))))
+(add-hook 'mac-effective-appearance-change-hook 'ui:appearance-change)
+(ui:appearance-change)
 
 ;;;; modeline
 (use-package doom-modeline
