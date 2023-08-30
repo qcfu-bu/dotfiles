@@ -498,7 +498,7 @@
   :commands (compile recompile)
   :config
   (setq compilation-scroll-output t
-        compile-command "make"))
+        compile-command "make -j"))
 
 ;;;; pdf
 (use-package pdf-tools
