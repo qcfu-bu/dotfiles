@@ -622,8 +622,7 @@
   :hook
   (tuareg-mode . eglot-ensure)
   (tuareg-mode . utop-minor-mode)
-  ;; (tuareg-mode . ocp-format-on-save-mode)
-  (tuareg-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t)))
+  (tuareg-mode . ocp-format-on-save-mode)
   (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   (tuareg-menhir-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   :config
