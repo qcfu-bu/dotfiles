@@ -673,9 +673,11 @@
 
 ;;;; c/c++
 (use-package cc
+  :init
+  (setq c-default-style "k&r")
+  (setq-default c-basic-offset 4)
   :hook
-  (c-mode . eglot-ensure)
-  (c-mode . (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t))))
+  (c-mode . eglot-ensure))
 
 ;;;; python
 (use-package python
