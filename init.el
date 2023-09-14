@@ -42,7 +42,7 @@
 (setq frame-resize-pixelwise t)
 (setq delete-by-moving-to-trash t)
 (setq native-comp-async-report-warnings-errors nil)
-(setq-default line-spacing 0.3)
+(setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
 
@@ -286,9 +286,9 @@
 
 ;;; ui
 ;;;; fonts
-(set-face-attribute 'default nil :font "DejaVu Sans Mono-14")
-(set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono-14")
-(set-face-attribute 'variable-pitch nil :font "DejaVu Sans Mono-14")
+(set-face-attribute 'default nil :font "JetBrains Mono-14")
+(set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-14")
+(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
 
 ;;;; themes
 (use-package doom-themes
