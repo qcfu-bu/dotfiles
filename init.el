@@ -303,11 +303,8 @@
         '((fg-line-number-inactive "gray50")
           (fg-line-number-active fg-main)
           (bg-line-number-inactive unspecified)
-          (bg-line-number-active unspecified)))
-  (setq modus-vivendi-palette-overrides
-        '((bg-main bg-dim)))
-  (setq modus-operandi-palette-overrides
-        '((bg-main bg-dim))))
+          (bg-line-number-active unspecified)
+          (bg-main bg-dim))))
 
 ;; set default theme
 (load-theme 'doom-one t)
