@@ -315,6 +315,7 @@
 (use-package doom-themes
   :straight t
   :config
+  (setq doom-themes-enable-italic nil)
   (doom-themes-org-config))
 
 (use-package modus-themes
