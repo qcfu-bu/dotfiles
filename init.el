@@ -338,24 +338,6 @@
         doom-modeline-buffer-file-name-style 'buffer-name)
   (doom-modeline-mode t))
 
-;;;; dashboard
-(use-package dashboard
-  :straight t
-  :init
-  (setq dashboard-display-icons-p t
-        dashboard-icon-type 'nerd-icons
-        dashboard-set-heading-icons t
-        dashboard-set-file-icons t)
-  (setq dashboard-startup-banner 3
-        dashboard-set-footer nil
-        dashboard-projects-backend 'project-el
-        dashboard-items
-        '((bookmarks . 10)
-          (projects . 10)
-          (recents . 20)))
-  :config
-  (dashboard-setup-startup-hook))
-
 ;;;; popup
 (use-package popper
   :straight t
