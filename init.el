@@ -668,7 +668,9 @@
    :host github
    :repo "qcfu-bu/ATS2-emacs")
   :commands (ats2-flycheck-setup)
-  :hook (ats2-mode . ats2-flycheck-setup) )
+  :hook
+  ((ats2-mode . ats2-flycheck-setup)
+   (ats2-mode . flycheck-mode)))
 
 ;;;; c/c++
 (use-package cc
