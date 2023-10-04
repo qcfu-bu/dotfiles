@@ -4,7 +4,6 @@
 ;;; bootstrap
 ;;;; gc
 (setq gc-cons-threshold 100000000)
-(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 
 ;;;; straight
 (setq straight-check-for-modifications '(check-on-save)
@@ -45,6 +44,7 @@
 (setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 ;;;; minibuffer
 (setq minibuffer-prompt-properties
@@ -259,8 +259,7 @@
 ;;;; word-wrap
 (use-package adaptive-wrap
   :straight t
-  :hook
-  (visual-line-mode . adaptive-wrap-prefix-mode))
+  :hook (visual-line-mode . adaptive-wrap-prefix-mode))
 
 ;;;; undo
 (use-package undo-fu
@@ -303,13 +302,11 @@
 
 (use-package nerd-icons-dired
   :straight t
-  :hook
-  (dired-mode . nerd-icons-dired-mode))
+  :hook (dired-mode . nerd-icons-dired-mode))
 
 (use-package nerd-icons-ibuffer
   :straight t
-  :hook
-  (ibuffer-mode . nerd-icons-ibuffer-mode))
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 ;;;; themes
 (use-package doom-themes
@@ -388,8 +385,7 @@
 
 (use-package rainbow-delimiters
   :straight t
-  :hook
-  (prog-mode . rainbow-delimiters-mode))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 ;;;; highlight
 (use-package rainbow-mode
@@ -423,8 +419,7 @@
    :type git
    :host github
    :repo "jdtsmith/outli")
-  :hook
-  (emacs-lisp-mode . outli-mode)
+  :hook (emacs-lisp-mode . outli-mode)
   :config
   (setq outli-default-nobar t))
 
@@ -458,23 +453,28 @@
   :straight t
   :defer t)
 
-;;;; eldoc
-(use-package eldoc
+;;;; flycheck
+(use-package flycheck
   :straight t
+  :defer t
   :config
-  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
+  (setq flycheck-check-syntax-automatically '(mode-enabled save)))
 
-;;;; eglot
-(use-package eglot
-  :commands (eglot-ensure eglot-format-buffer)
+(use-package consult-flycheck
+  :straight t
+  :defer t)
+
+;;;; lsp
+(use-package lsp-mode
+  :straight t
+  :commands (lsp-deferred)
   :config
-  (add-to-list 'eglot-server-programs
-               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
+  (setq lsp-idle-delay 0.4
+        lsp-headerline-breadcrumb-enable nil))
 
 ;;;; dired
 (use-package dired
-  :hook
-  (dired-mode . dired-omit-mode)
+  :hook (dired-mode . dired-omit-mode)
   :config
   (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
         dired-listing-switches "-alh"
@@ -526,8 +526,7 @@
 (use-package vterm
   :straight t
   :defer t
-  :hook
-  (vterm-mode . (lambda () (setq confirm-kill-processes nil)))
+  :hook (vterm-mode . (lambda () (setq confirm-kill-processes nil)))
   :config
   (setq vterm-kill-buffer-on-exit t
         vterm-max-scrollback 5000))
@@ -541,8 +540,7 @@
 ;;;; markdown
 (use-package markdown-mode
   :straight t
-  :mode
-  ("/README\\(?:\\.md\\)?\\'" . gfm-mode)
+  :mode ("/README\\(?:\\.md\\)?\\'" . gfm-mode)
   :hook
   ((markdown-mode . visual-line-mode)
    (markdown-mode . flyspell-mode))
@@ -575,7 +573,7 @@
 (use-package auctex
   :straight t
   :hook
-  ((LaTeX-mode . eglot-ensure)
+  ((LaTeX-mode . lsp-deferred)
    (LaTeX-mode . visual-line-mode)
    (LaTeX-mode . flyspell-mode)
    (LaTeX-mode . rainbow-delimiters-mode))
@@ -601,8 +599,7 @@
 (use-package auctex-latexmk
   :straight t
   :after latex
-  :hook
-  ((LaTeX-mode . (lambda () (setq TeX-command-default "LatexMk"))))
+  :hook ((LaTeX-mode . (lambda () (setq TeX-command-default "LatexMk"))))
   :init
   (setq auctex-latexmk-inherit-TeX-PDF-mode t)
   :config
@@ -615,8 +612,7 @@
 
 (use-package proof-general
   :straight t
-  :hook
-  (coq-mode . company-coq-mode)
+  :hook (coq-mode . company-coq-mode)
   :init
   (setq proof-splash-enable nil
         proof-three-window-mode-policy 'hybrid))
@@ -625,7 +621,7 @@
 (use-package tuareg
   :straight t
   :hook
-  (tuareg-mode . eglot-ensure)
+  (tuareg-mode . lsp-deferred)
   (tuareg-mode . utop-minor-mode)
   (tuareg-mode . ocp-format-on-save-mode)
   (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
@@ -642,8 +638,7 @@
 
 (use-package dune
   :straight t
-  :hook
-  (dune-mode . dune-format-on-save-mode))
+  :hook (dune-mode . dune-format-on-save-mode))
 
 (use-package dune-format
   :straight t
@@ -652,15 +647,13 @@
 ;;;; haskell
 (use-package haskell-mode
   :straight t
-  :hook
-  (haskell-mode . eglot-ensure))
+  :hook (haskell-mode . lsp-deferred))
 
 ;;;; sml
 (use-package sml-mode
   :straight t
   :defer t
-  :hook
-  (sml-mode . sml-format-on-save-mode)
+  :hook (sml-mode . sml-format-on-save-mode)
   :config
   (reformatter-define sml-format
     :program "smlfmt"
@@ -674,20 +667,19 @@
    :type git
    :host github
    :repo "qcfu-bu/ATS2-emacs")
-  :defer t)
+  :commands (ats2-flycheck-setup)
+  :hook (ats2-mode . ats2-flycheck-setup) )
 
 ;;;; c/c++
 (use-package cc
   :init
   (setq c-default-style "k&r")
   (setq-default c-basic-offset 4)
-  :hook
-  (c-mode . eglot-ensure))
+  :hook (c-mode . lsp-deferred))
 
 ;;;; python
 (use-package python
-  :hook
-  (python-mode . eglot-ensure)
+  :hook (python-mode . lsp-deferred)
   :config
   (setq python-shell-interpreter "python3.10"))
 
@@ -699,8 +691,7 @@
 (use-package tll-mode
   :load-path "~/Git/TLL"
   :demand t
-  :hook
-  (tll-mode . prettify-symbols-mode))
+  :hook (tll-mode . prettify-symbols-mode))
 
 
 ;;; keybinds
@@ -743,7 +734,7 @@
   "hk" 'describe-key
   "hm" 'describe-mode
   "hi" 'describe-input-method
-  "hc" 'consult-flymake)
+  "hc" 'consult-flycheck)
 
 ;;;;; editor
 (spc-leader-def
