@@ -440,7 +440,8 @@
   (setq projectile-ignored-projects '("~/")
         projectile-project-root-files '()
         projectile-project-root-files-bottom-up '(".projectile" ".git")
-        projectile-project-root-files-top-down-recurring '("Makefile")))
+        projectile-project-root-files-top-down-recurring '("Makefile"))
+  (projectile-mode 1))
 
 (use-package consult-projectile
   :straight t
