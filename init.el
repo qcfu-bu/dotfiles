@@ -494,7 +494,7 @@
 (use-package dired
   :hook (dired-mode . dired-omit-mode)
   :config
-  (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$"
+  (setq dired-omit-files "^\\(?:\\..*\\|.*~\\)$\\|\\.vo\\(?:k\\|s\\)$"
         dired-listing-switches "-alh"
         dired-use-ls-dired nil
         dired-dwim-target t))
