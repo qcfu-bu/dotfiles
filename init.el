@@ -485,6 +485,9 @@
   :commands (lsp-deferred)
   :config
   (setq lsp-idle-delay 0.4
+        lsp-auto-guess-root t
+        lsp-modeline-diagnostics-enable nil
+        lsp-modeline-code-actions-enable nil
         lsp-headerline-breadcrumb-enable nil))
 
 ;;;; dired
@@ -506,7 +509,7 @@
   :commands (compile recompile)
   :config
   (setq compilation-scroll-output t
-        compile-command "make -j"))
+        compile-command "make"))
 
 ;;;; pdf
 (use-package pdf-tools
