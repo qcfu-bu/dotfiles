@@ -804,8 +804,7 @@
   "pf" 'consult-projectile-find-file
   "pd" 'consult-projectile-find-dir
   "pr" 'consult-projectile-recentf
-  "pc" 'projectile-compile-project
-  "pd" 'projectile-remove-known-project)
+  "pc" 'projectile-compile-project)
 
 ;;;;; bookmarks
 (spc-leader-def
