@@ -432,6 +432,18 @@
 
 
 ;;; tools
+;;;; projectile
+(use-package projectile
+  :straight t
+  :init
+  (projectile-mode 1)
+  :bind (:map projectile-mode-map
+              ("C-c p" . projectile-command-map)))
+
+(use-package consult-projectile
+  :straight t
+  :defer t)
+
 ;;;; magit
 (use-package magit
   :straight t
@@ -787,11 +799,13 @@
 
 ;;;;; projects
 (spc-leader-def
-  "pp" 'project-switch-project
-  "pb" 'consult-project-buffer
-  "pf" 'project-find-file
-  "pd" 'project-find-dir
-  "pc" 'project-compile)
+  "pp" 'consult-projectile-switch-project
+  "pb" 'consult-projectile-switch-to-buffer
+  "pf" 'consult-projectile-find-file
+  "pd" 'consult-projectile-find-dir
+  "pr" 'consult-projectile-recentf
+  "pc" 'projectile-compile-project
+  "pd" 'projectile-remove-known-project)
 
 ;;;;; bookmarks
 (spc-leader-def
