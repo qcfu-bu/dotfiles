@@ -436,12 +436,13 @@
 (use-package projectile
   :straight t
   :bind (:map projectile-mode-map ("C-c p" . projectile-command-map))
-  :config
+  :init
   (setq projectile-enable-caching t
         projectile-ignored-projects '("~/")
         projectile-project-root-files '()
         projectile-project-root-files-bottom-up '(".projectile" ".git")
         projectile-project-root-files-top-down-recurring '("Makefile"))
+  :config
   (projectile-mode 1))
 
 (use-package consult-projectile
