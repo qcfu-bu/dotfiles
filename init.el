@@ -1,6 +1,5 @@
 ;;; init.el --- emacs dotfile -*- lexical-binding: t -*-
 
-
 ;;; bootstrap
 ;;;; gc
 (setq gc-cons-threshold 100000000)
@@ -29,7 +28,6 @@
   (when (memq window-system '(mac ns x))
     (setq exec-path-from-shell-arguments nil)
     (exec-path-from-shell-initialize)))
-
 
 ;;; emacs
 ;;;; info
@@ -98,7 +96,6 @@
   :config
   (add-to-list 'recentf-exclude "/private/var/folders/*"))
 
-
 ;;; os
 ;;;; macos
 (when (eq system-type 'darwin)
@@ -106,7 +103,6 @@
         mac-mouse-wheel-smooth-scroll nil)
   (setq trash-directory "~/.Trash")
   (menu-bar-mode 1))
-
 
 ;;; completion
 ;;;; orderless
@@ -195,7 +191,6 @@
   (company-prescient-mode)
   (prescient-persist-mode))
 
-
 ;;; editor
 ;;;; evil
 (use-package evil
@@ -281,7 +276,6 @@
 (use-package reformatter
   :straight t
   :commands reformatter-define)
-
 
 ;;; ui
 ;;;; fonts
@@ -430,7 +424,6 @@
    :host github
    :repo "zonuexe/emacs-presentation-mode"))
 
-
 ;;; tools
 ;;;; projectile
 (use-package projectile
@@ -540,7 +533,6 @@
   :config
   (setq esup-depth 0))
 
-
 ;;; term
 ;;;; vterm
 (use-package vterm
@@ -554,7 +546,6 @@
 (use-package vterm-toggle
   :straight t
   :bind ("C-`" . vterm-toggle))
-
 
 ;;; lang
 ;;;; markdown
@@ -714,7 +705,6 @@
   :load-path "~/Git/TLL"
   :demand t
   :hook (tll-mode . prettify-symbols-mode))
-
 
 ;;; keybinds
 ;;;; which-key
