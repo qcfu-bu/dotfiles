@@ -35,6 +35,7 @@
       user-mail-address "qcfu@bu.edu")
 
 ;;;; defaults
+(server-start)
 (setq frame-title-format "%b - GNU Emacs")
 (setq use-short-answers t)
 (setq frame-resize-pixelwise t)
@@ -604,7 +605,6 @@
         ;; TeX-view-program-selection '((output-pdf "PDF Tools"))
         TeX-source-correlate-mode t
         TeX-source-correlate-method 'synctex
-        TeX-source-correlate-start-server t
         TeX-electric-math '("$" . "$")
         TeX-electric-sub-and-superscript t))
 
