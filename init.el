@@ -407,7 +407,7 @@
 (use-package olivetti
   :straight t
   :config
-  (setq-default fill-column 100))
+  (setq-default fill-column 90))
 
 (use-package outli
   :straight
