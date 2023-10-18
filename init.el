@@ -36,7 +36,6 @@
 
 ;;;; defaults
 (server-start)
-(setq frame-title-format "%b - GNU Emacs")
 (setq use-short-answers t)
 (setq frame-resize-pixelwise t)
 (setq delete-by-moving-to-trash t)
