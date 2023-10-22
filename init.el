@@ -284,25 +284,6 @@
 (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-14")
 (set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
 
-;;;; icons
-(use-package nerd-icons
-  :straight t)
-
-(use-package nerd-icons-completion
-  :straight t
-  :after marginalia
-  :config
-  (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
-
-(use-package nerd-icons-dired
-  :straight t
-  :hook (dired-mode . nerd-icons-dired-mode))
-
-(use-package nerd-icons-ibuffer
-  :straight t
-  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
-
 ;;;; themes
 (use-package doom-themes
   :straight t
@@ -327,7 +308,9 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-buffer-encoding nil
+  (setq doom-modeline-icon nil
+        doom-modeline-bar-width nil
+        doom-modeline-buffer-encoding nil
         doom-modeline-buffer-file-name-style 'buffer-name)
   (doom-modeline-mode t))
 
