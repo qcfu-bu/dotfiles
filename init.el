@@ -781,6 +781,7 @@
 ;;;;; projects
 (spc-leader-def
   "pp" 'consult-projectile-switch-project
+  "p+" 'projectile-add-known-project
   "pb" 'consult-projectile-switch-to-buffer
   "pf" 'consult-projectile-find-file
   "pd" 'consult-projectile-find-dir
