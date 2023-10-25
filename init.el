@@ -232,11 +232,13 @@
 
 (use-package evil-surround
   :straight t
+  :after evil
   :config
   (global-evil-surround-mode t))
 
 (use-package evil-commentary
   :straight t
+  :after evil
   :config
   (evil-commentary-mode))
 
