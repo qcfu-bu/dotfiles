@@ -348,16 +348,9 @@
 
 ;;;; linum
 (use-package display-line-numbers
-  :hook
-  ((prog-mode text-mode conf-mode) . display-line-numbers-mode)
+  :hook ((prog-mode text-mode conf-mode) . display-line-numbers-mode)
   :config
   (setq-default display-line-numbers-width 3))
-
-;;;; vi-tilde
-(use-package vi-tilde-fringe
-  :straight t
-  :hook
-  ((prog-mode text-mode conf-mode) . vi-tilde-fringe-mode))
 
 ;;;; delimiter
 (use-package electric
@@ -376,8 +369,7 @@
 
 (use-package hl-todo
   :straight t
-  :hook
-  ((prog-mode text-mode) . hl-todo-mode)
+  :hook ((prog-mode text-mode) . hl-todo-mode)
   :config
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-keyword-faces
