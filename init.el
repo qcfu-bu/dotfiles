@@ -35,7 +35,6 @@
       user-mail-address "qcfu@bu.edu")
 
 ;;;; defaults
-(server-start)
 (setq use-short-answers t)
 (setq frame-resize-pixelwise t)
 (setq delete-by-moving-to-trash t)
@@ -44,6 +43,11 @@
 (setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
+
+;;;; server
+(use-package server
+  :config
+  (unless (server-running-p) (server-start)))
 
 ;;;; minibuffer
 (setq minibuffer-prompt-properties
