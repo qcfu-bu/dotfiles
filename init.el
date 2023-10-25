@@ -3,6 +3,8 @@
 ;;; bootstrap
 ;;;; gc
 (setq gc-cons-threshold 100000000)
+(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 16777216
+                                            gc-cons-percentage 0.1)))
 
 ;;;; straight
 (setq straight-check-for-modifications '(check-on-save)
