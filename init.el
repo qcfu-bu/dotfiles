@@ -297,7 +297,9 @@
   :straight t
   :config
   (setq modus-themes-common-palette-overrides
-        '((fg-line-number-inactive "gray50")
+        '((border-mode-line-active unspecified)
+          (border-mode-line-inactive unspecified)
+          (fg-line-number-inactive "gray50")
           (fg-line-number-active fg-main)
           (bg-line-number-inactive unspecified)
           (bg-line-number-active unspecified)
