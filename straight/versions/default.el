@@ -74,6 +74,7 @@
  ("use-package" . "a6e856418d2ebd053b34e0ab2fda328abeba731c")
  ("utop" . "fcb7903603cec5e8a2bb4371ea43b1c01f261170")
  ("vertico" . "edbb370ad237781eb893a5c2b505cfa24e6b2d9a")
+ ("vi-tilde-fringe" . "f1597a8d54535bb1d84b442577b2024e6f910308")
  ("vterm-toggle" . "06cb4f3c565e46470a3c4505c11e26066d869715")
  ("with-editor" . "fcd186d1e684c2dca6497c89af77b27b2b036c11")
  ("yaml-mode" . "23395dfcf004c952850691b70e63f97f169596e8")

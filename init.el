@@ -357,7 +357,7 @@
 (use-package display-line-numbers
   :hook ((prog-mode text-mode conf-mode) . display-line-numbers-mode)
   :config
-  (setq-default display-line-numbers-width 3))
+  (setq-default display-line-numbers-width 4))
 
 ;;;; vi-tilde
 (use-package vi-tilde-fringe
