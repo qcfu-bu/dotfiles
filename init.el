@@ -353,12 +353,6 @@
   (setq tab-bar-show nil
         tab-bar-new-tab-choice "*scratch*"))
 
-;;;; linum
-(use-package display-line-numbers
-  :hook ((prog-mode text-mode conf-mode) . display-line-numbers-mode)
-  :config
-  (setq-default display-line-numbers-width 3))
-
 ;;;; delimiter
 (use-package electric
   :config
