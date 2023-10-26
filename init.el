@@ -581,18 +581,6 @@
   :config
   (auctex-latexmk-setup))
 
-;;;; coq
-(use-package company-coq
-  :straight t
-  :defer t)
-
-(use-package proof-general
-  :straight t
-  :hook (coq-mode . company-coq-mode)
-  :init
-  (setq proof-splash-enable nil
-        proof-three-window-mode-policy 'hybrid))
-
 ;;;; ocaml
 (use-package tuareg
   :straight t
@@ -620,10 +608,31 @@
   :straight t
   :defer t)
 
+;;;; coq
+(use-package company-coq
+  :straight t
+  :defer t)
+
+(use-package proof-general
+  :straight t
+  :hook (coq-mode . company-coq-mode)
+  :init
+  (setq proof-splash-enable nil
+        proof-three-window-mode-policy 'hybrid))
+
 ;;;; haskell
 (use-package haskell-mode
   :straight t
   :hook (haskell-mode . eglot-ensure))
+
+;;;; agda
+(use-package agda2-mode
+  :load-path
+  (lambda ()
+    (let ((coding-system-for-read 'utf-8))
+      (file-name-directory (shell-command-to-string "agda-mode locate"))))
+  :mode ("\\.l?agda\\'" . agda2-mode)
+  :hook ((agda2-mode . (lambda () (activate-input-method "Agda")))))
 
 ;;;; sml
 (use-package sml-mode
