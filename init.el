@@ -411,23 +411,6 @@
    :repo "zonuexe/emacs-presentation-mode"))
 
 ;;; tools
-;;;; projectile
-(use-package projectile
-  :straight t
-  :bind (:map projectile-mode-map ("C-c p" . projectile-command-map))
-  :init
-  (setq projectile-enable-caching t
-        projectile-ignored-projects '("~/")
-        projectile-project-root-files '()
-        projectile-project-root-files-bottom-up '(".projectile" ".git")
-        projectile-project-root-files-top-down-recurring '("Makefile"))
-  :config
-  (projectile-mode 1))
-
-(use-package consult-projectile
-  :straight t
-  :defer t)
-
 ;;;; magit
 (use-package magit
   :straight t
@@ -449,27 +432,12 @@
   :straight t
   :defer t)
 
-;;;; flycheck
-(use-package flycheck
-  :straight t
-  :defer t
+;;;; eglot
+(use-package eglot
+  :commands (eglot-ensure)
   :config
-  (setq flycheck-check-syntax-automatically '(mode-enabled save)))
-
-(use-package consult-flycheck
-  :straight t
-  :defer t)
-
-;;;; lsp
-(use-package lsp-mode
-  :straight t
-  :commands (lsp-deferred)
-  :config
-  (setq lsp-idle-delay 0.4
-        lsp-auto-guess-root t
-        lsp-modeline-diagnostics-enable nil
-        lsp-modeline-code-actions-enable nil
-        lsp-headerline-breadcrumb-enable nil))
+  (add-to-list 'eglot-server-programs
+               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
 
 ;;;; dired
 (use-package dired
@@ -570,7 +538,7 @@
 (use-package auctex
   :straight t
   :hook
-  ((LaTeX-mode . lsp-deferred)
+  ((LaTeX-mode . eglot-ensure)
    (LaTeX-mode . visual-line-mode)
    (LaTeX-mode . flyspell-mode)
    (LaTeX-mode . rainbow-delimiters-mode))
@@ -617,7 +585,7 @@
 (use-package tuareg
   :straight t
   :hook
-  (tuareg-mode . lsp-deferred)
+  (tuareg-mode . eglot-ensure)
   (tuareg-mode . utop-minor-mode)
   (tuareg-mode . ocp-format-on-save-mode)
   (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
@@ -643,7 +611,7 @@
 ;;;; haskell
 (use-package haskell-mode
   :straight t
-  :hook (haskell-mode . lsp-deferred))
+  :hook (haskell-mode . eglot-ensure))
 
 ;;;; sml
 (use-package sml-mode
@@ -663,21 +631,21 @@
    :type git
    :host github
    :repo "qcfu-bu/ATS2-emacs")
-  :commands (ats2-flycheck-setup)
+  :commands (ats2-flymake-setup)
   :hook
-  ((ats2-mode . ats2-flycheck-setup)
-   (ats2-mode . flycheck-mode)))
+  ((ats2-mode . ats2-flymake-setup)
+   (ats2-mode . flymake-mode)))
 
 ;;;; c/c++
 (use-package cc
   :init
   (setq c-default-style "k&r")
   (setq-default c-basic-offset 4)
-  :hook (c-mode . lsp-deferred))
+  :hook (c-mode . eglot-ensure))
 
 ;;;; python
 (use-package python
-  :hook (python-mode . lsp-deferred)
+  :hook (python-mode . eglot-ensure)
   :config
   (setq python-shell-interpreter "python3.10"))
 
@@ -731,7 +699,7 @@
   "hk" 'describe-key
   "hm" 'describe-mode
   "hi" 'describe-input-method
-  "hc" 'consult-flycheck)
+  "hc" 'consult-flymake)
 
 ;;;;; editor
 (spc-leader-def
@@ -782,13 +750,11 @@
 
 ;;;;; projects
 (spc-leader-def
-  "pp" 'consult-projectile-switch-project
-  "p+" 'projectile-add-known-project
-  "pb" 'consult-projectile-switch-to-buffer
-  "pf" 'consult-projectile-find-file
-  "pd" 'consult-projectile-find-dir
-  "pr" 'consult-projectile-recentf
-  "pc" 'projectile-compile-project)
+  "pp" 'project-switch-project
+  "pb" 'consult-project-buffer
+  "pf" 'project-find-file
+  "pd" 'project-find-dir
+  "pc" 'project-compile)
 
 ;;;;; bookmarks
 (spc-leader-def
