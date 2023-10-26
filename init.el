@@ -434,6 +434,7 @@
 
 ;;;; eglot
 (use-package eglot
+  :straight t
   :commands (eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
