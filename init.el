@@ -432,9 +432,13 @@
   :straight t
   :defer t)
 
+;;;; eldoc
+(use-package eldoc
+  :config
+  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
+
 ;;;; eglot
 (use-package eglot
-  :straight t
   :commands (eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
