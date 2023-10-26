@@ -40,6 +40,7 @@
 (setq use-short-answers t)
 (setq frame-resize-pixelwise t)
 (setq delete-by-moving-to-trash t)
+(setq confirm-kill-emacs 'yes-or-no-p)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 (setq native-comp-async-report-warnings-errors nil)
 (setq-default line-spacing 0.2)
