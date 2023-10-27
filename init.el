@@ -432,7 +432,6 @@
   (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom)
-  (setq git-gutter-fr:side 'right-fringe)
   (global-git-gutter-mode t))
 
 (use-package gitignore-templates
@@ -443,6 +442,12 @@
 (use-package eldoc
   :config
   (setq eldoc-display-functions '(eldoc-display-in-buffer)))
+
+;;;; flymake
+(use-package flymake
+  :defer t
+  :init
+  (setq flymake-fringe-indicator-position nil))
 
 ;;;; eglot
 (use-package eglot
@@ -479,8 +484,7 @@
   :hook
   ((pdf-view-mode
     . (lambda () (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
-  :init
-  (pdf-loader-install)
+  :init (pdf-loader-install)
   :config
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-view-use-scaling t
