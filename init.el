@@ -440,17 +440,20 @@
 
 ;;;; eldoc
 (use-package eldoc
+  :straight t
   :config
   (setq eldoc-display-functions '(eldoc-display-in-buffer)))
 
 ;;;; flymake
 (use-package flymake
+  :straight t
   :defer t
   :init
   (setq flymake-fringe-indicator-position nil))
 
 ;;;; eglot
 (use-package eglot
+  :straight t
   :commands (eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
