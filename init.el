@@ -457,9 +457,7 @@
   :commands (eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
-               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab")))
-  (setq-default eglot-workspace-configuration
-                '(:texlab (:build (:onSave t)))))
+               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
 
 ;;;; dired
 (use-package dired
