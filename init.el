@@ -313,7 +313,7 @@
           (bg-main bg-dim))))
 
 ;; set default theme
-(load-theme 'doom-one t)
+(load-theme 'doom-gruvbox t)
 
 ;;;; modeline
 (use-package doom-modeline
