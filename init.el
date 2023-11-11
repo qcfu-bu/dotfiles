@@ -316,7 +316,7 @@
           (bg-main bg-dim))))
 
 ;; set default theme
-(load-theme 'modus-vivendi t)
+(load-theme 'doom-one t)
 
 ;;;; modeline
 (use-package doom-modeline
