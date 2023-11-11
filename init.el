@@ -304,16 +304,19 @@
   :straight t
   :config
   (setq modus-themes-common-palette-overrides
-        '((border-mode-line-active unspecified)
+        '(;; borderless modeline
+          (border-mode-line-active unspecified)
           (border-mode-line-inactive unspecified)
+          ;; subtle line numbers
           (fg-line-number-inactive "gray50")
           (fg-line-number-active fg-main)
           (bg-line-number-inactive unspecified)
           (bg-line-number-active unspecified)
+          ;; soften background
           (bg-main bg-dim))))
 
 ;; set default theme
-(load-theme 'doom-one t)
+(load-theme 'modus-vivendi t)
 
 ;;;; modeline
 (use-package doom-modeline
@@ -866,3 +869,15 @@
   :keymaps 'python-mode-map
   "e" 'run-python
   "b" 'python-shell-send-buffer)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values '((TeX-master . main.tex))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
