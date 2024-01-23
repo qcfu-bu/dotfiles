@@ -330,12 +330,10 @@
           (fg-line-number-inactive "gray50")
           (fg-line-number-active fg-main)
           (bg-line-number-inactive unspecified)
-          (bg-line-number-active unspecified)
-          ;; soften background
-          (bg-main bg-dim))))
+          (bg-line-number-active unspecified))))
 
 ;; set default theme
-(load-theme 'doom-one t)
+(load-theme 'modus-operandi t)
 
 ;;;; modeline
 (use-package doom-modeline
