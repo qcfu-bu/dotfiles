@@ -154,51 +154,17 @@
   :straight t
   :defer t)
 
-;;;; company
-(use-package company-prescient
+;;;; corfu
+(use-package corfu
   :straight t
-  :defer t)
+  :custom (corfu-auto t)
+  :init (global-corfu-mode))
 
-(use-package company
+(use-package cape
   :straight t
   :init
-  (setq company-minimum-prefix-length 2
-        company-tooltip-limit 14
-        company-tooltip-align-annotations t
-        company-require-match 'never
-        company-global-modes
-        '(not erc-mode
-              circe-mode
-              message-mode
-              help-mode
-              gud-mode
-              vterm-mode)
-        company-frontends
-        '(company-pseudo-tooltip-frontend ; always show candidates in overlay tooltip 
-          company-echo-metadata-frontend) ; show selected candidate doc in echo area
-
-        ;; Buffer-local backends will be computed when loading a major mode, so
-        ;; only specify a global default here.
-        company-backends '(company-capf)
-
-        ;; These auto-complete the current selection when
-        ;; `company-auto-commit-chars' is typed. This is too magical. We
-        ;; already have the much more explicit RET and TAB.
-        company-auto-commit nil
-
-        ;; Only search the current buffer for `company-dabbrev' (a backend that
-        ;; suggests text your open buffers). This prevents Company from causing
-        ;; lag once you have a lot of buffers open.
-        company-dabbrev-other-buffers nil
-
-        ;; Make `company-dabbrev' fully case-sensitive, to improve UX with
-        ;; domain-specific words with particular casing
-        company-dabbrev-ignore-case nil
-        company-dabbrev-downcase nil)
-  :config
-  (global-company-mode)
-  (company-prescient-mode)
-  (prescient-persist-mode))
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file))
 
 ;;; editor
 ;;;; evil
@@ -626,7 +592,29 @@
 ;;;; coq
 (use-package company-coq
   :straight t
-  :defer t)
+  :defer t
+  :config
+  ;; disable company and use corfu
+  (setq company-coq-disabled-features '(company company-defaults))
+  (defvar corfu-coq-backends
+    (mapcar #'cape-company-to-capf
+            (list #'company-coq-reserved-keywords-backend
+                  #'company-coq-block-end-backend
+                  #'company-coq-user-snippets-backend
+                  #'company-coq-modules-backend
+                  #'company-coq-context-backend
+                  #'company-coq-refman-ltac-abbrevs-backend
+                  #'company-coq-refman-tactic-abbrevs-backend
+                  #'company-coq-refman-vernac-abbrevs-backend
+                  #'company-coq-refman-scope-abbrevs-backend
+                  #'company-coq-pg-backend
+                  #'company-coq-local-definitions-backend
+                  #'company-coq-search-results-backend
+                  #'company-coq-dynamic-tactics-backend
+                  #'company-coq-dynamic-symbols-backend
+                  #'company-coq-math-symbols-backend)))
+  (setq-local completion-at-point-functions
+              (append corfu-coq-backends completion-at-point-functions)))
 
 (use-package proof-general
   :straight t
