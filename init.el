@@ -23,6 +23,14 @@
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
 
+;;;; path
+(use-package exec-path-from-shell
+  :straight t
+  :config
+  (when (memq window-system '(mac ns x))
+    (setq exec-path-from-shell-arguments nil)
+    (exec-path-from-shell-initialize)))
+
 ;;; emacs
 ;;;; info
 (setq user-full-name "Qiancheng Fu"
@@ -99,9 +107,10 @@
 ;;; os
 ;;;; macos
 (when (eq system-type 'darwin)
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))
-  (setq trash-directory "~/.Trash"))
+  (setq mac-redisplay-dont-reset-vscroll t
+        mac-mouse-wheel-smooth-scroll nil)
+  (setq trash-directory "~/.Trash")
+  (menu-bar-mode 1))
 
 ;;; completion
 ;;;; orderless
@@ -324,7 +333,7 @@
           (bg-line-number-active unspecified))))
 
 ;; set default theme
-(load-theme 'doom-one t)
+(load-theme 'modus-operandi t)
 
 ;;;; modeline
 (use-package doom-modeline
