@@ -446,6 +446,11 @@
   :config
   (setq eldoc-display-functions '(eldoc-display-in-buffer)))
 
+(use-package eldoc-box
+  :straight t
+  :custom-face
+  (eldoc-box-border ((t (:background "black")))))
+
 ;;;; flymake
 (use-package flymake
   :straight t
@@ -720,7 +725,7 @@
 
 ;;;;; help
 (spc-leader-def
-  "hh" 'eldoc
+  "hh" 'eldoc-box-help-at-point
   "hv" 'describe-variable
   "hf" 'describe-function
   "hF" 'describe-face
