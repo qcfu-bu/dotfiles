@@ -1,11 +1,6 @@
 ;;; init.el --- emacs dotfile -*- lexical-binding: t -*-
 
 ;;; bootstrap
-;;;; gc
-(setq gc-cons-threshold 100000000)
-(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 16777216
-                                            gc-cons-percentage 0.1)))
-
 ;;;; straight
 (setq straight-check-for-modifications '(check-on-save)
       straight-cache-autoloads t)
@@ -22,6 +17,12 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
+
+;;;; gc
+(use-package gcmh
+  :straight t
+  :config
+  (gcmh-mode 1))
 
 ;;;; path
 (use-package exec-path-from-shell
@@ -293,25 +294,6 @@
 (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-14")
 (set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
 
-;;;; icons
-(use-package nerd-icons
-  :straight t)
-
-(use-package nerd-icons-completion
-  :straight t
-  :after marginalia
-  :config
-  (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
-
-(use-package nerd-icons-dired
-  :straight t
-  :hook (dired-mode . nerd-icons-dired-mode))
-
-(use-package nerd-icons-ibuffer
-  :straight t
-  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
-
 ;;;; themes
 (use-package doom-themes
   :straight t
@@ -339,7 +321,9 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-buffer-encoding nil
+  (setq doom-modeline-icon nil
+        doom-modeline-bar-width nil
+        doom-modeline-buffer-encoding nil
         doom-modeline-buffer-file-name-style 'buffer-name)
   (doom-modeline-mode t))
 
