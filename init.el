@@ -315,7 +315,7 @@
           (bg-line-number-active unspecified))))
 
 ;; set default theme
-(load-theme 'modus-operandi t)
+(load-theme 'doom-one t)
 
 ;;;; modeline
 (use-package doom-modeline
@@ -579,7 +579,8 @@
         TeX-source-correlate-mode t
         TeX-source-correlate-method 'synctex
         TeX-electric-math '("$" . "$")
-        TeX-electric-sub-and-superscript t))
+        TeX-electric-sub-and-superscript t)
+  (setq font-latex-fontify-script nil))
 
 (use-package auctex-latexmk
   :straight t
