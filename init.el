@@ -170,7 +170,7 @@
 
 (use-package cape
   :straight t
-  :init
+  :config
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file))
 
@@ -460,7 +460,11 @@
   :commands (eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
-               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
+               '((tex-mode
+                  context-mode
+                  texinfo-mode
+                  bibtex-mode) . ("texlab")))
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
 ;;;; dired
 (use-package dired
