@@ -447,8 +447,7 @@
                '((tex-mode
                   context-mode
                   texinfo-mode
-                  bibtex-mode) . ("texlab")))
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+                  bibtex-mode) . ("texlab"))))
 
 ;;;; dired
 (use-package dired
