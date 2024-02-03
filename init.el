@@ -302,7 +302,8 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-buffer-encoding nil
+  (setq doom-modeline-bar-width nil
+        doom-modeline-buffer-encoding nil
         doom-modeline-buffer-file-name-style 'buffer-name)
   (doom-modeline-mode t))
 
@@ -321,6 +322,7 @@
           "^\\*Org Select\\*$"
           compilation-mode
           "^\\*vterm\\*$" vterm-mode
+          "^\\*sbt\\*\*"
           "^\\*utop\\*$"
           "^\\*haskell\\*$"
           "^\\*poly\\*$"
@@ -399,6 +401,12 @@
    :repo "zonuexe/emacs-presentation-mode"))
 
 ;;; tools
+;;;; project
+(use-package project
+  :straight t
+  :config
+  (setq project-vc-extra-root-markers '("build.sbt")))
+
 ;;;; magit
 (use-package magit
   :straight t
@@ -443,10 +451,7 @@
   :commands (eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
-               '((tex-mode
-                  context-mode
-                  texinfo-mode
-                  bibtex-mode) . ("texlab"))))
+               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
 
 ;;;; dired
 (use-package dired
@@ -572,6 +577,22 @@
   (setq auctex-latexmk-inherit-TeX-PDF-mode t)
   :config
   (auctex-latexmk-setup))
+
+;;;; scala
+(use-package scala-mode
+  :straight t
+  :interpreter ("scala" . scala-mode)
+  :hook (scala-mode . eglot-ensure))
+
+(use-package sbt-mode
+  :straight t
+  :commands (sbt-start sbt-command)
+  :config
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map)
+  (setq sbt:program-options '("-Dsbt.supershell=false")))
 
 ;;;; ocaml
 (use-package tuareg
