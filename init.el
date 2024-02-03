@@ -157,8 +157,14 @@
 ;;;; corfu
 (use-package corfu
   :straight t
-  :custom (corfu-auto t)
-  :init
+  :config
+  (setq corfu-auto t
+        corfu-auto-delay 0.1
+        corfu-auto-prefix 2
+        corfu-cycle t
+        corfu-count 16
+        corfu-max-width 120
+        corfu-on-exact-match nil)
   (global-corfu-mode t)
   (corfu-history-mode t))
 
@@ -290,8 +296,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (setq doom-themes-enable-italic nil)
-  (doom-themes-org-config))
+  (setq doom-themes-enable-italic nil))
 
 (use-package modus-themes
   :straight t
@@ -304,7 +309,8 @@
           (fg-line-number-inactive "gray50")
           (fg-line-number-active fg-main)
           (bg-line-number-inactive unspecified)
-          (bg-line-number-active unspecified))))
+          (bg-line-number-active unspecified)))
+  (setq modus-themes-org-blocks 'gray-background))
 
 ;; set default theme
 (load-theme 'doom-one t)
