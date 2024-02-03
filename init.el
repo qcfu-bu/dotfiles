@@ -401,12 +401,6 @@
    :repo "zonuexe/emacs-presentation-mode"))
 
 ;;; tools
-;;;; project
-(use-package project
-  :straight t
-  :config
-  (setq project-vc-extra-root-markers '("build.sbt")))
-
 ;;;; magit
 (use-package magit
   :straight t
@@ -450,6 +444,7 @@
   :straight t
   :commands (eglot-ensure)
   :config
+  (setq project-vc-extra-root-markers '("build.sbt"))
   (add-to-list 'eglot-server-programs
                '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
 
