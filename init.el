@@ -293,11 +293,10 @@
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 ;;;; themes
-(use-package spacemacs-theme
+(use-package atom-one-dark-theme
   :straight t
   :config
-  (setq spacemacs-theme-org-height nil)
-  (load-theme 'spacemacs-dark t))
+  (load-theme 'atom-one-dark-theme t))
 
 ;;;; modeline
 (use-package doom-modeline
