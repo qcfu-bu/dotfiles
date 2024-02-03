@@ -296,7 +296,7 @@
 (use-package atom-one-dark-theme
   :straight t
   :config
-  (load-theme 'atom-one-dark-theme t))
+  (load-theme 'atom-one-dark t))
 
 ;;;; modeline
 (use-package doom-modeline
