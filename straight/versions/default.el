@@ -26,6 +26,8 @@
  ("emacs-libvterm" . "c3a3a23a5eace137947524c93644204bf6b56cff")
  ("emacs-presentation-mode" . "f53f67aeab97e8eea6d1f12df5f7ce3b1b03b879")
  ("emacs-reformatter" . "76315e32a1c075d943184fe7b32f1cef98a8272a")
+ ("emacs-sbt-mode" . "9fe1e8807c22cc1dc56a6233e000969518907f4d")
+ ("emacs-scala-mode" . "4c6d636b86e3bb1d95de819dc48dda92abdfbcf4")
  ("emacs-undo-fu" . "0e74116fd5c7797811a91ba4eadef50d67523eb6")
  ("emacs-undo-fu-session" . "9147a7223ee8136769cf42239c7d9a8577edfaff")
  ("emacs-which-key" . "4d20bc852545a2e602f59084a630f888542052b1")
