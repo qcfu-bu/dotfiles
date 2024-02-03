@@ -293,27 +293,11 @@
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 ;;;; themes
-(use-package doom-themes
+(use-package spacemacs-theme
   :straight t
   :config
-  (setq doom-themes-enable-italic nil))
-
-(use-package modus-themes
-  :straight t
-  :config
-  (setq modus-themes-common-palette-overrides
-        '(;; borderless modeline
-          (border-mode-line-active unspecified)
-          (border-mode-line-inactive unspecified)
-          ;; subtle line numbers
-          (fg-line-number-inactive "gray50")
-          (fg-line-number-active fg-main)
-          (bg-line-number-inactive unspecified)
-          (bg-line-number-active unspecified)))
-  (setq modus-themes-org-blocks 'gray-background))
-
-;; set default theme
-(load-theme 'doom-one t)
+  (setq spacemacs-theme-org-height nil)
+  (load-theme 'spacemacs-dark t))
 
 ;;;; modeline
 (use-package doom-modeline
@@ -474,11 +458,6 @@
         dired-listing-switches "-alh"
         dired-use-ls-dired nil
         dired-dwim-target t))
-
-(use-package diredfl
-  :straight t
-  :config
-  (diredfl-global-mode t))
 
 ;;;; compile
 (use-package compile
