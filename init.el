@@ -322,7 +322,6 @@
           "^\\*Org Select\\*$"
           compilation-mode
           "^\\*vterm\\*$" vterm-mode
-          "^\\*sbt\\*\*"
           "^\\*utop\\*$"
           "^\\*haskell\\*$"
           "^\\*poly\\*$"
@@ -444,7 +443,6 @@
   :straight t
   :commands (eglot-ensure)
   :config
-  (setq project-vc-extra-root-markers '("build.sbt"))
   (add-to-list 'eglot-server-programs
                '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
 
@@ -572,22 +570,6 @@
   (setq auctex-latexmk-inherit-TeX-PDF-mode t)
   :config
   (auctex-latexmk-setup))
-
-;;;; scala
-(use-package scala-mode
-  :straight t
-  :interpreter ("scala" . scala-mode)
-  :hook (scala-mode . eglot-ensure))
-
-(use-package sbt-mode
-  :straight t
-  :commands (sbt-start sbt-command)
-  :config
-  (substitute-key-definition
-   'minibuffer-complete-word
-   'self-insert-command
-   minibuffer-local-completion-map)
-  (setq sbt:program-options '("-Dsbt.supershell=false")))
 
 ;;;; ocaml
 (use-package tuareg
