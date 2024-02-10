@@ -663,11 +663,7 @@
   (ats2-mode
    :type git
    :host github
-   :repo "qcfu-bu/ATS2-emacs")
-  :commands (ats2-flymake-setup)
-  :hook
-  ((ats2-mode . ats2-flymake-setup)
-   (ats2-mode . flymake-mode)))
+   :repo "qcfu-bu/ATS2-emacs"))
 
 ;;;; c/c++
 (use-package cc
