@@ -157,6 +157,8 @@
 ;;;; corfu
 (use-package corfu
   :straight t
+  :custom-face
+  (corfu-border ((t (:background "black"))))
   :config
   (setq corfu-auto t
         corfu-auto-delay 0.1
@@ -861,6 +863,11 @@
   :keymaps 'sml-mode-map
   "e" 'run-sml
   "b" 'sml-prog-proc-send-buffer)
+
+;;;;; ats
+(spc-local-leader-def
+  :keymaps 'ats2-mode-map
+  "c" 'ats-type-check-buffer)
 
 ;;;;; python
 (spc-local-leader-def
