@@ -159,6 +159,8 @@
   :straight t
   :custom-face
   (corfu-border ((t (:background "black"))))
+  (corfu-current ((t (:background nil :inherit region))))
+  (corfu-default ((t (:background nil :inherit default))))
   :config
   (setq corfu-auto t
         corfu-auto-delay 0.1
@@ -295,10 +297,10 @@
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 ;;;; themes
-(use-package atom-one-dark-theme
+(use-package doom-themes
   :straight t
   :config
-  (load-theme 'atom-one-dark t))
+  (load-theme 'doom-one t))
 
 ;;;; modeline
 (use-package doom-modeline
@@ -456,6 +458,11 @@
         dired-listing-switches "-alh"
         dired-use-ls-dired nil
         dired-dwim-target t))
+
+(use-package diredfl
+  :straight t
+  :config
+  (diredfl-global-mode t))
 
 ;;;; compile
 (use-package compile
