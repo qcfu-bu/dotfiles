@@ -85,17 +85,14 @@
 
 ;;;; autorevert
 (use-package autorevert
-  :init
-  (global-auto-revert-mode))
+  :init (global-auto-revert-mode))
 
 ;;;; history
 (use-package saveplace
-  :init
-  (save-place-mode))
+  :init (save-place-mode))
 
 (use-package savehist
-  :init
-  (savehist-mode))
+  :init (savehist-mode))
 
 (use-package recentf
   :init
@@ -107,7 +104,7 @@
 
 ;;; os
 ;;;; macos
-(when (eq system-type 'darwin)
+(when (eq system-type 'mac)
   (setq mac-redisplay-dont-reset-vscroll t
         mac-mouse-wheel-smooth-scroll nil)
   (setq trash-directory "~/.Trash")
