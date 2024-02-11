@@ -455,22 +455,14 @@
         dired-use-ls-dired nil
         dired-dwim-target t))
 
+(use-package dired-subtree
+  :straight t
+  :after dired)
+
 (use-package diredfl
   :straight t
   :config
   (diredfl-global-mode t))
-
-(use-package dired-subtree
-  :straight t)
-
-(use-package dired-sidebar
-  :straight t
-  :commands (dired-sidebar-toggle-sidebar)
-  :config
-  (setq dired-sidebar-theme 'nerd
-        dired-sidebar-width 30
-        dired-sidebar-use-term-integration t
-        dired-sidebar-use-custom-font t))
 
 ;;;; compile
 (use-package compile
