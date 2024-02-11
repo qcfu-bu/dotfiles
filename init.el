@@ -296,8 +296,7 @@
 ;;;; themes
 (use-package doom-themes
   :straight t
-  :config
-  (load-theme 'doom-one t))
+  :config (load-theme 'doom-one t))
 
 ;;;; modeline
 (use-package doom-modeline
