@@ -466,9 +466,11 @@
 (use-package dired-sidebar
   :straight t
   :commands (dired-sidebar-toggle-sidebar)
-  :init
+  :config
   (setq dired-sidebar-theme 'nerd
-        dired-sidebar-width 30))
+        dired-sidebar-width 30
+        dired-sidebar-use-term-integration t
+        dired-sidebar-use-custom-font t))
 
 ;;;; compile
 (use-package compile
