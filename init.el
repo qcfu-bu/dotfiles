@@ -21,8 +21,7 @@
 ;;;; gc
 (use-package gcmh
   :straight t
-  :config
-  (gcmh-mode 1))
+  :config (gcmh-mode 1))
 
 ;;;; path
 (use-package exec-path-from-shell
