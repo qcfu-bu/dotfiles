@@ -815,7 +815,6 @@
   "tt" 'popper-toggle-latest
   "tn" 'popper-cycle
   "tp" 'popper-cycle-backwards
-  "td" 'dired-sidebar-toggle-sidebar
   "tl" 'display-line-numbers-mode
   "tc" 'olivetti-mode
   "tz" 'presentation-mode)
