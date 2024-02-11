@@ -16,7 +16,6 @@
  ("corfu" . "b48d3017a47706198e04440cc1b3483bdf646771")
  ("dash.el" . "13f9fcd09d40132e9e1346a69e7b293d835a85f2")
  ("dired-hacks" . "874449d6fc98aee565e1715ec18acec3c1c2cafb")
- ("dired-sidebar" . "85ec4fffc2607d38ec2e3b8577320aceb8e652dd")
  ("diredfl" . "f6d599c30875ab4894c1deab9713ff2faea54e06")
  ("doom-modeline" . "9816e6a9d1216daf8f1ad07a04e8e657e3c6656a")
  ("dune" . "bfbc6a208a93dceabb04e98f38af7e1241745704")
