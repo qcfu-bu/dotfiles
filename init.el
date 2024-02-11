@@ -467,8 +467,8 @@
 (use-package dired-sidebar
   :straight t
   :commands (dired-sidebar-toggle-sidebar)
-  :config
-  (setq dired-sidebar-theme 'none
+  :init
+  (setq dired-sidebar-theme 'nerd
         dired-sidebar-width 30))
 
 ;;;; compile
