@@ -461,6 +461,16 @@
   :config
   (diredfl-global-mode t))
 
+(use-package dired-subtree
+  :straight t)
+
+(use-package dired-sidebar
+  :straight t
+  :commands (dired-sidebar-toggle-sidebar)
+  :config
+  (setq dired-sidebar-theme 'none
+        dired-sidebar-width 30))
+
 ;;;; compile
 (use-package compile
   :commands (compile recompile)
@@ -669,7 +679,8 @@
   (ats2-mode
    :type git
    :host github
-   :repo "qcfu-bu/ATS2-emacs"))
+   :repo "qcfu-bu/ATS2-emacs")
+  :defer t)
 
 ;;;; c/c++
 (use-package cc
@@ -811,6 +822,7 @@
   "tt" 'popper-toggle-latest
   "tn" 'popper-cycle
   "tp" 'popper-cycle-backwards
+  "td" 'dired-sidebar-toggle-sidebar
   "tl" 'display-line-numbers-mode
   "tc" 'olivetti-mode
   "tz" 'presentation-mode)
