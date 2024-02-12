@@ -172,7 +172,8 @@
   :straight t
   :config
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-file))
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
 ;;; editor
 ;;;; evil
@@ -443,7 +444,7 @@
   :commands (eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
-               '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
+               '((LaTeX-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
 
 ;;;; dired
 (use-package dired
