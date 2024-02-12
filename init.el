@@ -46,6 +46,11 @@
 (setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
+(when (eq system-type 'mac)
+  (setq mac-redisplay-dont-reset-vscroll t
+        mac-mouse-wheel-smooth-scroll nil)
+  (setq trash-directory "~/.Trash")
+  (menu-bar-mode 1))
 
 ;;;; server
 (use-package server
@@ -76,6 +81,15 @@
       mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
       mouse-wheel-scroll-amount-horizontal 2)
 
+(use-package ultra-scroll-mac
+  :if (eq window-system 'mac)
+  :straight
+  (ultra-scroll-mac
+   :type git
+   :host github
+   :repo "jdtsmith/ultra-scroll-mac")
+  :config (ultra-scroll-mac-mode 1))
+
 ;;;; files
 (use-package files
   :config
@@ -100,14 +114,6 @@
   (recentf-mode 1)
   :config
   (add-to-list 'recentf-exclude "/private/var/folders/*"))
-
-;;; os
-;;;; macos
-(when (eq system-type 'mac)
-  (setq mac-redisplay-dont-reset-vscroll t
-        mac-mouse-wheel-smooth-scroll nil)
-  (setq trash-directory "~/.Trash")
-  (menu-bar-mode 1))
 
 ;;; completion
 ;;;; orderless
