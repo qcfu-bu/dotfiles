@@ -443,8 +443,7 @@
   :straight t
   :commands (eglot-ensure)
   :config
-  (add-to-list 'eglot-server-programs
-               '((LaTeX-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))
+  (add-to-list 'eglot-server-programs '((LaTeX-mode) . ("texlab"))))
 
 ;;;; dired
 (use-package dired
