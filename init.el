@@ -562,9 +562,9 @@
         TeX-command-extra-options "-shell-escape"
         TeX-auto-local ".auctex-auto"
         TeX-style-local ".auctex-style"
-        TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -g -b %n %o %b"))
-        TeX-view-program-selection '((output-pdf "Skim"))
-        ;; TeX-view-program-selection '((output-pdf "PDF Tools"))
+        ;; TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -g -b %n %o %b"))
+        ;; TeX-view-program-selection '((output-pdf "Skim"))
+        TeX-view-program-selection '((output-pdf "PDF Tools"))
         TeX-source-correlate-mode t
         TeX-source-correlate-method 'synctex
         TeX-electric-math '("$" . "$")
