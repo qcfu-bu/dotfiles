@@ -607,28 +607,17 @@
 (use-package company-coq
   :straight t
   :defer t
-  :config
+  :init
   ;; disable company and use corfu
   (setq company-coq-disabled-features '(company company-defaults))
-  (defvar corfu-coq-backends
-    (mapcar #'cape-company-to-capf
-            (list #'company-coq-reserved-keywords-backend
-                  #'company-coq-block-end-backend
-                  #'company-coq-user-snippets-backend
-                  #'company-coq-modules-backend
-                  #'company-coq-context-backend
-                  #'company-coq-refman-ltac-abbrevs-backend
-                  #'company-coq-refman-tactic-abbrevs-backend
-                  #'company-coq-refman-vernac-abbrevs-backend
-                  #'company-coq-refman-scope-abbrevs-backend
-                  #'company-coq-pg-backend
-                  #'company-coq-local-definitions-backend
-                  #'company-coq-search-results-backend
-                  #'company-coq-dynamic-tactics-backend
-                  #'company-coq-dynamic-symbols-backend
-                  #'company-coq-math-symbols-backend)))
-  (setq-local completion-at-point-functions
-              (append corfu-coq-backends completion-at-point-functions)))
+  (defvar corfu-coq-backend
+    (cape-company-to-capf #'company-coq-master-backend))
+  (defvar corfu-math-backend
+    (cape-company-to-capf #'company-coq-math-symbols-backend))
+  (defun corfu-coq-init ()
+    (add-to-list 'completion-at-point-functions corfu-coq-backend)
+    (add-to-list 'completion-at-point-functions corfu-math-backend))
+  :hook (coq-mode . corfu-coq-init))
 
 (use-package proof-general
   :straight t
