@@ -81,15 +81,6 @@
       mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
       mouse-wheel-scroll-amount-horizontal 2)
 
-(use-package ultra-scroll-mac
-  :if (eq window-system 'mac)
-  :straight
-  (ultra-scroll-mac
-   :type git
-   :host github
-   :repo "jdtsmith/ultra-scroll-mac")
-  :config (ultra-scroll-mac-mode 1))
-
 ;;;; files
 (use-package files
   :config
