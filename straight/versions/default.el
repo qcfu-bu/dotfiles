@@ -85,7 +85,6 @@
  ("themes" . "ff26f26ea3d761375f5fc4070438fbd0f3473d33")
  ("transient" . "85ecbc66b68207275f81de4f9bd321474a6c8c61")
  ("tuareg" . "1d53723e39f22ab4ab76d31f2b188a2879305092")
- ("ultra-scroll-mac" . "dc5a53616fc5efa0e4f04ddc2d3912002a7b685f")
  ("use-package" . "a6e856418d2ebd053b34e0ab2fda328abeba731c")
  ("utop" . "4a97c4c2e96b0abdd9776598f195d23f2139a2e8")
  ("vertico" . "4a7da56b02c6aefff8f6b4574a530a7cb54bc21a")
