@@ -165,7 +165,7 @@
         corfu-cycle t
         corfu-count 16
         corfu-max-width 120
-        corfu-on-exact-match nil)
+        corfu-on-exact-match 'quit)
   (global-corfu-mode t)
   (corfu-history-mode t))
 
