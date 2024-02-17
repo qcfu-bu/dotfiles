@@ -21,7 +21,11 @@
 ;;;; gc
 (use-package gcmh
   :straight t
-  :config (gcmh-mode 1))
+  :config
+  (setq gcmh-idle-delay 'auto
+        gcmh-auto-idle-delay-factor 10
+        gcmh-high-cons-threshold (* 16 1024 1024))
+  (gcmh-mode 1))
 
 ;;;; path
 (use-package exec-path-from-shell
