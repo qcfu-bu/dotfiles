@@ -621,7 +621,7 @@
   (defun corfu-coq-init ()
     (setq-local completion-at-point-functions
                 (list corfu-coq-backend corfu-math-backend #'cape-dabbrev)))
-  :hook (coq-mode . corfu-coq-init))
+  :hook (company-coq-mode . corfu-coq-init))
 
 (use-package proof-general
   :straight t
