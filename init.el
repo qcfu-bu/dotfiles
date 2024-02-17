@@ -620,7 +620,7 @@
     (cape-company-to-capf #'company-coq-math-symbols-backend))
   (defun corfu-coq-init ()
     (setq-local completion-at-point-functions
-                (list corfu-coq-backend corfu-math-backend #'cape-dabbrev)))
+                (list corfu-math-backend corfu-coq-backend #'cape-dabbrev)))
   :hook (company-coq-mode . corfu-coq-init))
 
 (use-package proof-general
