@@ -160,7 +160,7 @@
   (corfu-default ((t (:background nil :inherit default))))
   :config
   (setq corfu-auto t
-        corfu-auto-delay 0.1
+        corfu-auto-delay 0.2
         corfu-auto-prefix 2
         corfu-cycle t
         corfu-count 16
