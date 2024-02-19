@@ -336,7 +336,7 @@
   (setq tab-bar-show nil
         tab-bar-new-tab-choice "*scratch*"))
 
-;;;; linum
+;;;; line-numbers
 (use-package display-line-numbers
   :hook ((prog-mode text-mode conf-mode) . display-line-numbers-mode)
   :config
