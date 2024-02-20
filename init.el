@@ -409,9 +409,13 @@
   (setq magit-bury-buffer-function 'magit-restore-window-configuration
         magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 
-(use-package diff-hl
+(use-package git-gutter-fringe
   :straight t
-  :config (global-diff-hl-mode))
+  :config
+  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
+  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom)
+  (global-git-gutter-mode t))
 
 (use-package gitignore-templates
   :straight t
