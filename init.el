@@ -554,9 +554,9 @@
    (LaTeX-mode . rainbow-delimiters-mode))
   :init
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
-  (setq-default TeX-PDF-mode t
-                TeX-master nil)
-  (setq TeX-parse-self t
+  (setq TeX-PDF-mode t
+        TeX-master nil
+        TeX-parse-self t
         TeX-auto-save t
         TeX-save-query nil
         TeX-command-extra-options "-shell-escape"
