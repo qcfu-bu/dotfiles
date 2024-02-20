@@ -444,7 +444,8 @@
   :straight t
   :commands (eglot-ensure)
   :config
-  (add-to-list 'eglot-server-programs '((LaTeX-mode) . ("texlab"))))
+  (add-to-list 'eglot-server-programs '((LaTeX-mode) . ("texlab")))
+  (setq-default eglot-workspace-configuration '(:texlab (:build (:onSave t)))))
 
 ;;;; dired
 (use-package dired
