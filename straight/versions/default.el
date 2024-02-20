@@ -4,7 +4,6 @@
  ("annalist.el" . "134fa3f0fb91a636a1c005c483516d4b64905a6d")
  ("anzu" . "26fb50b429ee968eb944b0615dd0aed1dd66172c")
  ("auctex" . "653b0353e7f3a828bcdad93ebe89c70486b3604c")
- ("auctex-latexmk" . "b00a95e6b34c94987fda5a57c20cfe2f064b1c7a")
  ("avy" . "be612110cb116a38b8603df367942e2bb3d9bdbe")
  ("caml-mode" . "47defafa2b08fb680e89bfee9cb9ce82bd9e3bcf")
  ("cape" . "7f3dd55f8d0ea94037e203b75bfc43e65ff14bc2")
