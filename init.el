@@ -571,15 +571,6 @@
         TeX-electric-sub-and-superscript t)
   (setq font-latex-fontify-script nil))
 
-(use-package auctex-latexmk
-  :straight t
-  :after latex
-  :hook ((LaTeX-mode . (lambda () (setq TeX-command-default "LatexMk"))))
-  :init
-  (setq auctex-latexmk-inherit-TeX-PDF-mode t)
-  :config
-  (auctex-latexmk-setup))
-
 ;;;; ocaml
 (use-package tuareg
   :straight t
