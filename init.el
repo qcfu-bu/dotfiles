@@ -160,7 +160,6 @@
   (corfu-default ((t (:background nil :inherit default))))
   :config
   (setq corfu-auto t
-        corfu-auto-delay 0.1
         corfu-auto-prefix 2
         corfu-cycle t
         corfu-count 16
@@ -172,6 +171,7 @@
 (use-package cape
   :straight t
   :config
+  (setq cape-dabbrev-check-other-buffers nil)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file)
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
@@ -266,9 +266,9 @@
 
 ;;; ui
 ;;;; fonts
-(set-face-attribute 'default        nil :font "JetBrains Mono-14")
-(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-14")
-(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
+(set-face-attribute 'default        nil :font "JetBrains Mono-14" :weight 'semi-light)
+(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-14" :weight 'semi-light)
+(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14" :weight 'semi-light)
 
 ;;;; icons
 (use-package nerd-icons
@@ -298,6 +298,9 @@
 (use-package doom-themes
   :straight t
   :config (load-theme 'doom-one t))
+
+(use-package modus-themes
+  :straight t)
 
 ;;;; modeline
 (use-package doom-modeline
