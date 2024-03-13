@@ -266,9 +266,9 @@
 
 ;;; ui
 ;;;; fonts
-(set-face-attribute 'default        nil :font "JetBrains Mono-14" :weight 'semi-light)
-(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-14" :weight 'semi-light)
-(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14" :weight 'semi-light)
+(set-face-attribute 'default        nil :font "JetBrains Mono-14")
+(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-14")
+(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
 
 ;;;; icons
 (use-package nerd-icons
