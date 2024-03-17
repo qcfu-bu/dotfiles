@@ -58,8 +58,7 @@
 
 ;;;; server
 (use-package server
-  :config
-  (unless (server-running-p) (server-start)))
+  :config (unless (server-running-p) (server-start)))
 
 ;;;; minibuffer
 (setq minibuffer-prompt-properties
@@ -180,6 +179,7 @@
 ;;;; evil
 (use-package evil
   :straight t
+  :hook (after-init . evil-mode)
   :init
   (setq evil-want-integration t
         evil-want-keybinding nil
@@ -195,24 +195,22 @@
         evil-visual-char-tag "V"
         evil-visual-block-tag "Vb"
         evil-visual-line-tag "Vl"
-        evil-visual-screen-line-tag "Vs")
-  (evil-mode 1))
+        evil-visual-screen-line-tag "Vs"))
 
 (use-package evil-collection
   :straight t
   :after evil
-  :config
-  (evil-collection-init))
+  :config (evil-collection-init))
 
 (use-package evil-escape
   :straight t
   :after evil
+  :hook (evil-mode . evil-escape-mode)
   :config
   (setq evil-escape-excluded-states '(normal visual multiedit emacs motion)
         evil-escape-excluded-major-modes '(vterm)
         evil-escape-key-sequence "jk"
-        evil-escape-delay 0.2)
-  (evil-escape-mode))
+        evil-escape-delay 0.2))
 
 (use-package evil-surround
   :straight t
