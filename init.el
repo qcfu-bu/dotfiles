@@ -465,6 +465,7 @@
   :commands (compile recompile)
   :config
   (setq compilation-scroll-output t
+        compilation-in-progress nil
         compile-command "make"))
 
 ;;;; pdf
