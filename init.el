@@ -299,9 +299,6 @@
   :straight t
   :config (load-theme 'doom-one t))
 
-(use-package modus-themes
-  :straight t)
-
 ;;;; modeline
 (use-package doom-modeline
   :straight t
@@ -463,8 +460,7 @@
 
 (use-package diredfl
   :straight t
-  :config
-  (diredfl-global-mode t))
+  :config (diredfl-global-mode t))
 
 ;;;; compile
 (use-package compile
@@ -630,10 +626,8 @@
 
 ;;;; agda
 (use-package agda2-mode
-  :load-path
-  (lambda ()
-    (let ((coding-system-for-read 'utf-8))
-      (file-name-directory (shell-command-to-string "agda-mode locate"))))
+  ;; agda-mode locate
+  :load-path "~/.cabal/store/ghc-9.2.5/Agd-2.6.4-a2a1d0b0/share/emacs-mode"
   :mode ("\\.l?agda\\'" . agda2-mode)
   :hook ((agda2-mode . (lambda () (activate-input-method "Agda")))))
 
