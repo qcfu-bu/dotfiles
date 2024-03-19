@@ -309,10 +309,11 @@
   :init
   (setq treemacs-follow-after-init t
         treemacs-sorting 'alphabetic-case-insensitive-asc)
+  :bind (:map treemacs-mode-map ("q" . nil))
   :config
+  (treemacs-follow-mode -1)
   (treemacs-git-mode 'simple)
-  (treemacs-hide-gitignored-files-mode 1)
-  (treemacs-follow-mode -1))
+  (treemacs-hide-gitignored-files-mode 1))
 
 (use-package treemacs-nerd-icons
   :straight t
