@@ -27,14 +27,6 @@
         gcmh-high-cons-threshold (* 16 1024 1024))
   (gcmh-mode 1))
 
-;;;; path
-(use-package exec-path-from-shell
-  :straight t
-  :config
-  (when (memq window-system '(mac ns x))
-    (setq exec-path-from-shell-arguments nil)
-    (exec-path-from-shell-initialize)))
-
 ;;; emacs
 ;;;; info
 (setq user-full-name "Qiancheng Fu"
