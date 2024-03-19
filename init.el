@@ -310,7 +310,6 @@
   (setq treemacs-follow-after-init t
         treemacs-expand-after-init nil
         treemacs-sorting 'alphabetic-case-insensitive-asc)
-  :bind (:map treemacs-mode-map ("q" . nil))
   :config
   (treemacs-follow-mode -1)
   (treemacs-git-mode 'simple)
@@ -794,6 +793,26 @@
   "pf" 'project-find-file
   "pd" 'project-find-dir
   "pc" 'project-compile)
+
+;;;;; treemacs
+(general-def treemacs-mode-map
+  ;; unset keys
+  "q" nil
+  "p" nil
+  ;; projects
+  "pa" 'treemacs-add-project-to-workspace
+  "pd" 'treemacs-remove-project-from-workspace
+  "pr" 'treemacs-rename-project)
+
+(general-def evil-treemacs-state-map
+  ;; unset keys
+  "w" nil
+  ;; workspaces
+  "ws" 'treemacs-switch-workspace
+  "wa" 'treemacs-create-workspace
+  "wd" 'treemacs-remove-workspace
+  "wr" 'treemacs-rename-workspace
+  "we" 'treemacs-edit-workspaces)
 
 ;;;;; bookmarks
 (spc-leader-def
