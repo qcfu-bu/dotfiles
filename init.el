@@ -176,6 +176,7 @@
   :init
   (setq evil-want-integration t
         evil-want-keybinding nil
+        evil-want-C-u-scroll t
         evil-undo-system 'undo-fu
         evil-respect-visual-line-mode t)
   :config
