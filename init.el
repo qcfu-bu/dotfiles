@@ -566,6 +566,13 @@
         org-hide-leading-stars t
         org-src-window-setup 'current-window))
 
+(use-package org-roam
+  :straight t
+  :defer t
+  :config
+  (setq org-roam-directory "~/notes/org-roam")
+  (org-roam-db-autosync-mode t))
+
 ;;;; latex
 (use-package auctex
   :straight t
@@ -846,6 +853,12 @@
   "gg" 'magit
   "gr" 'consult-git-grep)
 
+;;;;; notes
+(spc-leader-def
+  "nl" 'org-roam-buffer-toggle
+  "nf" 'org-roam-node-find
+  "ni" 'org-roam-node-insert)
+
 ;;;; local
 (general-create-definer spc-local-leader-def
   :states '(normal)
@@ -863,6 +876,7 @@
   "i" 'org-insert-structure-template
   "l" 'org-insert-link
   "e" 'org-edit-special
+  "o" 'org-open-at-point
   "x" 'org-export-dispatch)
 
 ;;;;; latex
