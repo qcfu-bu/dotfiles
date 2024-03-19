@@ -308,6 +308,7 @@
   :defer t
   :init
   (setq treemacs-follow-after-init t
+        treemacs-expand-after-init nil
         treemacs-sorting 'alphabetic-case-insensitive-asc)
   :bind (:map treemacs-mode-map ("q" . nil))
   :config
