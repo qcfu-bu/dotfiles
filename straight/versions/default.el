@@ -41,7 +41,6 @@
  ("evil-easymotion" . "f96c2ed38ddc07908db7c3c11bcd6285a3e8c2e9")
  ("evil-escape" . "bdb1e69971520cbd65fe61830a1cdea5734d743c")
  ("evil-surround" . "c7116cdc774b1e259eaf3e9e7a318a6c99c2da17")
- ("exec-path-from-shell" . "d95677ad608c214647b87bc20df1642763e3b400")
  ("external-completion" . "0c660850b272d9f1f01fabd9d17bd22dfa9a0d41")
  ("f.el" . "1e7020dc0d4c52d3da9bd610d431cab13aa02d8c")
  ("flymake" . "9bb2a002da289a2d749fc445886c1fdebca7cf66")
