@@ -48,6 +48,7 @@ transient/*
 var/*
 project*
 org-roam.db
+.org-id-locations
 url/*
 places
 bookmarks
