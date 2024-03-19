@@ -255,8 +255,7 @@
 ;;;; snippets
 (use-package yasnippet
   :straight t
-  :config
-  (yas-global-mode 1))
+  :config (yas-global-mode 1))
 
 ;;;; format
 (use-package reformatter
@@ -271,26 +270,30 @@
 
 ;;;; icons
 (use-package nerd-icons
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package nerd-icons-completion
   :straight t
-  :after marginalia
+  :after nerd-icons marginalia
   :config
   (nerd-icons-completion-mode)
   (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package nerd-icons-corfu
   :straight t
+  :after nerd-icons corfu
   :config
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package nerd-icons-dired
   :straight t
+  :after nerd-icons dired
   :hook (dired-mode . nerd-icons-dired-mode))
 
 (use-package nerd-icons-ibuffer
   :straight t
+  :after nerd-icons ibuffer
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 ;;;; themes
@@ -320,7 +323,7 @@
 
 (use-package treemacs-nerd-icons
   :straight t
-  :after treemacs nerd-icons
+  :after nerd-icons treemacs
   :config (treemacs-load-theme "nerd-icons"))
 
 (use-package treemacs-evil
