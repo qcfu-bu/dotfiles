@@ -669,7 +669,8 @@
    :type git
    :host github
    :repo "qcfu-bu/ATS2-emacs")
-  :defer t)
+  :defer t
+  :hook (ats2-mode . ats2-flymake-setup))
 
 ;;;; c/c++
 (use-package cc

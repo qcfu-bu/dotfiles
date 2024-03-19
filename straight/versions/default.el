@@ -1,4 +1,4 @@
-(("ATS2-emacs" . "e65797eebfe6aaac7f8747b56f8bca4d033c79a2")
+(("ATS2-emacs" . "9e8a2abe151cc772cc57b050d5c98da89a6befcb")
  ("PG" . "728bd2535c181793307c5ed7ec9fbd9cbec73d54")
  ("ace-window" . "77115afc1b0b9f633084cf7479c767988106c196")
  ("adaptive-wrap" . "70005d2012ab57c20be03c05aebd49318fe49c99")
