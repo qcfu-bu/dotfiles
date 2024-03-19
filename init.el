@@ -310,7 +310,8 @@
   :init
   (setq treemacs-follow-after-init t
         treemacs-expand-after-init nil
-        treemacs-sorting 'alphabetic-case-insensitive-asc)
+        treemacs-sorting 'alphabetic-case-insensitive-asc
+        treemacs-width 30)
   :config
   (treemacs-follow-mode -1)
   (treemacs-git-mode 'simple)
