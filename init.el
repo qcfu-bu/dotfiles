@@ -341,7 +341,7 @@
           "^\\*eldoc.\*"
           "^\\*Org Select\\*$"
           compilation-mode
-          "^\\*vterm\\*$" vterm-mode
+          "^\\*vterm\\*" vterm-mode
           "^\\*utop\\*$"
           "^\\*haskell\\*$"
           "^\\*poly\\*$"
@@ -527,7 +527,8 @@
 
 (use-package vterm-toggle
   :straight t
-  :bind ("C-`" . vterm-toggle))
+  :bind ("C-`" . vterm-toggle)
+  :config (setq vterm-toggle-scope 'project))
 
 ;;; lang
 ;;;; markdown
