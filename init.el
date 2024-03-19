@@ -195,7 +195,8 @@
         evil-visual-char-tag "V"
         evil-visual-block-tag "Vb"
         evil-visual-line-tag "Vl"
-        evil-visual-screen-line-tag "Vs"))
+        evil-visual-screen-line-tag "Vs"
+        evil-treemacs-state-tag "Tr"))
 
 (use-package evil-collection
   :straight t
@@ -207,7 +208,7 @@
   :after evil
   :hook (evil-mode . evil-escape-mode)
   :config
-  (setq evil-escape-excluded-states '(normal visual multiedit emacs motion)
+  (setq evil-escape-excluded-states '(normal visual multiedit emacs motion treemacs)
         evil-escape-excluded-major-modes '(vterm)
         evil-escape-key-sequence "jk"
         evil-escape-delay 0.2))
@@ -304,6 +305,31 @@
   (setq doom-modeline-buffer-encoding nil
         doom-modeline-buffer-file-name-style 'buffer-name)
   (doom-modeline-mode t))
+
+;;;; treemacs
+(use-package treemacs
+  :straight t
+  :defer t
+  :init
+  (setq treemacs-follow-after-init t
+        treemacs-sorting 'alphabetic-case-insensitive-asc)
+  :config
+  (treemacs-git-mode 'simple)
+  (treemacs-hide-gitignored-files-mode 1)
+  (treemacs-follow-mode -1))
+
+(use-package treemacs-nerd-icons
+  :straight t
+  :after treemacs nerd-icons
+  :config (treemacs-load-theme "nerd-icons"))
+
+(use-package treemacs-evil
+  :straight t
+  :after treemacs evil)
+
+(use-package treemacs-magit
+  :straight t
+  :after treemacs magit)
 
 ;;;; popup
 (use-package popper
@@ -689,7 +715,7 @@
 
 ;;;; global
 (general-create-definer spc-leader-def
-  :states '(normal)
+  :states '(normal treemacs)
   :keymaps 'override
   :prefix "SPC")
 
@@ -789,6 +815,7 @@
   "tt" 'popper-toggle-latest
   "tn" 'popper-cycle
   "tp" 'popper-cycle-backwards
+  "tr" 'treemacs
   "tl" 'display-line-numbers-mode
   "tc" 'olivetti-mode
   "tz" 'presentation-mode)
