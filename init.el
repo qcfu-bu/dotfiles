@@ -42,11 +42,10 @@
 (setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
-(when (eq system-type 'mac)
+(when (eq window-system 'mac)
   (setq mac-redisplay-dont-reset-vscroll t
         mac-mouse-wheel-smooth-scroll nil)
-  (setq trash-directory "~/.Trash")
-  (menu-bar-mode 1))
+  (setq trash-directory "~/.Trash"))
 
 ;;;; server
 (use-package server
