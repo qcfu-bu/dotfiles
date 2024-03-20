@@ -791,7 +791,7 @@
 
 ;;;;; frames
 (spc-leader-def
-  "F+" 'make-frame
+  "Fa" 'make-frame
   "Fo" 'other-frame
   "Fd" 'delete-frame)
 
@@ -826,15 +826,15 @@
 ;;;;; bookmarks
 (spc-leader-def
   "Bb" 'consult-bookmark
-  "B+" 'bookmark-set
+  "Ba" 'bookmark-set
   "Bd" 'bookmark-delete)
 
 ;;;;; tab-bar
 (spc-leader-def
   "TAB TAB" 'tab-bar-switch-to-tab
-  "TAB +" 'tab-bar-new-tab
-  "TAB p" 'tab-bar-switch-to-prev-tab
+  "TAB a" 'tab-bar-new-tab
   "TAB n" 'tab-bar-switch-to-next-tab
+  "TAB p" 'tab-bar-switch-to-prev-tab
   "TAB r" 'tab-bar-switch-to-recent-tab
   "TAB d" 'tab-bar-close-tab)
 
