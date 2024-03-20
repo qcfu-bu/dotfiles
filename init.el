@@ -100,6 +100,7 @@
   (recentf-mode 1)
   :config
   (add-to-list 'recentf-exclude "~/.emacs.d/.cache/*")
+  (add-to-list 'recentf-exclude "~/.emacs.d/bookmarks")
   (add-to-list 'recentf-exclude "/private/var/folders/*"))
 
 ;;; completion
