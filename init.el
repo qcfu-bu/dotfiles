@@ -415,13 +415,6 @@
   :config
   (setq outli-default-nobar t))
 
-(use-package presentation
-  :straight
-  (presentation
-   :type git
-   :host github
-   :repo "zonuexe/emacs-presentation-mode"))
-
 ;;; tools
 ;;;; magit
 (use-package magit
@@ -845,8 +838,7 @@
   "tp" 'popper-cycle-backwards
   "tr" 'treemacs
   "tl" 'display-line-numbers-mode
-  "tc" 'olivetti-mode
-  "tz" 'presentation-mode)
+  "tc" 'olivetti-mode)
 
 ;;;;; git
 (spc-leader-def
