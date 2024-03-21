@@ -26,7 +26,6 @@
  ("eldoc-box" . "c36f31074b09930e8425963f39d5508da6d2c32d")
  ("emacs-dune-format" . "4ae20c10a7b3fa0f942f27d77e42beae18dd4252")
  ("emacs-libvterm" . "c3a3a23a5eace137947524c93644204bf6b56cff")
- ("emacs-presentation-mode" . "f53f67aeab97e8eea6d1f12df5f7ce3b1b03b879")
  ("emacs-reformatter" . "a0d4ce721942c801e39e8620d92f2d537778d460")
  ("emacs-undo-fu" . "04961ba775142627c5fa4bb94c3e507afedaecd1")
  ("emacs-undo-fu-session" . "2b355c9d39b2688f859a762f2289f23fd16fadc4")
