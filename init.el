@@ -547,15 +547,18 @@
 
 ;;;; org
 (use-package org
+  :straight t
   :defer t
   :hook
   ((org-mode . visual-line-mode)
    (org-mode . flyspell-mode)
    (org-mode . (lambda ()
                  (modify-syntax-entry ?< "." org-mode-syntax-table)
-                 (modify-syntax-entry ?> "." org-mode-syntax-table))))
+                 (modify-syntax-entry ?> "." org-mode-syntax-table)))
+   (org-indent-mode . (lambda () (setq adaptive-wrap-extra-indent 2))))
   :config
   (setq org-startup-indented t
+        org-startup-with-latex-preview t
         org-hide-leading-stars t
         org-src-window-setup 'current-window))
 
