@@ -655,8 +655,7 @@
   ;; agda-mode locate
   :load-path "~/.cabal/store/ghc-9.2.5/Agd-2.6.4-a2a1d0b0/share/emacs-mode"
   :mode ("\\.l?agda\\'" . agda2-mode)
-  :hook ((agda2-mode . (lambda () (activate-input-method "Agda"))))
-  :init (use-package agda-input :demand t))
+  :hook ((agda2-mode . (lambda () (activate-input-method "Agda")))))
 
 ;;;; sml
 (use-package sml-mode
