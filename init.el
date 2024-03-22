@@ -554,8 +554,7 @@
    (org-mode . flyspell-mode)
    (org-mode . (lambda ()
                  (modify-syntax-entry ?< "." org-mode-syntax-table)
-                 (modify-syntax-entry ?> "." org-mode-syntax-table)))
-   (org-indent-mode . (lambda () (setq adaptive-wrap-extra-indent 2))))
+                 (modify-syntax-entry ?> "." org-mode-syntax-table))))
   :config
   (setq org-startup-indented t
         org-startup-with-latex-preview t
