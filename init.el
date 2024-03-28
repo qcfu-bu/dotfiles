@@ -557,16 +557,8 @@
                  (modify-syntax-entry ?> "." org-mode-syntax-table))))
   :config
   (setq org-startup-indented t
-        org-startup-with-latex-preview t
         org-hide-leading-stars t
         org-src-window-setup 'current-window))
-
-(use-package org-roam
-  :straight t
-  :defer t
-  :config
-  (setq org-roam-directory "~/notes/org-roam")
-  (org-roam-db-autosync-mode t))
 
 ;;;; latex
 (use-package auctex
@@ -846,12 +838,6 @@
 (spc-leader-def
   "gg" 'magit
   "gr" 'consult-git-grep)
-
-;;;;; notes
-(spc-leader-def
-  "nl" 'org-roam-buffer-toggle
-  "nf" 'org-roam-node-find
-  "ni" 'org-roam-node-insert)
 
 ;;;; local
 (general-create-definer spc-local-leader-def
