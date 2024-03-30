@@ -43,9 +43,9 @@
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
 (when (eq window-system 'mac)
+  (mac-auto-operator-composition-mode t)
   (setq mac-redisplay-dont-reset-vscroll t
-        mac-mouse-wheel-smooth-scroll nil
-        mac-auto-operator-composition-mode t)
+        mac-mouse-wheel-smooth-scroll nil)
   (setq trash-directory "~/.Trash"))
 
 ;;;; server
