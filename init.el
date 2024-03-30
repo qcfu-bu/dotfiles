@@ -44,7 +44,8 @@
 (setq-default indent-tabs-mode nil)
 (when (eq window-system 'mac)
   (setq mac-redisplay-dont-reset-vscroll t
-        mac-mouse-wheel-smooth-scroll nil)
+        mac-mouse-wheel-smooth-scroll nil
+        mac-auto-operator-composition-mode t)
   (setq trash-directory "~/.Trash"))
 
 ;;;; server
