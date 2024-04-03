@@ -157,8 +157,8 @@
   :straight t
   :custom-face
   (corfu-border ((t (:background "black"))))
-  (corfu-current ((t (:background nil :inherit region))))
-  (corfu-default ((t (:background nil :inherit default))))
+  (corfu-current ((t (:background unspecified :inherit region))))
+  (corfu-default ((t (:background unspecified :inherit default))))
   :config
   (setq corfu-auto t
         corfu-auto-prefix 2
@@ -603,11 +603,14 @@
   (tuareg-mode . eglot-ensure)
   (tuareg-mode . utop-minor-mode)
   (tuareg-mode . ocp-format-on-save-mode)
-  (tuareg-mode . (lambda () (setq-local compile-command "dune build --profile release")))
-  (tuareg-menhir-mode . (lambda () (setq-local compile-command "dune build --profile release")))
-  :config
+  (tuareg-mode . tuareg-compile-setup)
+  (tuareg-menhir-mode . tuareg-compile-setup)
+  :init
   (reformatter-define ocp-format
     :program "ocp-indent")
+  (defun tuareg-compile-setup ()
+    (setq-local compile-command "dune build --profile release"))
+  :config
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
 
@@ -617,10 +620,12 @@
   (reason-mode . eglot-ensure)
   (reason-mode . reason-utop-setup)
   (reason-mode . reason-format-on-save-mode)
-  (reason-mode . (lambda () (setq-local compile-command "dune build --profile release")))
+  (reason-mode . reason-compile-setup)
   :init
   (reformatter-define reason-format
     :program "refmt")
+  (defun reason-compile-setup ()
+    (setq-local compile-command "dune build --profile release"))
   (defun reason-utop-setup ()
     (setq-local utop-command "opam config exec -- rtop -emacs")
     (utop-minor-mode)))
