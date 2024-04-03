@@ -174,8 +174,7 @@
   :config
   (setq cape-dabbrev-check-other-buffers nil)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+  (add-to-list 'completion-at-point-functions #'cape-file))
 
 ;;; editor
 ;;;; evil
@@ -468,6 +467,7 @@
   :straight t
   :commands (eglot-ensure)
   :config
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   (add-to-list 'eglot-server-programs '((LaTeX-mode) . ("texlab"))))
 
 ;;;; dired
@@ -610,6 +610,19 @@
     :program "ocp-indent")
   (setq tuareg-opam-insinuate t)
   (tuareg-opam-update-env (tuareg-opam-current-compiler)))
+
+(use-package reason-mode
+  :straight t
+  :hook
+  (reason-mode . eglot-ensure)
+  (reason-mode . reason-utop-setup)
+  (reason-mode . reason-format-on-save-mode)
+  :init
+  (reformatter-define reason-format
+    :program "refmt")
+  (defun reason-utop-setup ()
+    (setq-local utop-command "opam config exec -- rtop -emacs")
+    (utop-minor-mode)))
 
 (use-package utop
   :straight t
@@ -888,6 +901,11 @@
 ;;;;; ocaml
 (spc-local-leader-def
   :keymaps 'tuareg-mode-map
+  "e" 'utop
+  "b" 'utop-eval-buffer)
+
+(spc-local-leader-def
+  :keymaps 'reason-mode-map
   "e" 'utop
   "b" 'utop-eval-buffer)
 
