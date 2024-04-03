@@ -617,6 +617,7 @@
   (reason-mode . eglot-ensure)
   (reason-mode . reason-utop-setup)
   (reason-mode . reason-format-on-save-mode)
+  (reason-mode . (lambda () (setq-local compile-command "dune build --profile release")))
   :init
   (reformatter-define reason-format
     :program "refmt")
