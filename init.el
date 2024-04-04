@@ -487,14 +487,12 @@
 (use-package eldoc
   :straight t
   :custom
-  (eldoc-idle-delay 0.8)
   (eldoc-display-functions '(eldoc-display-in-buffer)))
 
 (use-package eldoc-box
   :straight t
   :custom-face
-  (eldoc-box-border ((t (:background "black"))))
-  :hook (eldoc-mode . eldoc-box-hover-at-point-mode))
+  (eldoc-box-border ((t (:background "black")))))
 
 ;;;; eglot
 (use-package eglot
@@ -788,7 +786,7 @@
 
 ;;;;; help
 (spc-leader-def
-  "hh" 'display-local-help
+  "hh" 'eldoc-box-help-at-point
   "hv" 'describe-variable
   "hf" 'describe-function
   "hF" 'describe-face
