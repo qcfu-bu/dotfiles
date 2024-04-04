@@ -136,6 +136,10 @@
   (setq consult-preview-key nil)
   (add-to-list 'consult-buffer-filter "^\\*"))
 
+(use-package consult-flycheck
+  :straight t
+  :defer t)
+
 (use-package marginalia
   :straight t
   :after vertico
@@ -445,23 +449,52 @@
   :straight t
   :defer t)
 
+;;;; flycheck
+(use-package flycheck
+  :straight t
+  :init
+  (defun mp-flycheck-eldoc (callback &rest _ignored)
+    "Print flycheck messages at point by calling CALLBACK."
+    (when-let ((flycheck-errors (and flycheck-mode (flycheck-overlay-errors-at (point)))))
+      (mapc
+       (lambda (err)
+         (funcall callback
+           (format "%s: %s"
+                   (let ((level (flycheck-error-level err)))
+                     (pcase level
+                       ('info (propertize "I" 'face 'flycheck-error-list-info))
+                       ('error (propertize "E" 'face 'flycheck-error-list-error))
+                       ('warning (propertize "W" 'face 'flycheck-error-list-warning))
+                       (_ level)))
+                   (flycheck-error-message err))
+           :thing (or (flycheck-error-id err)
+                      (flycheck-error-group err))
+           :face 'font-lock-doc-face))
+       flycheck-errors)))
+  ;; integrate flycheck with eldoc
+  (defun mp-flycheck-prefer-eldoc ()
+    (add-hook 'eldoc-documentation-functions #'mp-flycheck-eldoc nil t)
+    (setq eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly)
+    (setq flycheck-display-errors-function nil)
+    (setq flycheck-help-echo-function nil))
+  :hook
+  (prog-mode . flycheck-mode)
+  (flycheck-mode . mp-flycheck-prefer-eldoc)
+  :config
+  (setq flycheck-indication-mode nil))
+
 ;;;; eldoc
 (use-package eldoc
   :straight t
-  :config
-  (setq eldoc-display-functions '(eldoc-display-in-buffer)))
+  :custom
+  (eldoc-idle-delay 0.8)
+  (eldoc-display-functions '(eldoc-display-in-buffer)))
 
 (use-package eldoc-box
   :straight t
   :custom-face
-  (eldoc-box-border ((t (:background "black")))))
-
-;;;; flymake
-(use-package flymake
-  :straight t
-  :defer t
-  :init
-  (setq flymake-fringe-indicator-position nil))
+  (eldoc-box-border ((t (:background "black"))))
+  :hook (eldoc-mode . eldoc-box-hover-at-point-mode))
 
 ;;;; eglot
 (use-package eglot
@@ -470,6 +503,11 @@
   :config
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   (add-to-list 'eglot-server-programs '((LaTeX-mode) . ("texlab"))))
+
+(use-package flycheck-eglot
+  :straight t
+  :after (flycheck eglot)
+  :config (global-flycheck-eglot-mode 1))
 
 ;;;; dired
 (use-package dired
@@ -557,8 +595,6 @@
 
 ;;;; org
 (use-package org
-  :straight t
-  :defer t
   :hook
   ((org-mode . visual-line-mode)
    (org-mode . flyspell-mode)
@@ -697,7 +733,7 @@
    :host github
    :repo "qcfu-bu/ATS2-emacs")
   :defer t
-  :hook (ats2-mode . ats2-flymake-setup))
+  :hook (ats2-mode . ats2-flycheck-setup))
 
 ;;;; c/c++
 (use-package cc
@@ -752,7 +788,7 @@
 
 ;;;;; help
 (spc-leader-def
-  "hh" 'eldoc-box-help-at-point
+  "hh" 'display-local-help
   "hv" 'describe-variable
   "hf" 'describe-function
   "hF" 'describe-face
@@ -762,7 +798,7 @@
   "hk" 'describe-key
   "hm" 'describe-mode
   "hi" 'describe-input-method
-  "hc" 'consult-flymake)
+  "hc" 'consult-flycheck)
 
 ;;;;; editor
 (spc-leader-def
