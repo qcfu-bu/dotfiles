@@ -782,12 +782,12 @@
 (spc-leader-def
   "SPC" 'execute-extended-command
   "\\" 'toggle-input-method
-  "i"  'eldoc-box-help-at-point
   "qr" 'restart-emacs
   "qq" 'save-buffers-kill-emacs)
 
 ;;;;; help
 (spc-leader-def
+  "hh" 'eldoc-box-help-at-point
   "hv" 'describe-variable
   "hf" 'describe-function
   "hF" 'describe-face
