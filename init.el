@@ -570,8 +570,7 @@
 
 (use-package vterm-toggle
   :straight t
-  :bind ("C-`" . vterm-toggle)
-  :config (setq vterm-toggle-scope 'project))
+  :bind ("C-`" . vterm-toggle))
 
 ;;; lang
 ;;;; markdown
