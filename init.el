@@ -443,6 +443,7 @@
   (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
   (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom)
+  (setq git-gutter-fr:side 'right-fringe)
   (global-git-gutter-mode t))
 
 (use-package gitignore-templates
@@ -479,9 +480,7 @@
     (setq flycheck-help-echo-function nil))
   :hook
   (prog-mode . flycheck-mode)
-  (flycheck-mode . mp-flycheck-prefer-eldoc)
-  :config
-  (setq flycheck-indication-mode nil))
+  (flycheck-mode . mp-flycheck-prefer-eldoc))
 
 ;;;; eldoc
 (use-package eldoc
