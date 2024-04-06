@@ -498,6 +498,9 @@
 (use-package eglot
   :straight t
   :commands (eglot-ensure)
+  :init
+  (defun eglot-format-on-save ()
+    (add-hook 'before-save-hook 'eglot-format-buffer))
   :config
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   (add-to-list 'eglot-server-programs '((LaTeX-mode) . ("texlab"))))
