@@ -161,8 +161,8 @@
   :straight t
   :custom-face
   (corfu-border ((t (:background "black"))))
+  (corfu-default ((t (:background unspecified :inherit tooltip))))
   (corfu-current ((t (:background unspecified :inherit region))))
-  (corfu-default ((t (:background unspecified :inherit default))))
   :config
   (setq corfu-auto t
         corfu-auto-prefix 2
@@ -492,7 +492,8 @@
 (use-package eldoc-box
   :straight t
   :custom-face
-  (eldoc-box-border ((t (:background "black")))))
+  (eldoc-box-border ((t (:background "black"))))
+  (eldoc-box-body ((t (:background unspecified :inherit tooltip)))))
 
 ;;;; eglot
 (use-package eglot
