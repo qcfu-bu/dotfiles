@@ -307,6 +307,10 @@
   :straight t
   :config (load-theme 'doom-one t))
 
+(use-package solaire-mode
+  :straight t
+  :config (solaire-global-mode +1))
+
 ;;;; modeline
 (use-package doom-modeline
   :straight t
