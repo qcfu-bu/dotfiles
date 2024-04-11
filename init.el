@@ -503,6 +503,7 @@
   (defun eglot-format-on-save ()
     (add-hook 'before-save-hook 'eglot-format-buffer))
   :config
+  (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   (add-to-list 'eglot-server-programs '((LaTeX-mode) . ("texlab"))))
 
@@ -703,6 +704,11 @@
   (setq proof-splash-enable nil
         proof-three-window-mode-policy 'hybrid))
 
+;;;; why3
+(use-package why3
+  :load-path "~/.opam/default/share/emacs/site-lisp"
+  :mode ("\\.mlw$" . why3-mode))
+
 ;;;; haskell
 (use-package haskell-mode
   :straight t
@@ -893,7 +899,7 @@
 
 ;;;;; toggles
 (spc-leader-def
-  "tt" 'popper-toggle-latest
+  "tt" 'popper-toggle
   "tn" 'popper-cycle
   "tp" 'popper-cycle-backwards
   "tr" 'treemacs
