@@ -769,6 +769,11 @@
   :demand t
   :hook (tll-mode . prettify-symbols-mode))
 
+;;;;  session-types
+(use-package session-type-mode
+  :load-path "~/Git/ReST"
+  :demand t)
+
 ;;; keybinds
 ;;;; which-key
 (use-package which-key
