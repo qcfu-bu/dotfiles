@@ -571,22 +571,6 @@
 (use-package vterm
   :straight t
   :defer t
-  :preface
-  ;; open vterm at current project root
-  (defun vterm/here ()
-    (interactive)
-    (require 'project)
-    (require 'vterm)
-    (let* ((project-current (project-current))
-           (project-root
-            (if project-current
-                (project-root project-current)
-              default-directory)))
-      (setenv "PROOT" project-root)
-      (save-window-excursion
-        (pop-to-buffer "*scratch*"))
-      (let (display-buffer-alist)
-        (vterm vterm-buffer-name))))
   :hook (vterm-mode . (lambda () (setq confirm-kill-processes nil)))
   :config
   (setq vterm-kill-buffer-on-exit t
