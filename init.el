@@ -128,12 +128,6 @@
         vertico-count 17)
   (vertico-mode))
 
-(use-package vertico-posframe
-  :straight t
-  :config
-  (setq vertico-posframe-poshandler #'posframe-poshandler-frame-bottom-center)
-  (vertico-posframe-mode 1))
-
 (use-package consult
   :straight t
   :defer t
