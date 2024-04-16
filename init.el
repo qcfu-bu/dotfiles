@@ -311,6 +311,13 @@
   :straight t
   :config (solaire-global-mode +1))
 
+(use-package highlight-indent-guides
+  :straight t
+  :custom
+  (highlight-indent-guides-method 'bitmap)
+  (highlight-indent-guides-bitmap-function
+   'highlight-indent-guides--bitmap-line))
+
 ;;;; modeline
 (use-package doom-modeline
   :straight t
@@ -713,6 +720,11 @@
   :load-path "~/.opam/default/share/emacs/site-lisp"
   :mode ("\\.mlw$" . why3-mode))
 
+;;;; z3
+(use-package z3-mode
+  :straight t
+  :mode ("\\.smt[2]?$". z3-mode))
+
 ;;;; haskell
 (use-package haskell-mode
   :straight t
@@ -912,6 +924,7 @@
   "tn" 'popper-cycle
   "tp" 'popper-cycle-backwards
   "tr" 'treemacs
+  "ti" 'highlight-indent-guides-mode
   "tl" 'display-line-numbers-mode
   "tc" 'olivetti-mode)
 
