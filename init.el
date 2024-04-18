@@ -783,8 +783,9 @@
 
 ;;;;  session-types
 (use-package session-type-mode
-  :load-path "~/Git/ReST"
-  :demand t)
+  :load-path "~/Git/PReST"
+  :demand t
+  :hook (session-type-mode . prettify-symbols-mode))
 
 ;;; keybinds
 ;;;; which-key
