@@ -651,8 +651,8 @@
   :straight t
   :hook
   (tuareg-mode . eglot-ensure)
+  (tuareg-mode . eglot-format-on-save)
   (tuareg-mode . utop-minor-mode)
-  (tuareg-mode . ocp-format-on-save-mode)
   (tuareg-mode . tuareg-compile-setup)
   (tuareg-menhir-mode . tuareg-compile-setup)
   :init
