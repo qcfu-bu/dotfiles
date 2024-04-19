@@ -309,7 +309,15 @@
 
 (use-package solaire-mode
   :straight t
-  :config (solaire-global-mode +1))
+  :init
+  (defun +solaire-mode-real-buffer-p ()
+    (cond ((eq major-mode 'vterm-mode) t)
+          ((eq major-mode 'lisp-interaction-mode) t)
+          ((buffer-file-name (buffer-base-buffer)) t)
+          (t nil)))
+  :config
+  (setq solaire-mode-real-buffer-fn '+solaire-mode-real-buffer-p)
+  (solaire-global-mode +1))
 
 (use-package highlight-indent-guides
   :straight t
@@ -578,7 +586,8 @@
 (use-package vterm
   :straight t
   :defer t
-  :hook (vterm-mode . (lambda () (setq confirm-kill-processes nil)))
+  :hook
+  (vterm-mode . (lambda () (setq confirm-kill-processes nil)))
   :config
   (setq vterm-kill-buffer-on-exit t
         vterm-max-scrollback 5000))
