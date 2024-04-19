@@ -366,7 +366,7 @@
 (use-package popper
   :straight t
   :config
-  (setq popper-mode-line ""
+  (setq popper-mode-line nil
         popper-window-height 20)
   (setq popper-reference-buffers
         '("\\*Messages\\*"
