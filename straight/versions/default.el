@@ -57,6 +57,7 @@
  ("gnu-elpa-mirror" . "9f00468601c5b97d6b9a15e040b897b17b0ac756")
  ("goto-chg" . "72f556524b88e9d30dc7fc5b0dc32078c166fda7")
  ("haskell-mode" . "d23ec34788286405f377ce485d2a17e302d94a4f")
+ ("highlight-indent-guides" . "cf352c85cd15dd18aa096ba9d9ab9b7ab493e8f6")
  ("hl-todo" . "6abac44e4aae31256e50719db5acff6071cffcbd")
  ("ht.el" . "1c49aad1c820c86f7ee35bf9fff8429502f60fef")
  ("hydra" . "317e1de33086637579a7aeb60f77ed0405bf359b")
@@ -104,5 +105,6 @@
  ("with-editor" . "5db5f0eb2202f52d44f529fe00654c866bb64eb1")
  ("xref" . "8f071425f7aaab5e44b218f4a466a20766c86645")
  ("yaml-mode" . "7b5ce294fb15c2c8926fa476d7218aa415550a2a")
- ("yasnippet" . "eb5ba2664c3a68ae4a53bb38b85418dd131b208f"))
+ ("yasnippet" . "eb5ba2664c3a68ae4a53bb38b85418dd131b208f")
+ ("z3-mode" . "0356cbe1e1e2b780ba0ddb4aaa055fa246a67931"))
 :gamma
