@@ -791,7 +791,7 @@
   :demand t
   :hook (tll-mode . prettify-symbols-mode))
 
-;;;;  session-types
+;;;; session-types
 (use-package session-type-mode
   :load-path "~/Git/PReST"
   :demand t
