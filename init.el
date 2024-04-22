@@ -49,7 +49,9 @@
 (setq native-comp-async-report-warnings-errors nil)
 (setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
+(setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
+(setq-default indent-line-function 'insert-tab)
 (when (eq window-system 'mac)
   (mac-auto-operator-composition-mode t)
   (setq mac-redisplay-dont-reset-vscroll t
@@ -785,17 +787,20 @@
   :straight t
   :defer t)
 
-;;;; tll
+;;;; miscellaneous
 (use-package tll-mode
   :load-path "~/Git/TLL"
   :demand t
   :hook (tll-mode . prettify-symbols-mode))
 
-;;;; session-types
 (use-package session-type-mode
   :load-path "~/Git/PReST"
   :demand t
   :hook (session-type-mode . prettify-symbols-mode))
+
+(use-package SFLang-mode
+  :load-path "~/Git/SFLang/"
+  :demand t)
 
 ;;; keybinds
 ;;;; which-key
