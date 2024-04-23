@@ -324,7 +324,7 @@
 (use-package highlight-indent-guides
   :straight t
   :custom
-  (highlight-indent-guides-method 'bitmap)
+  (highlight-indent-guides-method 'fill)
   (highlight-indent-guides-bitmap-function
    'highlight-indent-guides--bitmap-line))
 
@@ -526,7 +526,8 @@
   :config
   (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
-  (add-to-list 'eglot-server-programs '((LaTeX-mode) . ("texlab"))))
+  (add-to-list 'eglot-server-programs '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab")))
+  (add-to-list 'eglot-server-programs '((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode) . ("clangd"))))
 
 (use-package flycheck-eglot
   :straight t
