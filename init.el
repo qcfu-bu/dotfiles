@@ -776,7 +776,9 @@
   :init
   (setq c-default-style "k&r")
   (setq-default c-basic-offset 4)
-  :hook (c-mode . eglot-ensure))
+  :hook
+  (c-mode . eglot-ensure)
+  (c++-mode . eglot-ensure))
 
 ;;;; python
 (use-package python
@@ -800,8 +802,9 @@
   :hook (session-type-mode . prettify-symbols-mode))
 
 (use-package SFLang-mode
-  :load-path "~/Git/SFLang/"
-  :demand t)
+  :load-path "~/Git/SF/editor/emacs"
+  :demand t
+  :hook (SFLang-mode . (lambda () (electric-indent-local-mode -1))))
 
 ;;; keybinds
 ;;;; which-key
