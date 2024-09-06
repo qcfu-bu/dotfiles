@@ -503,36 +503,23 @@
   (prog-mode . flycheck-mode)
   (flycheck-mode . mp-flycheck-prefer-eldoc))
 
-;;;; eldoc
-(use-package eldoc
+;;;; lsp
+(use-package lsp-mode
   :straight t
-  :custom
-  (eldoc-idle-delay 0)
-  (eldoc-display-functions '(eldoc-display-in-buffer)))
-
-(use-package eldoc-box
-  :straight t
-  :custom-face
-  (eldoc-box-border ((t (:background "black"))))
-  (eldoc-box-body ((t (:background unspecified :inherit tooltip)))))
-
-;;;; eglot
-(use-package eglot
-  :straight t
-  :commands (eglot-ensure)
+  :commands (lsp)
   :init
-  (defun eglot-format-on-save ()
-    (add-hook 'before-save-hook 'eglot-format-buffer))
+  (defun lsp-format-on-save ()
+    (add-hook 'before-save-hook 'lsp-format-buffer))
   :config
-  (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
-  (add-to-list 'eglot-server-programs '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab")))
-  (add-to-list 'eglot-server-programs '((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode) . ("clangd"))))
+  (setq lsp-completion-provider :none
+        lsp-eldoc-enable-hover nil
+        lsp-headerline-breadcrumb-enable nil
+        lsp-modeline-code-actions-enable nil))
 
-(use-package flycheck-eglot
+(use-package lsp-ui
   :straight t
-  :after (flycheck eglot)
-  :config (global-flycheck-eglot-mode 1))
+  :config
+  (setq lsp-ui-doc-show-with-cursor nil))
 
 ;;;; dired
 (use-package dired
@@ -636,7 +623,7 @@
 (use-package auctex
   :straight t
   :hook
-  ((LaTeX-mode . eglot-ensure)
+  ((LaTeX-mode . lsp)
    (LaTeX-mode . visual-line-mode)
    (LaTeX-mode . flyspell-mode)
    (LaTeX-mode . rainbow-delimiters-mode))
@@ -663,8 +650,8 @@
 (use-package tuareg
   :straight t
   :hook
-  (tuareg-mode . eglot-ensure)
-  (tuareg-mode . eglot-format-on-save)
+  (tuareg-mode . lsp)
+  (tuareg-mode . lsp-format-on-save)
   (tuareg-mode . utop-minor-mode)
   (tuareg-mode . tuareg-compile-setup)
   (tuareg-menhir-mode . tuareg-compile-setup)
@@ -680,7 +667,7 @@
 (use-package reason-mode
   :straight t
   :hook
-  (reason-mode . eglot-ensure)
+  (reason-mode . lsp)
   (reason-mode . reason-utop-setup)
   (reason-mode . reason-format-on-save-mode)
   (reason-mode . reason-compile-setup)
@@ -741,7 +728,7 @@
 ;;;; haskell
 (use-package haskell-mode
   :straight t
-  :hook (haskell-mode . eglot-ensure))
+  :hook (haskell-mode . lsp))
 
 ;;;; agda
 (use-package agda2-mode
@@ -777,12 +764,12 @@
   (setq c-default-style "k&r")
   (setq-default c-basic-offset 4)
   :hook
-  (c-mode . eglot-ensure)
-  (c++-mode . eglot-ensure))
+  (c-mode . lsp)
+  (c++-mode . lsp))
 
 ;;;; python
 (use-package python
-  :hook (python-mode . eglot-ensure)
+  :hook (python-mode . lsp)
   :config
   (setq python-shell-interpreter "python3"))
 
@@ -836,7 +823,6 @@
 
 ;;;;; help
 (spc-leader-def
-  "hh" 'eldoc-box-help-at-point
   "hv" 'describe-variable
   "hf" 'describe-function
   "hF" 'describe-face
