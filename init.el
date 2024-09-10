@@ -468,7 +468,7 @@
 (use-package eldoc
   :straight t
   :custom
-  (eldoc-idle-delay 0)
+  (eldoc-idle-delay 0.1)
   (eldoc-display-functions '(eldoc-display-in-buffer)))
 
 (use-package eldoc-box
