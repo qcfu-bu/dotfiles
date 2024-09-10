@@ -464,6 +464,19 @@
   :straight t
   :defer t)
 
+;;;; eldoc
+(use-package eldoc
+  :straight t
+  :custom
+  (eldoc-idle-delay 0)
+  (eldoc-display-functions '(eldoc-display-in-buffer)))
+
+(use-package eldoc-box
+  :straight t
+  :custom-face
+  (eldoc-box-border ((t (:background "black"))))
+  (eldoc-box-body ((t (:background unspecified :inherit tooltip)))))
+
 ;;;; eglot
 (use-package eglot
   :straight t
@@ -779,7 +792,7 @@
 
 ;;;;; help
 (spc-leader-def
-  "hh" 'display-local-help
+  "hh" 'eldoc-box-help-at-point
   "hv" 'describe-variable
   "hf" 'describe-function
   "hF" 'describe-face
