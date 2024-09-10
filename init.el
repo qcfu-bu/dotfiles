@@ -44,6 +44,7 @@
 (setq use-short-answers t)
 (setq frame-resize-pixelwise t)
 (setq delete-by-moving-to-trash t)
+(setq trash-directory "~/.Trash")
 (setq confirm-kill-emacs 'yes-or-no-p)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 (setq native-comp-async-report-warnings-errors nil)
@@ -52,11 +53,6 @@
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq-default indent-line-function 'insert-tab)
-(when (eq window-system 'mac)
-  (mac-auto-operator-composition-mode t)
-  (setq mac-redisplay-dont-reset-vscroll t
-        mac-mouse-wheel-smooth-scroll nil)
-  (setq trash-directory "~/.Trash"))
 
 ;;;; server
 (use-package server
@@ -137,10 +133,6 @@
   :config
   (setq consult-preview-key nil)
   (add-to-list 'consult-buffer-filter "^\\*"))
-
-(use-package consult-flycheck
-  :straight t
-  :defer t)
 
 (use-package marginalia
   :straight t
@@ -471,38 +463,6 @@
   :straight t
   :defer t)
 
-;;;; flycheck
-(use-package flycheck
-  :straight t
-  :init
-  (defun mp-flycheck-eldoc (callback &rest _ignored)
-    "Print flycheck messages at point by calling CALLBACK."
-    (when-let ((flycheck-errors (and flycheck-mode (flycheck-overlay-errors-at (point)))))
-      (mapc
-       (lambda (err)
-         (funcall callback
-           (format "%s: %s"
-                   (let ((level (flycheck-error-level err)))
-                     (pcase level
-                       ('info (propertize "I" 'face 'flycheck-error-list-info))
-                       ('error (propertize "E" 'face 'flycheck-error-list-error))
-                       ('warning (propertize "W" 'face 'flycheck-error-list-warning))
-                       (_ level)))
-                   (flycheck-error-message err))
-           :thing (or (flycheck-error-id err)
-                      (flycheck-error-group err))
-           :face 'font-lock-doc-face))
-       flycheck-errors)))
-  ;; integrate flycheck with eldoc
-  (defun mp-flycheck-prefer-eldoc ()
-    (add-hook 'eldoc-documentation-functions #'mp-flycheck-eldoc nil t)
-    (setq eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly)
-    (setq flycheck-display-errors-function nil)
-    (setq flycheck-help-echo-function nil))
-  :hook
-  (prog-mode . flycheck-mode)
-  (flycheck-mode . mp-flycheck-prefer-eldoc))
-
 ;;;; eldoc
 (use-package eldoc
   :straight t
@@ -528,11 +488,6 @@
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   (add-to-list 'eglot-server-programs '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab")))
   (add-to-list 'eglot-server-programs '((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode) . ("clangd"))))
-
-(use-package flycheck-eglot
-  :straight t
-  :after (flycheck eglot)
-  :config (global-flycheck-eglot-mode 1))
 
 ;;;; dired
 (use-package dired
@@ -769,7 +724,7 @@
    :host github
    :repo "qcfu-bu/ATS2-emacs")
   :defer t
-  :hook (ats2-mode . ats2-flycheck-setup))
+  :hook (ats2-mode . ats2-flymake-setup))
 
 ;;;; c/c++
 (use-package cc
@@ -846,7 +801,7 @@
   "hk" 'describe-key
   "hm" 'describe-mode
   "hi" 'describe-input-method
-  "hc" 'consult-flycheck)
+  "hc" 'consult-flymake)
 
 ;;;;; editor
 (spc-leader-def
