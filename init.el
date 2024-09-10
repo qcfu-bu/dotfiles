@@ -24,7 +24,7 @@
   :config
   (setq gcmh-idle-delay 'auto
         gcmh-auto-idle-delay-factor 10
-        gcmh-high-cons-threshold (* 16 1024 1024))
+        gcmh-high-cons-threshold (* 128 1024 1024))
   (gcmh-mode 1))
 
 ;;;; path
@@ -35,7 +35,7 @@
     (setq exec-path-from-shell-arguments nil)
     (exec-path-from-shell-initialize)))
 
-;;; emacs
+;;; system
 ;;;; info
 (setq user-full-name "Qiancheng Fu"
       user-mail-address "qcfu@bu.edu")
@@ -46,13 +46,44 @@
 (setq delete-by-moving-to-trash t)
 (setq trash-directory "~/.Trash")
 (setq confirm-kill-emacs 'yes-or-no-p)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq read-process-output-max (* 4 1024 1024)) ;; 4mb
 (setq native-comp-async-report-warnings-errors nil)
 (setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq-default indent-line-function 'insert-tab)
+
+;;;; fonts
+(set-face-attribute 'default        nil :font "JetBrains Mono-14")
+(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-14")
+(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
+
+;;;; theme
+(use-package doom-themes
+  :straight t
+  :config (load-theme 'doom-one t))
+
+(use-package solaire-mode
+  :straight t
+  :init
+  (defun +solaire-mode-real-buffer-p ()
+    (cond ((eq major-mode 'vterm-mode) t)
+          ((eq major-mode 'lisp-interaction-mode) t)
+          ((buffer-file-name (buffer-base-buffer)) t)
+          (t nil)))
+  :config
+  (setq solaire-mode-real-buffer-fn '+solaire-mode-real-buffer-p)
+  (solaire-global-mode +1))
+
+;;;; modeline
+(use-package doom-modeline
+  :straight t
+  :config
+  (setq doom-modeline-buffer-encoding nil
+        doom-modeline-buffer-file-name-style 'buffer-name
+        doom-modeline-check-simple-format t)
+  (doom-modeline-mode t))
 
 ;;;; server
 (use-package server
@@ -81,6 +112,8 @@
       ;; mouse
       mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
       mouse-wheel-scroll-amount-horizontal 2)
+(when (fboundp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode))
 
 ;;;; files
 (use-package files
@@ -263,11 +296,6 @@
   :commands reformatter-define)
 
 ;;; ui
-;;;; fonts
-(set-face-attribute 'default        nil :font "JetBrains Mono-14")
-(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-14")
-(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
-
 ;;;; icons
 (use-package nerd-icons
   :straight t
@@ -295,39 +323,6 @@
   :straight t
   :after nerd-icons ibuffer
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
-
-;;;; themes
-(use-package doom-themes
-  :straight t
-  :config (load-theme 'doom-one t))
-
-(use-package solaire-mode
-  :straight t
-  :init
-  (defun +solaire-mode-real-buffer-p ()
-    (cond ((eq major-mode 'vterm-mode) t)
-          ((eq major-mode 'lisp-interaction-mode) t)
-          ((buffer-file-name (buffer-base-buffer)) t)
-          (t nil)))
-  :config
-  (setq solaire-mode-real-buffer-fn '+solaire-mode-real-buffer-p)
-  (solaire-global-mode +1))
-
-(use-package highlight-indent-guides
-  :straight t
-  :custom
-  (highlight-indent-guides-method 'fill)
-  (highlight-indent-guides-bitmap-function
-   'highlight-indent-guides--bitmap-line))
-
-;;;; modeline
-(use-package doom-modeline
-  :straight t
-  :config
-  (setq doom-modeline-buffer-encoding nil
-        doom-modeline-buffer-file-name-style 'buffer-name
-        doom-modeline-check-simple-format t)
-  (doom-modeline-mode t))
 
 ;;;; treemacs
 (use-package treemacs
@@ -411,6 +406,13 @@
   :straight t
   :defer t)
 
+(use-package highlight-indent-guides
+  :straight t
+  :custom
+  (highlight-indent-guides-method 'fill)
+  (highlight-indent-guides-bitmap-function
+   'highlight-indent-guides--bitmap-line))
+
 (use-package hl-todo
   :straight t
   :hook ((prog-mode text-mode) . hl-todo-mode)
@@ -450,14 +452,11 @@
   (setq magit-bury-buffer-function 'magit-restore-window-configuration
         magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 
-(use-package git-gutter-fringe
+(use-package diff-hl
   :straight t
   :config
-  (define-fringe-bitmap 'git-gutter-fr:added [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:modified [224] nil nil '(center repeated))
-  (define-fringe-bitmap 'git-gutter-fr:deleted [128 192 224 240] nil nil 'bottom)
-  (setq git-gutter-fr:side 'right-fringe)
-  (global-git-gutter-mode t))
+  (setq diff-hl-side 'right)
+  (global-diff-hl-mode))
 
 (use-package gitignore-templates
   :straight t
@@ -830,7 +829,7 @@
   "bo" 'mode-line-other-buffer
   "bn" 'evil-next-buffer
   "bp" 'evil-prev-buffer
-  "bd" 'kill-this-buffer)
+  "bd" 'kill-current-buffer)
 
 ;;;;; windows
 (spc-leader-def
