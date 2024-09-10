@@ -455,6 +455,8 @@
 (use-package diff-hl
   :straight t
   :config
+  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   (setq diff-hl-side 'right)
   (global-diff-hl-mode))
 
