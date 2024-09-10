@@ -1,6 +1,3 @@
-;; Defer garbage collection further back in the startup process.
-(setq gc-cons-threshold most-positive-fixnum)
-
 ;; Prevent package.el loading packages prior to init-file loading.
 (setq package-enable-at-startup nil)
 (setq package-quickstart nil)
@@ -25,4 +22,3 @@
 (setq use-file-dialog nil)
 (setq ring-bell-function 'ignore)
 (setq-default frame-title-format "GNU Emacs")
-
