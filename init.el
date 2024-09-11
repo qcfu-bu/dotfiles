@@ -56,9 +56,6 @@
 
 (setq delete-by-moving-to-trash t)
 (setq trash-directory "~/.Trash")
-(when (and (eq system-type 'darwin) (display-graphic-p))
-  (setq mac-option-modifier nil
-        mac-command-modifier 'meta))
 
 ;;;; fonts
 (set-face-attribute 'default        nil :font "JetBrains Mono-14")
