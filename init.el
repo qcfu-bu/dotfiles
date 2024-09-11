@@ -32,7 +32,7 @@
 (use-package exec-path-from-shell
   :straight t
   :config
-  (when (memq window-system '(mac ns x))
+  (when (eq system-type 'darwin)
     (setq exec-path-from-shell-arguments nil)
     (exec-path-from-shell-initialize)))
 
@@ -42,18 +42,23 @@
       user-mail-address "qcfu@bu.edu")
 
 ;;;; defaults
-(setq use-short-answers t)
-(setq frame-resize-pixelwise t)
-(setq delete-by-moving-to-trash t)
-(setq trash-directory "~/.Trash")
-(setq confirm-kill-emacs 'yes-or-no-p)
 (setq read-process-output-max (* 4 1024 1024)) ;; 4mb
 (setq native-comp-async-report-warnings-errors nil)
+
+(setq use-short-answers t)
+(setq frame-resize-pixelwise t)
+(setq confirm-kill-emacs 'yes-or-no-p)
 (setq-default line-spacing 0.2)
 (setq-default truncate-lines t)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq-default indent-line-function 'insert-tab)
+
+(setq delete-by-moving-to-trash t)
+(setq trash-directory "~/.Trash")
+(when (and (eq system-type 'darwin) (display-graphic-p))
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta))
 
 ;;;; fonts
 (set-face-attribute 'default        nil :font "JetBrains Mono-14")
