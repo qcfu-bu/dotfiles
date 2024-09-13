@@ -379,8 +379,7 @@
 ;;;; tab-bar
 (use-package tab-bar
   :init
-  (setq tab-bar-show nil
-        tab-bar-new-tab-choice "*scratch*"))
+  (setq tab-bar-new-tab-choice "*scratch*"))
 
 ;;;; line-numbers
 (use-package display-line-numbers
