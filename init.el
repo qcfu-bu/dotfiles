@@ -410,6 +410,7 @@
 
 (use-package highlight-indent-guides
   :straight t
+  :defer t
   :custom
   (highlight-indent-guides-method 'fill)
   (highlight-indent-guides-bitmap-function
