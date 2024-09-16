@@ -301,8 +301,7 @@
 ;;; ui
 ;;;; icons
 (use-package nerd-icons
-  :straight t
-  :defer t)
+  :straight t)
 
 (use-package nerd-icons-completion
   :straight t
