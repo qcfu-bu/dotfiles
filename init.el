@@ -438,10 +438,6 @@
   :straight t
   :after dired)
 
-(use-package diredfl
-  :straight t
-  :config (diredfl-global-mode t))
-
 ;;;; compile
 (use-package compile
   :commands (compile recompile)
