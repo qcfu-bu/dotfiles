@@ -282,6 +282,33 @@
   :commands reformatter-define)
 
 ;;; ui
+;;;; icons
+(use-package nerd-icons
+  :straight t)
+
+(use-package nerd-icons-completion
+  :straight t
+  :after nerd-icons marginalia
+  :config
+  (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
+(use-package nerd-icons-corfu
+  :straight t
+  :after nerd-icons corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
+(use-package nerd-icons-dired
+  :straight t
+  :after nerd-icons dired
+  :hook (dired-mode . nerd-icons-dired-mode))
+
+(use-package nerd-icons-ibuffer
+  :straight t
+  :after nerd-icons ibuffer
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
 ;;;; popup
 (use-package popper
   :straight t
@@ -306,12 +333,9 @@
 
 ;;;; tab-bar
 (use-package tab-bar
-  :config
-  (setq tab-bar-show 1
-        tab-bar-tab-hints t
-        tab-bar-close-button-show nil
-        tab-bar-new-tab-choice "*scratch*")
-  (tab-bar-mode 1))
+  :init
+  (setq tab-bar-show nil
+        tab-bar-new-tab-choice "*scratch*"))
 
 ;;;; line-numbers
 (use-package display-line-numbers
@@ -437,6 +461,10 @@
 (use-package dired-subtree
   :straight t
   :after dired)
+
+(use-package diredfl
+  :straight t
+  :config (diredfl-global-mode t))
 
 ;;;; compile
 (use-package compile
