@@ -67,10 +67,26 @@
   :straight t
   :config (load-theme 'doom-one t))
 
-;;;; modeline
-(use-package minions
+(use-package solaire-mode
   :straight t
-  :config (minions-mode 1))
+  :init
+  (defun +solaire-mode-real-buffer-p ()
+    (cond ((eq major-mode 'vterm-mode) t)
+          ((eq major-mode 'lisp-interaction-mode) t)
+          ((buffer-file-name (buffer-base-buffer)) t)
+          (t nil)))
+  :config
+  (setq solaire-mode-real-buffer-fn '+solaire-mode-real-buffer-p)
+  (solaire-global-mode +1))
+
+;;;; modeline
+(use-package doom-modeline
+  :straight t
+  :config
+  (setq doom-modeline-buffer-encoding nil
+        doom-modeline-buffer-file-name-style 'buffer-name
+        doom-modeline-check-simple-format t)
+  (doom-modeline-mode t))
 
 ;;;; server
 (use-package server
@@ -215,7 +231,8 @@
         evil-visual-char-tag "V"
         evil-visual-block-tag "Vb"
         evil-visual-line-tag "Vl"
-        evil-visual-screen-line-tag "Vs"))
+        evil-visual-screen-line-tag "Vs"
+        evil-treemacs-state-tag "Tr"))
 
 (use-package evil-collection
   :straight t
@@ -227,7 +244,7 @@
   :after evil
   :hook (evil-mode . evil-escape-mode)
   :config
-  (setq evil-escape-excluded-states '(normal visual multiedit emacs motion)
+  (setq evil-escape-excluded-states '(normal visual multiedit emacs motion treemacs)
         evil-escape-excluded-major-modes '(vterm)
         evil-escape-key-sequence "jk"
         evil-escape-delay 0.2))
@@ -309,6 +326,33 @@
   :after nerd-icons ibuffer
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
+;;;; treemacs
+(use-package treemacs
+  :straight t
+  :defer t
+  :init
+  (setq treemacs-follow-after-init t
+        treemacs-expand-after-init nil
+        treemacs-sorting 'alphabetic-case-insensitive-asc
+        treemacs-width 30)
+  :config
+  (treemacs-follow-mode -1)
+  (treemacs-git-mode 'simple)
+  (treemacs-hide-gitignored-files-mode 1))
+
+(use-package treemacs-nerd-icons
+  :straight t
+  :after nerd-icons treemacs
+  :config (treemacs-load-theme "nerd-icons"))
+
+(use-package treemacs-evil
+  :straight t
+  :after treemacs evil)
+
+(use-package treemacs-magit
+  :straight t
+  :after treemacs magit)
+
 ;;;; popup
 (use-package popper
   :straight t
@@ -333,12 +377,9 @@
 
 ;;;; tab-bar
 (use-package tab-bar
-  :config
-  (setq tab-bar-show 1
-        tab-bar-tab-hints t
-        tab-bar-close-button-show nil
-        tab-bar-new-tab-choice "*scratch*")
-  (tab-bar-mode 1))
+  :init
+  (setq tab-bar-show nil
+        tab-bar-new-tab-choice "*scratch*"))
 
 ;;;; line-numbers
 (use-package display-line-numbers
@@ -741,7 +782,7 @@
 
 ;;;; global
 (general-create-definer spc-leader-def
-  :states '(normal)
+  :states '(normal treemacs)
   :keymaps 'override
   :prefix "SPC")
 
@@ -821,6 +862,26 @@
   "pd" 'project-find-dir
   "pc" 'project-compile)
 
+;;;;; treemacs
+(general-def treemacs-mode-map
+  ;; unset keys
+  "q" nil
+  "p" nil
+  ;; projects
+  "pa" 'treemacs-add-project-to-workspace
+  "pd" 'treemacs-remove-project-from-workspace
+  "pr" 'treemacs-rename-project)
+
+(general-def evil-treemacs-state-map
+  ;; unset keys
+  "w" nil
+  ;; workspaces
+  "ws" 'treemacs-switch-workspace
+  "wa" 'treemacs-create-workspace
+  "wd" 'treemacs-remove-workspace
+  "wr" 'treemacs-rename-workspace
+  "we" 'treemacs-edit-workspaces)
+
 ;;;;; bookmarks
 (spc-leader-def
   "Bb" 'consult-bookmark
@@ -841,6 +902,7 @@
   "tt" 'popper-toggle
   "tn" 'popper-cycle
   "tp" 'popper-cycle-backwards
+  "tr" 'treemacs
   "ti" 'highlight-indent-guides-mode
   "tl" 'display-line-numbers-mode
   "tc" 'olivetti-mode)
