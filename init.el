@@ -67,26 +67,10 @@
   :straight t
   :config (load-theme 'doom-one t))
 
-(use-package solaire-mode
-  :straight t
-  :init
-  (defun +solaire-mode-real-buffer-p ()
-    (cond ((eq major-mode 'vterm-mode) t)
-          ((eq major-mode 'lisp-interaction-mode) t)
-          ((buffer-file-name (buffer-base-buffer)) t)
-          (t nil)))
-  :config
-  (setq solaire-mode-real-buffer-fn '+solaire-mode-real-buffer-p)
-  (solaire-global-mode +1))
-
 ;;;; modeline
-(use-package doom-modeline
+(use-package minions
   :straight t
-  :config
-  (setq doom-modeline-buffer-encoding nil
-        doom-modeline-buffer-file-name-style 'buffer-name
-        doom-modeline-check-simple-format t)
-  (doom-modeline-mode t))
+  :config (minions-mode 1))
 
 ;;;; server
 (use-package server
