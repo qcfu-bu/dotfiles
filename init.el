@@ -333,9 +333,12 @@
 
 ;;;; tab-bar
 (use-package tab-bar
-  :init
-  (setq tab-bar-show nil
-        tab-bar-new-tab-choice "*scratch*"))
+  :config
+  (setq tab-bar-show 1
+        tab-bar-tab-hints t
+        tab-bar-close-button-show nil
+        tab-bar-new-tab-choice "*scratch*")
+  (tab-bar-mode 1))
 
 ;;;; line-numbers
 (use-package display-line-numbers
