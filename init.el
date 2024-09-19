@@ -136,10 +136,10 @@
   :init (savehist-mode))
 
 (use-package recentf
+  :hook (after-init . recentf-mode)
   :init
   (setq recentf-max-menu-items 40
         recentf-max-saved-items 40)
-  (recentf-mode 1)
   :config
   (add-to-list 'recentf-exclude "~/.emacs.d/.cache/*")
   (add-to-list 'recentf-exclude "~/.emacs.d/bookmarks")
