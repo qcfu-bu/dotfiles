@@ -365,6 +365,7 @@
           "Output\\*$"
           "\\*Async Shell Command\\*"
           "^\\*eldoc.\*"
+          "^\\*xref\\*$"
           "^\\*Org Select\\*$"
           compilation-mode
           "^\\*vterm\\*" vterm-mode
@@ -813,7 +814,10 @@
   "ec" 'goto-char
   "es" 'consult-line
   "er" 'anzu-query-replace
-  "ey" 'consult-yank-pop)
+  "ey" 'consult-yank-pop
+  "ed" 'eglot-find-declaration
+  "ei" 'eglot-find-implementation
+  "et" 'eglot-find-typeDefinition)
 
 ;;;;; compile
 (spc-leader-def
