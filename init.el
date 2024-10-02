@@ -561,6 +561,15 @@
   :config (setq vterm-toggle-scope 'project))
 
 ;;; lang
+;;;; treesitter
+(use-package treesit-auto
+  :straight t
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 ;;;; markdown
 (use-package markdown-mode
   :straight t
@@ -730,6 +739,14 @@
    :repo "qcfu-bu/ATS2-emacs")
   :defer t
   :hook (ats2-mode . ats2-flymake-setup))
+
+;;;; rust
+(use-package rust-mode
+  :straight t
+  :hook (rust-ts-mode . eglot-ensure)
+  :init
+  (setq rust-mode-treesitter-derive t
+        rust-format-on-save t))
 
 ;;;; c/c++
 (use-package cc
