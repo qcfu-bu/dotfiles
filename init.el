@@ -561,15 +561,6 @@
   :config (setq vterm-toggle-scope 'project))
 
 ;;; lang
-;;;; treesitter
-(use-package treesit-auto
-  :straight t
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
-
 ;;;; markdown
 (use-package markdown-mode
   :straight t
@@ -619,9 +610,9 @@
         TeX-command-extra-options "-shell-escape"
         TeX-auto-local ".auctex-auto"
         TeX-style-local ".auctex-style"
-        ;; TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -g -b %n %o %b"))
-        ;; TeX-view-program-selection '((output-pdf "Skim"))
-        TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -g -b %n %o %b"))
+        TeX-view-program-selection '((output-pdf "Skim"))
+        ;; TeX-view-program-selection '((output-pdf "PDF Tools"))
         TeX-source-correlate-mode t
         TeX-source-correlate-method 'synctex
         TeX-electric-math '("$" . "$")
@@ -743,10 +734,9 @@
 ;;;; rust
 (use-package rust-mode
   :straight t
-  :hook (rust-ts-mode . eglot-ensure)
+  :hook (rust-mode . eglot-ensure)
   :init
-  (setq rust-mode-treesitter-derive t
-        rust-format-on-save t))
+  (setq rust-format-on-save t))
 
 ;;;; c/c++
 (use-package cc
