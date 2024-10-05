@@ -67,26 +67,10 @@
   :straight t
   :config (load-theme 'doom-one t))
 
-(use-package solaire-mode
-  :straight t
-  :init
-  (defun +solaire-mode-real-buffer-p ()
-    (cond ((eq major-mode 'vterm-mode) t)
-          ((eq major-mode 'lisp-interaction-mode) t)
-          ((buffer-file-name (buffer-base-buffer)) t)
-          (t nil)))
-  :config
-  (setq solaire-mode-real-buffer-fn '+solaire-mode-real-buffer-p)
-  (solaire-global-mode +1))
-
 ;;;; modeline
-(use-package doom-modeline
+(use-package minions
   :straight t
-  :config
-  (setq doom-modeline-buffer-encoding nil
-        doom-modeline-buffer-file-name-style 'buffer-name
-        doom-modeline-check-simple-format t)
-  (doom-modeline-mode t))
+  :config (minions-mode 1))
 
 ;;;; server
 (use-package server
@@ -300,30 +284,27 @@
 
 ;;; ui
 ;;;; icons
-(use-package nerd-icons
-  :straight t)
-
 (use-package nerd-icons-completion
   :straight t
-  :after nerd-icons marginalia
+  :after marginalia
   :config
   (nerd-icons-completion-mode)
   (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package nerd-icons-corfu
   :straight t
-  :after nerd-icons corfu
+  :after corfu
   :config
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package nerd-icons-dired
   :straight t
-  :after nerd-icons dired
+  :after dired
   :hook (dired-mode . nerd-icons-dired-mode))
 
 (use-package nerd-icons-ibuffer
   :straight t
-  :after nerd-icons ibuffer
+  :after ibuffer
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 ;;;; treemacs
@@ -379,7 +360,7 @@
 ;;;; tab-bar
 (use-package tab-bar
   :init
-  (setq tab-bar-show nil
+  (setq tab-bar-show 1
         tab-bar-new-tab-choice "*scratch*"))
 
 ;;;; line-numbers
@@ -509,7 +490,7 @@
 
 (use-package diredfl
   :straight t
-  :config (diredfl-global-mode t))
+  :hook (dired-mode . diredfl-mode))
 
 ;;;; compile
 (use-package compile
