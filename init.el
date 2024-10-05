@@ -28,14 +28,6 @@
         gcmh-auto-idle-delay-factor 10
         gcmh-high-cons-threshold (* 128 1024 1024)))
 
-;;;; path
-(use-package exec-path-from-shell
-  :straight t
-  :config
-  (when (eq system-type 'darwin)
-    (setq exec-path-from-shell-arguments nil)
-    (exec-path-from-shell-initialize)))
-
 ;;; system
 ;;;; info
 (setq user-full-name "Qiancheng Fu"
