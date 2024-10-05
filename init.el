@@ -36,6 +36,7 @@
 ;;;; defaults
 (setq read-process-output-max (* 4 1024 1024)) ;; 4mb
 (setq native-comp-async-report-warnings-errors nil)
+(setq jit-lock-defer-time 0)
 
 (setq use-short-answers t)
 (setq frame-resize-pixelwise t)
