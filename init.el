@@ -68,9 +68,9 @@
   :config (load-theme 'doom-one t))
 
 ;;;; modeline
-(use-package minions
+(use-package doom-modeline
   :straight t
-  :config (minions-mode 1))
+  :config (doom-modeline-mode t))
 
 ;;;; server
 (use-package server
