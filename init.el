@@ -470,8 +470,13 @@
   (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   (add-to-list 'eglot-server-programs '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab")))
+  (add-to-list 'eglot-server-programs '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio")))
   (add-to-list 'eglot-server-programs '((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode) . ("clangd")))
-  (add-to-list 'eglot-server-programs '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio"))))
+  (add-to-list 'eglot-server-programs '((rust-mode rust-ts-mode) .
+                                        ("rust-analyzer" :initializationOptions
+                                         ( :procMacro (:enable t)
+                                           :cargo ( :buildScripts (:enable t)
+                                                    :features "all"))))))
 
 ;;;; dired
 (use-package dired
