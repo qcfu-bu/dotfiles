@@ -895,6 +895,7 @@
 ;;;;; toggles
 (spc-leader-def
   "tt" 'popper-toggle
+  "tT" 'popper-toggle-type
   "tn" 'popper-cycle
   "tp" 'popper-cycle-backwards
   "tr" 'treemacs
