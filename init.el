@@ -56,9 +56,9 @@
 (set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
 
 ;;;; theme
-(use-package adwaita-dark-theme
+(use-package atom-one-dark-theme
   :straight t
-  :config (load-theme 'adwaita-dark t))
+  :config (load-theme 'atom-one-dark t))
 
 ;;;; modeline
 (use-package doom-modeline
