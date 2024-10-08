@@ -56,9 +56,9 @@
 (set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
 
 ;;;; theme
-(use-package doom-themes
+(use-package adwaita-dark-theme
   :straight t
-  :config (load-theme 'doom-one t))
+  :config (load-theme 'adwaita-dark t))
 
 ;;;; modeline
 (use-package doom-modeline
@@ -170,10 +170,6 @@
 ;;;; corfu
 (use-package corfu
   :straight t
-  :custom-face
-  (corfu-border ((t (:background "black"))))
-  (corfu-default ((t (:background unspecified :inherit tooltip))))
-  (corfu-current ((t (:background unspecified :inherit region))))
   :config
   (setq corfu-auto t
         corfu-auto-prefix 2
@@ -490,10 +486,6 @@
 (use-package dired-subtree
   :straight t
   :after dired)
-
-(use-package diredfl
-  :straight t
-  :hook (dired-mode . diredfl-mode))
 
 ;;;; compile
 (use-package compile
