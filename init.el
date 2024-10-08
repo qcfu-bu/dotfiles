@@ -64,7 +64,8 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-buffer-encoding nil
+  (setq doom-modeline-bar-width nil
+        doom-modeline-buffer-encoding nil
         doom-modeline-buffer-file-name-style 'buffer-name
         doom-modeline-check-simple-format t)
   (doom-modeline-mode t))
