@@ -56,9 +56,9 @@
 (set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
 
 ;;;; theme
-(use-package atom-one-dark-theme
+(use-package doom-themes
   :straight t
-  :config (load-theme 'atom-one-dark t))
+  :config (load-theme 'doom-oksolar-light t))
 
 ;;;; modeline
 (use-package doom-modeline
@@ -488,6 +488,10 @@
   :straight t
   :after dired)
 
+(use-package diredfl
+  :straight t
+  :hook (dired-mode . diredfl-mode))
+
 ;;;; compile
 (use-package compile
   :commands (compile recompile)
@@ -587,9 +591,9 @@
         TeX-command-extra-options "-shell-escape"
         TeX-auto-local ".auctex-auto"
         TeX-style-local ".auctex-style"
-        ;; TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -g -b %n %o %b"))
-        ;; TeX-view-program-selection '((output-pdf "Skim"))
-        TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-view-program-list '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -g -b %n %o %b"))
+        TeX-view-program-selection '((output-pdf "Skim"))
+        ;; TeX-view-program-selection '((output-pdf "PDF Tools"))
         TeX-source-correlate-mode t
         TeX-source-correlate-method 'synctex
         TeX-electric-math '("$" . "$")
