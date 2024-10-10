@@ -749,11 +749,6 @@
   :demand t
   :hook (session-type-mode . prettify-symbols-mode))
 
-(use-package SFLang-mode
-  :load-path "~/Git/SF/SF1/editor/emacs"
-  :demand t
-  :hook (SFLang-mode . (lambda () (electric-indent-local-mode -1))))
-
 ;;; keybinds
 ;;;; which-key
 (use-package which-key
