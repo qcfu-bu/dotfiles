@@ -41,7 +41,7 @@
 (setq use-short-answers t)
 (setq frame-resize-pixelwise t)
 (setq confirm-kill-emacs 'yes-or-no-p)
-(setq-default line-spacing 0.2)
+(setq-default line-spacing 0.1)
 (setq-default truncate-lines t)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
@@ -51,14 +51,14 @@
 (setq trash-directory "~/.Trash")
 
 ;;;; fonts
-(set-face-attribute 'default        nil :font "JetBrains Mono-14")
-(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-14")
-(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
+(set-face-attribute 'default        nil :font "JetBrains Mono-11")
+(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-11")
+(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-11")
 
 ;;;; theme
 (use-package doom-themes
   :straight t
-  :config (load-theme 'doom-oksolar-light t))
+  :config (load-theme 'doom-one t))
 
 ;;;; modeline
 (use-package doom-modeline
@@ -740,12 +740,12 @@
 
 ;;;; miscellaneous
 (use-package tll-mode
-  :load-path "~/Git/TLL"
+  :load-path "~/MyProjects/TLL"
   :demand t
   :hook (tll-mode . prettify-symbols-mode))
 
 (use-package session-type-mode
-  :load-path "~/Git/PReST/editor/emacs"
+  :load-path "~/MyProjects/PReST/editor/emacs"
   :demand t
   :hook (session-type-mode . prettify-symbols-mode))
 
