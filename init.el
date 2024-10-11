@@ -1,6 +1,9 @@
 ;;; init.el --- emacs dotfile -*- lexical-binding: t -*-
 
 ;;; bootstrap
+;;;; lisp
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
 ;;;; straight
 (setq straight-check-for-modifications '(check-on-save)
       straight-cache-autoloads t)
@@ -740,12 +743,10 @@
 
 ;;;; miscellaneous
 (use-package tll-mode
-  :load-path "~/Git/TLL"
   :demand t
   :hook (tll-mode . prettify-symbols-mode))
 
 (use-package session-type-mode
-  :load-path "~/Git/PReST/editor/emacs"
   :demand t
   :hook (session-type-mode . prettify-symbols-mode))
 
