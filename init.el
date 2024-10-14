@@ -740,12 +740,12 @@
 
 ;;;; miscellaneous
 (use-package tll-mode
-  :load-path "~/MyProjects/TLL"
+  :load-path "~/Projects/TLL"
   :demand t
   :hook (tll-mode . prettify-symbols-mode))
 
 (use-package session-type-mode
-  :load-path "~/MyProjects/PReST/editor/emacs"
+  :load-path "~/Projects/PReST/editor/emacs"
   :demand t
   :hook (session-type-mode . prettify-symbols-mode))
 
