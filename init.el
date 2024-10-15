@@ -51,12 +51,16 @@
 (setq trash-directory "~/.Trash")
 
 ;;;; fonts
-(defun configure-fonts ()
+(defun set-font-faces ()
   (set-face-attribute 'default        nil :font "JetBrains Mono-11")
   (set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-11")
   (set-face-attribute 'variable-pitch nil :font "JetBrains Mono-11"))
-(add-hook 'after-make-frame-functions (lambda (f) (configure-fonts)))
-(configure-fonts)
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (with-selected-frame frame
+                  (set-font-faces))))
+  (set-font-faces))
 
 ;;;; theme
 (use-package doom-themes
