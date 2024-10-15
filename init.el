@@ -50,11 +50,6 @@
 (setq delete-by-moving-to-trash t)
 (setq trash-directory "~/.Trash")
 
-;;;; fonts
-(set-face-attribute 'default        nil :font "JetBrains Mono-11")
-(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-11")
-(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-11")
-
 ;;;; theme
 (use-package doom-themes
   :straight t
