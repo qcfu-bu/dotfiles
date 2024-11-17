@@ -580,7 +580,11 @@
   :config
   (setq org-startup-indented t
         org-hide-leading-stars t
-        org-src-window-setup 'current-window))
+        org-src-window-setup 'current-window
+        org-html-validation-link nil))
+
+(use-package htmlize
+  :straight t)
 
 ;;;; latex
 (use-package auctex
