@@ -27,9 +27,9 @@
 (setq session-type-basic '("\?" "!" "|" "|-"))
 (setq session-type-declare '("type" "proc" "yield" "equal" "define" "end"))
 (setq session-type-builtin '("match" "with" "flip"))
-(setq session-type-constant '("recv" "send" "work" "get" "pay" "close" "wait" "assume" "assert" "absurd"))
+(setq session-type-constant '("recv" "send" "work" "get" "pay" "close" "wait" "assume" "assert" "absurd" "continue"))
 (setq session-type-quantifier '("forall" "exists"))
-(setq session-type-modal '("|>" "<|"))
+(setq session-type-modal '("|>" "<|" "im" "mut"))
 (setq session-type-highlights '("<-" "->" "<->" "=>"))
 (setq session-type-intense '("magic") )
 

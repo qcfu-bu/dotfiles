@@ -31,6 +31,14 @@
         gcmh-auto-idle-delay-factor 10
         gcmh-high-cons-threshold (* 128 1024 1024)))
 
+;;;; path
+(use-package exec-path-from-shell
+  :straight t
+  :config
+  (when (eq system-type 'darwin)
+    (setq exec-path-from-shell-arguments nil)
+    (exec-path-from-shell-initialize)))
+
 ;;; system
 ;;;; info
 (setq user-full-name "Qiancheng Fu"
@@ -100,8 +108,6 @@
       ;; mouse
       mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
       mouse-wheel-scroll-amount-horizontal 2)
-(when (fboundp 'pixel-scroll-precision-mode)
-  (pixel-scroll-precision-mode))
 
 ;;;; files
 (use-package files
@@ -574,7 +580,11 @@
   :config
   (setq org-startup-indented t
         org-hide-leading-stars t
-        org-src-window-setup 'current-window))
+        org-src-window-setup 'current-window
+        org-html-validation-link nil))
+
+(use-package htmlize
+  :straight t)
 
 ;;;; latex
 (use-package auctex
