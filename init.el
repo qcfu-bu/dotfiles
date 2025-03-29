@@ -944,7 +944,7 @@
 (spc-local-leader-def
   :keymaps 'lean4-mode-map
   "b" 'lean4-lake-build
-  "t" 'lean4-toggle-info-buffer
+  "t" 'lean4-toggle-info
   "r" 'lean4-refresh-file-dependencies
   "k" 'quail-show-key)
 
