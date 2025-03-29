@@ -452,31 +452,20 @@
   :straight t
   :defer t)
 
-;;;; eldoc
-(use-package eldoc
-  :straight t
-  :custom
-  (eldoc-idle-delay 0.1)
-  (eldoc-display-functions '(eldoc-display-in-buffer)))
-
-(use-package eldoc-box
-  :straight t
-  :custom-face
-  (eldoc-box-border ((t (:background "black"))))
-  (eldoc-box-body ((t (:background unspecified :inherit tooltip)))))
-
-;;;; eglot
+;;;; lsp
 (use-package lsp-mode
   :straight t
-  :commands (lsp)
+  :commands lsp
   :init
   (defun lsp-format-on-save ()
     (add-hook 'before-save-hook 'lsp-format-buffer))
   :config
   (setq lsp-completion-provider :none
-        lsp-eldoc-enable-hover nil
         lsp-headerline-breadcrumb-enable nil
         lsp-modeline-code-actions-enable nil))
+
+(use-package lsp-ui
+  :straight t)
 
 ;;;; dired
 (use-package dired
@@ -794,7 +783,6 @@
 
 ;;;;; help
 (spc-leader-def
-  "hh" 'eldoc-box-help-at-point
   "hv" 'describe-variable
   "hf" 'describe-function
   "hF" 'describe-face
@@ -954,7 +942,7 @@
 
 ;;;;; lean4
 (spc-local-leader-def
-  :keymaps 'lean4-mode
+  :keymaps 'lean4-mode-map
   "b" 'lean4-lake-build
   "t" 'lean4-toggle-info-buffer
   "r" 'lean4-refresh-file-dependencies
