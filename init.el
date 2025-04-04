@@ -452,6 +452,15 @@
   :straight t
   :defer t)
 
+;;;; flycheck
+(use-package flycheck
+  :straight t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
+(use-package consult-flycheck
+  :straight t)
+
 ;;;; lsp
 (use-package lsp-mode
   :straight t
@@ -716,7 +725,7 @@
    :host github
    :repo "qcfu-bu/ATS2-emacs")
   :defer t
-  :hook (ats2-mode . ats2-flymake-setup))
+  :hook (ats2-mode . ats2-flycheck-setup))
 
 ;;;; rust
 (use-package rust-mode
@@ -792,7 +801,7 @@
   "hk" 'describe-key
   "hm" 'describe-mode
   "hi" 'describe-input-method
-  "hc" 'consult-flymake)
+  "hc" 'consult-flycheck)
 
 ;;;;; editor
 (spc-leader-def
