@@ -15,6 +15,7 @@
  ("company-mode" . "8d599ebc8a9aca27c0a6157aeb31c5b7f05ed0a3")
  ("compat" . "a0444eab265888bcc33c1ddaae8592e56e96e348")
  ("consult" . "99fcdf3b64de2f48a834a6d7bde028996ed13687")
+ ("consult-flycheck" . "3bc2141daf8cfad7e4d2e2f78b15d45033f707a5")
  ("corfu" . "c302b0526ad9d0c99d1d0639df63f6ca65accfc3")
  ("dash.el" . "fcb5d831fc08a43f984242c7509870f30983c27c")
  ("diff-hl" . "79c46da33b249eb59a2f82fe7ad46fc9621eab0b")
