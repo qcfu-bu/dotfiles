@@ -52,19 +52,17 @@
 (setq use-short-answers t)
 (setq frame-resize-pixelwise t)
 (setq confirm-kill-emacs 'yes-or-no-p)
-(setq-default line-spacing 0.2)
+(setq-default line-spacing 0)
 (setq-default truncate-lines t)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq-default indent-line-function 'insert-tab)
-
 (setq delete-by-moving-to-trash t)
-(setq trash-directory "~/.Trash")
 
 ;;;; fonts
-(set-face-attribute 'default        nil :font "JetBrains Mono-14")
-(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono-14")
-(set-face-attribute 'variable-pitch nil :font "JetBrains Mono-14")
+(set-face-attribute 'default        nil :font "JetBrains Mono" :height 105)
+(set-face-attribute 'fixed-pitch    nil :font "JetBrains Mono" :height 105)
+(set-face-attribute 'variable-pitch nil :font "JetBrains Mono" :height 105)
 
 ;;;; theme
 (use-package doom-themes
@@ -108,6 +106,7 @@
       ;; mouse
       mouse-wheel-scroll-amount '(2 ((shift) . hscroll))
       mouse-wheel-scroll-amount-horizontal 2)
+(pixel-scroll-precision-mode 1)
 
 ;;;; files
 (use-package files

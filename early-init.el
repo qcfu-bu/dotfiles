@@ -14,6 +14,7 @@
 ;; Disable GUI elements
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
 (setq inhibit-splash-screen t)
 (setq use-file-dialog nil)
 (setq ring-bell-function 'ignore)
