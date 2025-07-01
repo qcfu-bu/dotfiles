@@ -69,6 +69,11 @@
   :straight t
   :config (load-theme 'doom-one t))
 
+;;;; dim-buffer
+(use-package dimmer
+  :straight t
+  :hook (after-init . dimmer-mode))
+
 ;;;; modeline
 (use-package doom-modeline
   :straight t
